@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Star, Users, BookOpen, PenTool, Search, ArrowRight } from 'lucide-react';
+import { CheckCircle, Star, Users, BookOpen, PenTool, FileCheck, ArrowRight, Search } from 'lucide-react';
 
 const Home: React.FC = () => {
   const features = [
@@ -16,8 +16,8 @@ const Home: React.FC = () => {
     },
     {
       icon: Search,
-      title: 'Research Papers',
-      description: 'In-depth research and well-structured papers that meet academic standards.'
+      title: 'Research Publication in Journals',
+      description: 'Professional support for publishing your research in reputable academic journals.'
     }
   ];
 
@@ -118,6 +118,16 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/services"
+              className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center"
+            >
+              View More Services
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -127,7 +137,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Why Choose US?
+                Why Choose Us?
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 We combine academic expertise with professional service to deliver exceptional results that exceed expectations.
@@ -136,10 +146,10 @@ const Home: React.FC = () => {
               <div className="space-y-4">
                 {[
                   'Expert writers with advanced degrees',
-                  'Original, plagiarism-free content',
+                  'Free plagiarism and AI reports',
+                  'Unlimited free revisions',
                   'Timely delivery guaranteed',
-                  'Unlimited revisions included',
-                  '24/7 customer support',
+                  '24/7 customer support available',
                   'Confidential and secure service'
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center space-x-3">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight, FileCheck, Users, Shield, Gift } from 'lucide-react';
 
 const Services: React.FC = () => {
   const services = [
@@ -9,44 +9,98 @@ const Services: React.FC = () => {
       title: 'Academic Assignments',
       description: 'Comprehensive help with essays, reports, case studies, and all types of academic assignments.',
       features: ['All academic levels', 'Various subjects', 'Original content', 'Proper formatting'],
-      price: 'From $15/page'
+      price: 'Custom pricing based on requirements'
     },
     {
       icon: GraduationCap,
       title: 'Thesis Writing',
       description: 'Expert assistance with thesis writing from proposal development to final submission.',
       features: ['Research proposal', 'Literature review', 'Methodology design', 'Data analysis'],
-      price: 'Custom pricing'
+      price: 'Tailored pricing for comprehensive thesis support'
     },
     {
       icon: Search,
       title: 'Research Papers',
       description: 'In-depth research papers with comprehensive analysis and academic rigor.',
       features: ['Original research', 'Peer review ready', 'Citation included', 'Quality sources'],
-      price: 'From $20/page'
+      price: 'Competitive rates based on complexity and length'
     },
     {
       icon: BookOpen,
       title: 'Dissertation Help',
       description: 'Complete dissertation support from topic selection to final defense preparation.',
       features: ['Topic selection', 'Chapter-wise writing', 'Defense preparation', 'Revision support'],
-      price: 'Custom pricing'
+      price: 'Comprehensive packages available'
     },
     {
       icon: PenTool,
       title: 'Essay Writing',
       description: 'Professional essay writing services for all academic levels and subjects.',
       features: ['Argumentative essays', 'Narrative essays', 'Descriptive essays', 'Compare & contrast'],
-      price: 'From $12/page'
+      price: 'Affordable rates starting from basic level'
     },
     {
       icon: Lightbulb,
       title: 'Research Proposal',
       description: 'Well-structured research proposals that get approved by academic committees.',
       features: ['Problem statement', 'Literature gap', 'Methodology', 'Timeline'],
-      price: 'From $100'
+      price: 'FREE',
+      highlight: true,
+      freeOffer: true
+    },
+    {
+      icon: FileCheck,
+      title: 'Research Publication',
+      description: 'Professional support for publishing your research in reputable academic journals.',
+      features: ['Journal selection', 'Manuscript preparation', 'Peer review support', 'Publication guidance'],
+      price: 'Premium service with publication guarantee'
+    },
+    {
+      icon: Users,
+      title: 'Online Teaching for Assignments',
+      description: 'Personalized online tutoring and assignment guidance sessions.',
+      features: ['One-on-one sessions', 'Assignment walkthrough', 'Concept clarification', 'Study guidance'],
+      price: 'Hourly rates with flexible scheduling'
+    },
+    {
+      icon: Shield,
+      title: 'Plagiarism & AI Removal',
+      description: 'Professional service to remove plagiarism and AI-generated content from your work.',
+      features: ['Content rewriting', 'Originality enhancement', 'Quality improvement', 'Report included'],
+      price: 'Competitive per-page pricing'
+    },
+    {
+      icon: FileText,
+      title: 'Paper Preparation',
+      description: 'Complete paper preparation service including formatting, citations, and final review.',
+      features: ['Academic formatting', 'Citation styles', 'Proofreading', 'Final review'],
+      price: 'Affordable formatting and preparation rates'
     }
   ];
+
+  // Free services from offers
+  const freeServices = [
+    {
+      icon: Gift,
+      title: 'Free Plagiarism & AI Reports',
+      description: 'Get comprehensive plagiarism and AI detection reports with every order at no extra cost.',
+      features: ['Detailed plagiarism report', 'AI content detection', 'Originality verification', 'Quality assurance'],
+      price: 'FREE',
+      highlight: true,
+      freeOffer: true
+    },
+    {
+      icon: BookOpen,
+      title: 'Free Assignment Guidance',
+      description: 'Receive expert guidance and consultation for your assignments before placing an order.',
+      features: ['Topic consultation', 'Structure guidance', 'Resource recommendations', 'Approach suggestions'],
+      price: 'FREE',
+      highlight: true,
+      freeOffer: true
+    }
+  ];
+
+  const allServices = [...freeServices, ...services];
 
   const process = [
     {
@@ -105,8 +159,16 @@ const Services: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border border-gray-100">
+            {allServices.map((service, index) => (
+              <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border ${
+                service.highlight ? 'border-emerald-300 ring-2 ring-emerald-100' : 'border-gray-100'
+              }`}>
+                {service.freeOffer && (
+                  <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
+                    FREE SERVICE
+                  </div>
+                )}
+                
                 <div className="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6">
                   <service.icon className="h-8 w-8" />
                 </div>
@@ -123,15 +185,22 @@ const Services: React.FC = () => {
                   ))}
                 </ul>
                 
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-blue-700">{service.price}</span>
-                  <Link
-                    to="/contact"
-                    className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Order Now
-                  </Link>
+                <div className="mb-4">
+                  <span className={`text-sm font-medium ${
+                    service.highlight ? 'text-emerald-700' : 'text-blue-700'
+                  }`}>{service.price}</span>
                 </div>
+                
+                <Link
+                  to="/contact"
+                  className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
+                    service.highlight 
+                      ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                      : 'bg-blue-700 hover:bg-blue-800 text-white'
+                  }`}
+                >
+                  {service.freeOffer ? 'Get Free Service' : 'Get Quote'}
+                </Link>
               </div>
             ))}
           </div>
