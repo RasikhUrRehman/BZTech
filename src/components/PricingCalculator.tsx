@@ -36,10 +36,10 @@ const PricingCalculator: React.FC = () => {
   ];
 
   const academicLevels = [
-    { value: 'high-school', label: 'High School', basePrice: 12 },
-    { value: 'undergraduate', label: 'Undergraduate', basePrice: 18 },
-    { value: 'graduate', label: 'Graduate/Masters', basePrice: 25 },
-    { value: 'phd', label: 'PhD/Doctorate', basePrice: 35 }
+    { value: 'high-school', label: 'High School', basePrice: 300 },
+    { value: 'undergraduate', label: 'Undergraduate', basePrice: 450 },
+    { value: 'graduate', label: 'Graduate/Masters', basePrice: 625 },
+    { value: 'phd', label: 'PhD/Doctorate', basePrice: 875 }
   ];
 
   const deadlines = [
@@ -141,7 +141,7 @@ const PricingCalculator: React.FC = () => {
             <option value="">Select Level</option>
             {academicLevels.map((level) => (
               <option key={level.value} value={level.value}>
-                {level.label} (${level.basePrice}/page)
+                {level.label} (PKR {level.basePrice}/page)
               </option>
             ))}
           </select>
@@ -195,12 +195,12 @@ const PricingCalculator: React.FC = () => {
           </div>
           <div className="text-right">
             <div className="flex items-center text-3xl font-bold text-blue-700">
-              <DollarSign className="h-8 w-8" />
+              <span className="text-lg mr-1">PKR</span>
               <span>{estimatedPrice || '0'}</span>
             </div>
             {estimatedPrice > 0 && (
               <p className="text-sm text-gray-500 mt-1">
-                ${(estimatedPrice / pages).toFixed(2)} per page
+                PKR {(estimatedPrice / pages).toFixed(2)} per page
               </p>
             )}
           </div>
@@ -209,7 +209,7 @@ const PricingCalculator: React.FC = () => {
         {estimatedPrice > 0 && (
           <div className="mt-4 pt-4 border-t border-blue-200">
             <div className="flex flex-wrap gap-2 text-sm">
-              {estimatedPrice >= 1000 && (
+              {estimatedPrice >= 25000 && (
                 <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">
                   30% Bulk Discount Eligible
                 </span>

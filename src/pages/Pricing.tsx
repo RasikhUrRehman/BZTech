@@ -8,11 +8,11 @@ const Pricing: React.FC = () => {
     { service: 'Rush Delivery (24 hours)', price: '+50% of base price' },
     { service: 'Rush Delivery (48 hours)', price: '+30% of base price' },
     { service: 'Rush Delivery (72 hours)', price: '+20% of base price' },
-    { service: 'PowerPoint Presentation', price: '$8 per slide' },
-    { service: 'Excel/Statistical Analysis', price: '$15 per hour' },
-    { service: 'Proofreading & Editing', price: '$5 per page' },
-    { service: 'Plagiarism Removal', price: '$8 per page' },
-    { service: 'AI Content Removal', price: '$8 per page' }
+    { service: 'PowerPoint Presentation', price: 'PKR 200 per slide' },
+    { service: 'Excel/Statistical Analysis', price: 'PKR 375 per hour' },
+    { service: 'Proofreading & Editing', price: 'PKR 125 per page' },
+    { service: 'Plagiarism Removal', price: 'PKR 200 per page' },
+    { service: 'AI Content Removal', price: 'PKR 200 per page' }
   ];
 
   const paymentMethods = [
@@ -146,7 +146,7 @@ const Pricing: React.FC = () => {
               },
               {
                 question: 'Do you offer discounts for bulk orders?',
-                answer: 'Yes! Orders above $1000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.'
+                answer: 'Yes! Orders above PKR 25,000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.'
               },
               {
                 question: 'What payment methods do you accept?',
