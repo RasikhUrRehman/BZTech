@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <div className="flex items-center space-x-2 text-gray-400">
                 <Mail className="h-4 w-4" />
-                <span>info@academicpro.com</span>
+                <span>info@bztechnologies.com</span>
               </div>
             </div>
           </div>
@@ -39,6 +39,21 @@ const Footer: React.FC = () => {
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-white transition-colors">
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/offers" className="text-gray-400 hover:text-white transition-colors">
+                  Offers
+                </Link>
+              </li>
+              <li>
+                <Link to="/samples" className="text-gray-400 hover:text-white transition-colors">
+                  Samples
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing" className="text-gray-400 hover:text-white transition-colors">
+                  Pricing
                 </Link>
               </li>
               <li>
@@ -63,12 +78,14 @@ const Footer: React.FC = () => {
               <li>Research Papers</li>
               <li>Essay Writing</li>
               <li>Dissertation Help</li>
+              <li>Research Publication</li>
+              <li>Online Teaching</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 AcademicPro. All rights reserved.</p>
+          <p>&copy; 2024 BZTechnologies. All rights reserved.</p>
         </div>
       </div>
     </footer>

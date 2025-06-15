@@ -19,6 +19,9 @@ const Header: React.FC = () => {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
+    { name: 'Offers', href: '/offers' },
+    { name: 'Samples', href: '/samples' },
+    { name: 'Pricing', href: '/pricing' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -38,11 +41,11 @@ const Header: React.FC = () => {
             <div className="p-2 bg-blue-700 text-white rounded-lg group-hover:bg-blue-800 transition-colors">
               <GraduationCap className="h-6 w-6" />
             </div>
-            <span className="text-xl font-bold text-gray-900">AcademicPro</span>
+            <span className="text-xl font-bold text-gray-900">BZTechnologies</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -71,7 +74,7 @@ const Header: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-700 hover:bg-gray-50"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-700 hover:bg-gray-50"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -79,7 +82,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="lg:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-2">
               {navigation.map((item) => (
                 <Link
