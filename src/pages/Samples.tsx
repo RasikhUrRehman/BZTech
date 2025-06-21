@@ -168,34 +168,38 @@ const Samples: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sampleCategories.map((category, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border border-gray-100">
-                <div className="flex items-center justify-center w-16 h-16 bg-indigo-100 text-indigo-700 rounded-lg mb-6">
-                  <category.icon className="h-8 w-8" />
-                </div>
-                
-                <div className="mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.title}</h3>
-                  <div className="text-sm font-medium text-indigo-600 mb-3">{category.count}</div>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Available Subjects:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {category.subjects.map((subject, subjectIndex) => (
-                      <span key={subjectIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
-                        {subject}
-                      </span>
-                    ))}
+              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 flex flex-col h-full">
+                <div className="p-8 flex-grow">
+                  <div className="flex items-center justify-center w-16 h-16 bg-indigo-100 text-indigo-700 rounded-lg mb-6">
+                    <category.icon className="h-8 w-8" />
+                  </div>
+                  
+                  <div className="mb-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.title}</h3>
+                    <div className="text-sm font-medium text-indigo-600 mb-3">{category.count}</div>
+                    <p className="text-gray-600 mb-4">{category.description}</p>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-2">Available Subjects:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {category.subjects.map((subject, subjectIndex) => (
+                        <span key={subjectIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
+                          {subject}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 
-                <Link
-                  to="/contact"
-                  className="w-full bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center inline-block"
-                >
-                  Request Samples
-                </Link>
+                <div className="p-8 pt-0 mt-auto">
+                  <Link
+                    to="/contact"
+                    className="w-full bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center inline-block"
+                  >
+                    Request Samples
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -216,39 +220,43 @@ const Samples: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {featuredSamples.map((sample, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8">
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{sample.title}</h3>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
-                      {sample.type}
-                    </span>
-                    <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
-                      {sample.level}
-                    </span>
+              <div key={index} className="bg-white rounded-xl shadow-lg flex flex-col h-full">
+                <div className="p-8 flex-grow">
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{sample.title}</h3>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
+                        {sample.type}
+                      </span>
+                      <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                        {sample.level}
+                      </span>
+                    </div>
+                    <div className="text-sm text-gray-600 mb-4">
+                      <div><strong>Subject:</strong> {sample.subject}</div>
+                      <div><strong>Pages:</strong> {sample.pages}</div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{sample.description}</p>
                   </div>
-                  <div className="text-sm text-gray-600 mb-4">
-                    <div><strong>Subject:</strong> {sample.subject}</div>
-                    <div><strong>Pages:</strong> {sample.pages}</div>
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed">{sample.description}</p>
                 </div>
                 
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => handleViewSample(sample.pdfPath)}
-                    className="flex-1 bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
-                  >
-                    <Eye className="h-4 w-4 mr-2" />
-                    View Sample
-                  </button>
-                  <Link
-                    to="/contact"
-                    className="flex-1 border border-indigo-700 text-indigo-700 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
-                  >
-                    <Download className="h-4 w-4 mr-2" />
-                    Request
-                  </Link>
+                <div className="p-8 pt-0 mt-auto">
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => handleViewSample(sample.pdfPath)}
+                      className="flex-1 bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      View Sample
+                    </button>
+                    <Link
+                      to="/contact"
+                      className="flex-1 border border-indigo-700 text-indigo-700 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      Request
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

@@ -134,32 +134,34 @@ const Offers: React.FC = () => {
             {offers.map((offer, index) => {
               const colors = colorClasses[offer.color as keyof typeof colorClasses];
               return (
-                <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border-2 ${colors.border}`}>
-                  <div className="text-center mb-6">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} ${colors.text} rounded-lg mb-4`}>
-                      <offer.icon className="h-8 w-8" />
+                <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 ${colors.border} flex flex-col h-full`}>
+                  <div className="p-8 flex-grow">
+                    <div className="text-center mb-6">
+                      <div className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} ${colors.text} rounded-lg mb-4`}>
+                        <offer.icon className="h-8 w-8" />
+                      </div>
+                      <div className={`inline-block px-4 py-2 ${colors.bg} ${colors.text} rounded-full text-sm font-semibold mb-4`}>
+                        {offer.highlight}
+                      </div>
                     </div>
-                    <div className={`inline-block px-4 py-2 ${colors.bg} ${colors.text} rounded-full text-sm font-semibold mb-4`}>
-                      {offer.highlight}
-                    </div>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">{offer.title}</h3>
+                    <p className="text-gray-600 mb-6 text-center">{offer.description}</p>
+                    
+                    <ul className="space-y-3 mb-8">
+                      {offer.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center space-x-3">
+                          <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">{offer.title}</h3>
-                  <p className="text-gray-600 mb-6 text-center">{offer.description}</p>
-                  
-                  <ul className="space-y-3 mb-8">
-                    {offer.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="text-center">
+                  <div className="p-8 pt-0 mt-auto">
                     <Link
                       to="/contact"
-                      className={`${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center`}
+                      className={`w-full ${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center`}
                     >
                       Claim Now
                       <ArrowRight className="ml-2 h-4 w-4" />

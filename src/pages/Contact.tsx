@@ -1,34 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { useFormContext } from '../contexts/FormContext';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    service: '',
-    deadline: '',
-    message: '',
-    pages: ''
+  const { formData, updateFormData, clearFormData } = useFormContext();
+  const [localFormData, setLocalFormData] = useState({
+    name: formData.name || '',
+    email: formData.email || '',
+    subject: formData.subject || '',
+    service: formData.service || '',
+    deadline: formData.deadline || '',
+    message: formData.message || '',
+    pages: formData.pages || ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  // Update local form data when context changes
+  useEffect(() => {
+    setLocalFormData({
+      name: formData.name || '',
+      email: formData.email || '',
+      subject: formData.subject || '',
+      service: formData.service || '',
+      deadline: formData.deadline || '',
+      message: formData.message || '',
+      pages: formData.pages || ''
     });
+  }, [formData]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const updatedData = {
+      ...localFormData,
+      [e.target.name]: e.target.value
+    };
+    setLocalFormData(updatedData);
+    updateFormData(updatedData);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
+    console.log('Form submitted:', localFormData);
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({
+      clearFormData();
+      setLocalFormData({
         name: '',
         email: '',
         subject: '',
@@ -44,7 +62,7 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      content: 'info@academicpro.com',
+      content: 'info@bztechnologies.com',
       description: 'Send us your requirements anytime'
     },
     {
@@ -105,6 +123,13 @@ const Contact: React.FC = () => {
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
             Ready to excel in your studies? Contact us now for professional academic writing and research services
           </p>
+          {(formData.service || formData.pages || formData.academicLevel) && (
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-sm text-blue-100">
+                ✨ Your pricing calculator data has been pre-filled below!
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -127,7 +152,7 @@ const Contact: React.FC = () => {
                         id="name"
                         name="name"
                         required
-                        value={formData.name}
+                        value={localFormData.name}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter your full name"
@@ -142,7 +167,7 @@ const Contact: React.FC = () => {
                         id="email"
                         name="email"
                         required
-                        value={formData.email}
+                        value={localFormData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter your email"
@@ -159,7 +184,7 @@ const Contact: React.FC = () => {
                       id="subject"
                       name="subject"
                       required
-                      value={formData.subject}
+                      value={localFormData.subject}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Enter your assignment subject or topic"
@@ -175,7 +200,7 @@ const Contact: React.FC = () => {
                         id="service"
                         name="service"
                         required
-                        value={formData.service}
+                        value={localFormData.service}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
@@ -196,7 +221,7 @@ const Contact: React.FC = () => {
                         id="pages"
                         name="pages"
                         min="1"
-                        value={formData.pages}
+                        value={localFormData.pages}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Pages"
@@ -211,7 +236,7 @@ const Contact: React.FC = () => {
                         id="deadline"
                         name="deadline"
                         required
-                        value={formData.deadline}
+                        value={localFormData.deadline}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       />
@@ -226,7 +251,7 @@ const Contact: React.FC = () => {
                       id="message"
                       name="message"
                       rows={6}
-                      value={formData.message}
+                      value={localFormData.message}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Please provide detailed instructions, formatting requirements, sources needed, etc."

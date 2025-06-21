@@ -160,47 +160,51 @@ const Services: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allServices.map((service, index) => (
-              <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border ${
+              <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border flex flex-col h-full ${
                 service.highlight ? 'border-emerald-300 ring-2 ring-emerald-100' : 'border-gray-100'
               }`}>
-                {service.freeOffer && (
-                  <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
-                    FREE SERVICE
+                <div className="p-8 flex-grow">
+                  {service.freeOffer && (
+                    <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
+                      FREE SERVICE
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6">
+                    <service.icon className="h-8 w-8" />
                   </div>
-                )}
-                
-                <div className="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6">
-                  <service.icon className="h-8 w-8" />
+                  
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">{service.title}</h3>
+                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                        <span className="text-sm text-gray-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="mb-6">
+                    <span className={`text-sm font-medium ${
+                      service.highlight ? 'text-emerald-700' : 'text-blue-700'
+                    }`}>{service.price}</span>
+                  </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="mb-4">
-                  <span className={`text-sm font-medium ${
-                    service.highlight ? 'text-emerald-700' : 'text-blue-700'
-                  }`}>{service.price}</span>
+                <div className="p-8 pt-0 mt-auto">
+                  <Link
+                    to="/contact"
+                    className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
+                      service.highlight 
+                        ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                        : 'bg-blue-700 hover:bg-blue-800 text-white'
+                    }`}
+                  >
+                    {service.freeOffer ? 'Get Free Service' : 'Get Quote'}
+                  </Link>
                 </div>
-                
-                <Link
-                  to="/contact"
-                  className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
-                    service.highlight 
-                      ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
-                      : 'bg-blue-700 hover:bg-blue-800 text-white'
-                  }`}
-                >
-                  {service.freeOffer ? 'Get Free Service' : 'Get Quote'}
-                </Link>
               </div>
             ))}
           </div>

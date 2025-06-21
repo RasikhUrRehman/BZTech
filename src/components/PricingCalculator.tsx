@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calculator, DollarSign } from 'lucide-react';
+import { useFormContext } from '../contexts/FormContext';
 
 const PricingCalculator: React.FC = () => {
-  const [service, setService] = useState('');
+  const { formData, updateFormData } = useFormContext();
+  const [service, setService] = useState(formData.service || '');
   const [subject, setSubject] = useState('');
-  const [pages, setPages] = useState(1);
-  const [academicLevel, setAcademicLevel] = useState('');
+  const [pages, setPages] = useState(formData.pages ? parseInt(formData.pages) : 1);
+  const [academicLevel, setAcademicLevel] = useState(formData.academicLevel || '');
   const [deadline, setDeadline] = useState('');
+
+  // Update form context when values change
+  useEffect(() => {
+    updateFormData({
+      service,
+      pages: pages.toString(),
+      academicLevel
+    });
+  }, [service, pages, academicLevel, updateFormData]);
 
   const services = [
     'Academic Assignments',
