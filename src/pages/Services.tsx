@@ -163,7 +163,7 @@ const Services: React.FC = () => {
               <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border flex flex-col h-full ${
                 service.highlight ? 'border-emerald-300 ring-2 ring-emerald-100' : 'border-gray-100'
               }`}>
-                <div className="p-8 flex-grow">
+                <div className="p-8 pb-4 flex-grow">
                   {service.freeOffer && (
                     <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
                       FREE SERVICE
@@ -186,7 +186,7 @@ const Services: React.FC = () => {
                     ))}
                   </ul>
                   
-                  <div className="mb-6">
+                  <div className="">
                     <span className={`text-sm font-medium ${
                       service.highlight ? 'text-emerald-700' : 'text-blue-700'
                     }`}>{service.price}</span>

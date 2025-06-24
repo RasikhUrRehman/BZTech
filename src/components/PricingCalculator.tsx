@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, DollarSign } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { useFormContext } from '../contexts/FormContext';
 
 const PricingCalculator: React.FC = () => {
