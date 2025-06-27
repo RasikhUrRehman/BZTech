@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { useFormContext } from '../contexts/FormContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const PricingCalculator: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const { formData, updateFormData } = useFormContext();
   const [service, setService] = useState(formData.service || '');
   const [subject, setSubject] = useState('');
@@ -20,14 +22,14 @@ const PricingCalculator: React.FC = () => {
   }, [service, pages, academicLevel, updateFormData]);
 
   const services = [
-    'Academic Assignments',
-    'Thesis Writing',
-    'Research Papers',
-    'Dissertation Help',
-    'Essay Writing',
-    'Research Publication',
-    'Online Teaching',
-    'Plagiarism & AI Removal',
+    t('feature.academicAssignments'),
+    t('feature.thesisWriting'),
+    t('feature.researchPapers'),
+    t('feature.dissertationHelp'),
+    t('feature.essayWriting'),
+    t('feature.researchPublication'),
+    t('feature.onlineTeaching'),
+    t('feature.plagiarismRemoval'),
     'Paper Preparation'
   ];
 
@@ -101,23 +103,23 @@ const PricingCalculator: React.FC = () => {
   const estimatedPrice = calculatePrice();
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8">
-      <div className="flex items-center mb-6">
-        <Calculator className="h-8 w-8 text-blue-700 mr-3" />
-        <h3 className="text-2xl font-bold text-gray-900">Pricing Calculator</h3>
+    <div className={`bg-white rounded-xl shadow-lg p-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+      <div className={`flex items-center mb-6 ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+        <Calculator className="h-8 w-8 text-blue-700" />
+        <h3 className="text-2xl font-bold text-gray-900">{t('pricing.calculator.title')}</h3>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Service Type *
+            {t('pricing.calculator.serviceType')} *
           </label>
           <select
             value={service}
             onChange={(e) => setService(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Service</option>
+            <option value="">{t('pricing.calculator.selectService')}</option>
             {services.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -126,14 +128,14 @@ const PricingCalculator: React.FC = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Subject Area
+            {t('pricing.calculator.subjectArea')}
           </label>
           <select
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Subject</option>
+            <option value="">{t('pricing.calculator.selectSubject')}</option>
             {subjects.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -142,7 +144,7 @@ const PricingCalculator: React.FC = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Academic Level *
+            {t('pricing.calculator.academicLevel')} *
           </label>
           <select
             value={academicLevel}

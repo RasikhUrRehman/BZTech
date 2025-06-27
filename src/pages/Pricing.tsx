@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DollarSign, CheckCircle, CreditCard, ArrowRight } from 'lucide-react';
+import { DollarSign, CreditCard } from 'lucide-react';
 import PricingCalculator from '../components/PricingCalculator';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Pricing: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const additionalServices = [
     { service: 'Rush Delivery (24 hours)', price: '+50% of base price' },
     { service: 'Rush Delivery (48 hours)', price: '+30% of base price' },
@@ -32,20 +34,19 @@ const Pricing: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-800 to-blue-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <DollarSign className="h-16 w-16 text-green-300 mr-4" />
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+          <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            <DollarSign className="h-16 w-16 text-green-300" />
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Transparent Pricing
+              {t('pricing.title')}
             </h1>
           </div>
           <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-            Quality academic services at competitive prices. No hidden fees, no surprises - 
-            just honest pricing for exceptional work.
+            {t('pricing.subtitle')}
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
             <p className="text-lg font-semibold text-green-100">
-              🎉 New customers get 30% off their first order!
+              {t('pricing.discount')}
             </p>
           </div>
         </div>
@@ -127,39 +128,39 @@ const Pricing: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Pricing FAQ
+              {t('pricing.faq.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Common questions about our pricing structure
+              {t('pricing.faq.subtitle')}
             </p>
           </div>
 
           <div className="space-y-8">
             {[
               {
-                question: 'How is the final price calculated?',
-                answer: 'The final price is based on academic level, number of pages, deadline, and any additional services. We provide a detailed quote before you confirm your order.'
+                question: t('pricing.faq.q1'),
+                answer: t('pricing.faq.a1')
               },
               {
-                question: 'Are there any hidden fees?',
-                answer: 'No, we believe in transparent pricing. The quote you receive includes all costs except for optional add-on services that you specifically request.'
+                question: t('pricing.faq.q2'),
+                answer: t('pricing.faq.a2')
               },
               {
-                question: 'Do you offer discounts for bulk orders?',
-                answer: 'Yes! Orders above PKR 25,000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.'
+                question: t('pricing.faq.q3'),
+                answer: t('pricing.faq.a3')
               },
               {
-                question: 'What payment methods do you accept?',
-                answer: 'We accept various payment methods including major credit cards, digital wallets, and international transfer services. Contact us for specific payment details.'
+                question: t('pricing.faq.q4'),
+                answer: t('pricing.faq.a4')
               },
               {
-                question: 'Is there a refund policy?',
-                answer: 'Yes, we offer a comprehensive refund policy. If you\'re not satisfied with the work, we provide unlimited free revisions or a full refund in qualifying cases.'
+                question: t('pricing.faq.q5'),
+                answer: t('pricing.faq.a5')
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
+                <h3 className={`text-lg font-semibold text-gray-900 mb-4 ${isRTL ? 'text-right' : ''}`}>{faq.question}</h3>
+                <p className={`text-gray-600 ${isRTL ? 'text-right' : ''}`}>{faq.answer}</p>
               </div>
             ))}
           </div>

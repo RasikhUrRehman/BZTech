@@ -1,79 +1,81 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Download, Eye, BookOpen, GraduationCap, Search, PenTool, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Samples: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const sampleCategories = [
     {
       icon: FileText,
-      title: 'Essays',
-      count: '25+ Samples',
-      description: 'Argumentative, narrative, descriptive, and analytical essays across various subjects.',
+      titleKey: 'samples.category.essays',
+      countKey: '25+',
+      descKey: 'samples.category.essays.desc',
       subjects: ['Literature', 'History', 'Philosophy', 'Sociology']
     },
     {
       icon: Search,
-      title: 'Research Papers',
-      count: '20+ Samples',
-      description: 'Comprehensive research papers with proper methodology and citations.',
+      titleKey: 'samples.category.researchPapers',
+      countKey: '20+',
+      descKey: 'samples.category.researchPapers.desc',
       subjects: ['Psychology', 'Business', 'Science', 'Technology']
     },
     {
       icon: GraduationCap,
-      title: 'Thesis Samples',
-      count: '15+ Samples',
-      description: 'Complete thesis examples from various academic levels and disciplines.',
+      titleKey: 'samples.category.thesis',
+      countKey: '15+',
+      descKey: 'samples.category.thesis.desc',
       subjects: ['MBA', 'Masters', 'PhD', 'Undergraduate']
     },
     {
       icon: BookOpen,
-      title: 'Case Studies',
-      count: '18+ Samples',
-      description: 'Detailed case study analyses across different industries and subjects.',
+      titleKey: 'samples.category.caseStudies',
+      countKey: '18+',
+      descKey: 'samples.category.caseStudies.desc',
       subjects: ['Business', 'Medicine', 'Law', 'Engineering']
     },
     {
       icon: PenTool,
-      title: 'Dissertations',
-      count: '12+ Samples',
-      description: 'Comprehensive dissertation samples with complete chapters and analysis.',
+      titleKey: 'samples.category.dissertations',
+      countKey: '12+',
+      descKey: 'samples.category.dissertations.desc',
       subjects: ['Education', 'Healthcare', 'Management', 'Social Sciences']
     },
     {
       icon: FileText,
-      title: 'Reports',
-      count: '22+ Samples',
-      description: 'Professional reports including lab reports, business reports, and project reports.',
+      titleKey: 'samples.category.reports',
+      countKey: '22+',
+      descKey: 'samples.category.reports.desc',
       subjects: ['Science', 'Business', 'Engineering', 'Finance']
     }
   ];
 
   const featuredSamples = [
     {
-      title: 'The Impact of Social Media on Modern Communication',
-      type: 'Research Paper',
-      subject: 'Communication Studies',
+      titleKey: 'samples.featured.socialMedia.title',
+      typeKey: 'samples.featured.socialMedia.type',
+      subjectKey: 'samples.featured.socialMedia.subject',
       pages: 15,
-      level: 'Graduate',
-      description: 'A comprehensive analysis of how social media platforms have transformed interpersonal communication patterns in the digital age.',
+      levelKey: 'samples.level.graduate',
+      descKey: 'samples.featured.socialMedia.desc',
       pdfPath: '/samples/sample-research-paper.pdf'
     },
     {
-      title: 'Sustainable Business Practices in the 21st Century',
-      type: 'Case Study',
-      subject: 'Business Management',
+      titleKey: 'samples.featured.business.title',
+      typeKey: 'samples.featured.business.type',
+      subjectKey: 'samples.featured.business.subject',
       pages: 12,
-      level: 'MBA',
-      description: 'An in-depth case study examining how modern corporations integrate sustainability into their business models.',
+      levelKey: 'samples.level.mba',
+      descKey: 'samples.featured.business.desc',
       pdfPath: '/samples/sample-essay.pdf'
     },
     {
-      title: 'Climate Change and Its Economic Implications',
-      type: 'Thesis',
-      subject: 'Environmental Economics',
+      titleKey: 'samples.featured.climate.title',
+      typeKey: 'samples.featured.climate.type',
+      subjectKey: 'samples.featured.climate.subject',
       pages: 45,
-      level: 'Masters',
-      description: 'A detailed thesis exploring the economic costs and benefits of climate change mitigation strategies.',
+      levelKey: 'samples.level.masters',
+      descKey: 'samples.featured.climate.desc',
       pdfPath: '/samples/sample-thesis.pdf'
     }
   ];
@@ -86,7 +88,7 @@ const Samples: React.FC = () => {
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Sample Document - Read Only</title>
+          <title>${t('samples.readOnly')}</title>
           <style>
             body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
             .header { background: #1e40af; color: white; padding: 10px; text-align: center; }
@@ -97,8 +99,8 @@ const Samples: React.FC = () => {
         </head>
         <body class="no-select">
           <div class="header">
-            <strong>Sample Document - Read Only</strong> | 
-            This is a demonstration sample. Contact us for full access to our sample library.
+            <strong>${t('samples.readOnly')}</strong> | 
+            ${t('samples.demo')}
           </div>
           <div class="content">
             <embed src="${pdfPath}" type="application/pdf" />
@@ -127,28 +129,26 @@ const Samples: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-800 to-purple-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <BookOpen className="h-16 w-16 text-purple-300 mr-4" />
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+          <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            <BookOpen className="h-16 w-16 text-purple-300" />
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Sample Works
+              {t('samples.title')}
             </h1>
           </div>
           <p className="text-xl text-indigo-100 mb-8 max-w-3xl mx-auto">
-            Explore our collection of high-quality academic samples to understand our writing standards 
-            and get inspiration for your own projects.
+            {t('samples.subtitle')}
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
-            <p className="text-lg text-indigo-100 mb-4">
-              <strong>Note:</strong> Sample works will be provided in folder format upon request. 
-              Contact us to access our complete sample library.
+            <p className={`text-lg text-indigo-100 mb-4 ${isRTL ? 'text-right' : ''}`}>
+              <strong>{isRTL ? 'ملاحظة:' : 'Note:'}</strong> {t('samples.note')}
             </p>
             <Link
               to="/contact"
-              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center"
+              className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
             >
-              Request Samples
-              <ArrowRight className="ml-2 h-5 w-5" />
+              {t('samples.viewSamples')}
+              <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
             </Link>
           </div>
         </div>
@@ -157,12 +157,12 @@ const Samples: React.FC = () => {
       {/* Sample Categories */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Sample Categories
+              {t('samples.categories.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Browse through our diverse collection of academic samples across various subjects and formats
+              {t('samples.categories.subtitle')}
             </p>
           </div>
 
@@ -170,19 +170,19 @@ const Samples: React.FC = () => {
             {sampleCategories.map((category, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 flex flex-col h-full">
                 <div className="p-8 flex-grow">
-                  <div className="flex items-center justify-center w-16 h-16 bg-indigo-100 text-indigo-700 rounded-lg mb-6">
+                  <div className={`flex items-center justify-center w-16 h-16 bg-indigo-100 text-indigo-700 rounded-lg mb-6 ${isRTL ? 'ml-auto' : ''}`}>
                     <category.icon className="h-8 w-8" />
                   </div>
                   
                   <div className="mb-4">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.title}</h3>
-                    <div className="text-sm font-medium text-indigo-600 mb-3">{category.count}</div>
-                    <p className="text-gray-600 mb-4">{category.description}</p>
+                    <h3 className={`text-xl font-semibold text-gray-900 mb-2 ${isRTL ? 'text-right' : ''}`}>{t(category.titleKey)}</h3>
+                    <div className={`text-sm font-medium text-indigo-600 mb-3 ${isRTL ? 'text-right' : ''}`}>{category.countKey}+ {t('samples.category.count')}</div>
+                    <p className={`text-gray-600 mb-4 ${isRTL ? 'text-right' : ''}`}>{t(category.descKey)}</p>
                   </div>
                   
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-2">Available Subjects:</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className={`text-sm font-semibold text-gray-900 mb-2 ${isRTL ? 'text-right' : ''}`}>{t('samples.availableSubjects')}:</h4>
+                    <div className={`flex flex-wrap gap-2 ${isRTL ? 'justify-end' : ''}`}>
                       {category.subjects.map((subject, subjectIndex) => (
                         <span key={subjectIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
                           {subject}
@@ -195,9 +195,9 @@ const Samples: React.FC = () => {
                 <div className="p-8 pt-0 mt-auto">
                   <Link
                     to="/contact"
-                    className="w-full bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center inline-block"
+                    className={`w-full bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center inline-block ${isRTL ? 'text-right' : ''}`}
                   >
-                    Request Samples
+                    {t('samples.requestSamples')}
                   </Link>
                 </div>
               </div>
@@ -209,12 +209,12 @@ const Samples: React.FC = () => {
       {/* Featured Samples */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Featured Sample Works
+              {t('samples.featuredTitle')}
             </h2>
             <p className="text-xl text-gray-600">
-              Preview some of our high-quality academic works across different disciplines
+              {t('samples.featuredSubtitle')}
             </p>
           </div>
 
@@ -223,38 +223,38 @@ const Samples: React.FC = () => {
               <div key={index} className="bg-white rounded-xl shadow-lg flex flex-col h-full">
                 <div className="p-8 flex-grow">
                   <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{sample.title}</h3>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <h3 className={`text-lg font-semibold text-gray-900 mb-3 ${isRTL ? 'text-right' : ''}`}>{t(sample.titleKey)}</h3>
+                    <div className={`flex flex-wrap gap-2 mb-4 ${isRTL ? 'justify-end' : ''}`}>
                       <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
-                        {sample.type}
+                        {t(sample.typeKey)}
                       </span>
                       <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
-                        {sample.level}
+                        {t(sample.levelKey)}
                       </span>
                     </div>
-                    <div className="text-sm text-gray-600 mb-4">
-                      <div><strong>Subject:</strong> {sample.subject}</div>
-                      <div><strong>Pages:</strong> {sample.pages}</div>
+                    <div className={`text-sm text-gray-600 mb-4 ${isRTL ? 'text-right' : ''}`}>
+                      <div><strong>{t('samples.subject')}:</strong> {t(sample.subjectKey)}</div>
+                      <div><strong>{t('samples.pages')}:</strong> {sample.pages}</div>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">{sample.description}</p>
+                    <p className={`text-gray-600 text-sm leading-relaxed ${isRTL ? 'text-right' : ''}`}>{t(sample.descKey)}</p>
                   </div>
                 </div>
                 
                 <div className="p-8 pt-0 mt-auto">
-                  <div className="flex space-x-3">
+                  <div className={`flex gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <button
                       onClick={() => handleViewSample(sample.pdfPath)}
-                      className="flex-1 bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
+                      className={`flex-1 bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                     >
-                      <Eye className="h-4 w-4 mr-2" />
-                      View Sample
+                      <Eye className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                      {t('samples.viewSample')}
                     </button>
                     <Link
                       to="/contact"
-                      className="flex-1 border border-indigo-700 text-indigo-700 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center"
+                      className={`flex-1 border border-indigo-700 text-indigo-700 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center inline-flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                     >
-                      <Download className="h-4 w-4 mr-2" />
-                      Request
+                      <Download className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                      {t('samples.request')}
                     </Link>
                   </div>
                 </div>
@@ -267,12 +267,12 @@ const Samples: React.FC = () => {
       {/* How to Access */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className={`text-center mb-12 ${isRTL ? 'text-right' : ''}`}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              How to Access Sample Works
+              {t('samples.howToAccess.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              Follow these simple steps to get access to our comprehensive sample library
+              {t('samples.howToAccess.subtitle')}
             </p>
           </div>
 
@@ -280,26 +280,26 @@ const Samples: React.FC = () => {
             {[
               {
                 step: 1,
-                title: 'Contact Us',
-                description: 'Reach out to us through our contact form or direct communication channels.'
+                titleKey: 'samples.step.contact.title',
+                descKey: 'samples.step.contact.desc'
               },
               {
                 step: 2,
-                title: 'Specify Requirements',
-                description: 'Tell us what type of samples you need - subject, academic level, and format.'
+                titleKey: 'samples.step.specify.title',
+                descKey: 'samples.step.specify.desc'
               },
               {
                 step: 3,
-                title: 'Receive Samples',
-                description: 'Get access to relevant sample works organized in easy-to-navigate folders.'
+                titleKey: 'samples.step.receive.title',
+                descKey: 'samples.step.receive.desc'
               }
             ].map((step, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className={`text-center ${isRTL ? 'text-right' : ''}`}>
                 <div className="flex items-center justify-center w-16 h-16 bg-indigo-700 text-white rounded-full text-2xl font-bold mb-6 mx-auto">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{t(step.titleKey)}</h3>
+                <p className="text-gray-600">{t(step.descKey)}</p>
               </div>
             ))}
           </div>
@@ -310,47 +310,47 @@ const Samples: React.FC = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Why Our Samples Stand Out
+            <div className={isRTL ? 'order-2' : ''}>
+              <h2 className={`text-3xl lg:text-4xl font-bold text-gray-900 mb-6 ${isRTL ? 'text-right' : ''}`}>
+                {t('samples.quality.title')}
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Our sample works represent the same high standards and quality that we deliver to all our clients.
+              <p className={`text-lg text-gray-600 mb-8 ${isRTL ? 'text-right' : ''}`}>
+                {t('samples.quality.subtitle')}
               </p>
               
               <div className="space-y-4">
                 {[
-                  'Written by PhD-qualified experts',
-                  'Properly formatted and cited',
-                  'Original and plagiarism-free',
-                  'Comprehensive research and analysis',
-                  'Multiple academic levels covered',
-                  'Diverse subject areas included'
-                ].map((benefit, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+                  'samples.quality.benefit1',
+                  'samples.quality.benefit2',
+                  'samples.quality.benefit3',
+                  'samples.quality.benefit4',
+                  'samples.quality.benefit5',
+                  'samples.quality.benefit6'
+                ].map((benefitKey, index) => (
+                  <div key={index} className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <div className="flex items-center justify-center w-6 h-6 bg-emerald-100 text-emerald-700 rounded-full flex-shrink-0">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-700">{benefit}</span>
+                    <span className={`text-gray-700 ${isRTL ? 'text-right' : ''}`}>{t(benefitKey)}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <div className="text-center">
+            <div className={`bg-white rounded-2xl p-8 shadow-lg ${isRTL ? 'order-1' : ''}`}>
+              <div className={`text-center ${isRTL ? 'text-right' : ''}`}>
                 <BookOpen className="h-16 w-16 text-indigo-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Explore?</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('samples.explore.title')}</h3>
                 <p className="text-gray-600 mb-6">
-                  Contact us today to get access to our comprehensive sample library and see the quality of work we deliver.
+                  {t('samples.note')}
                 </p>
                 <Link
                   to="/contact"
                   className="bg-indigo-700 hover:bg-indigo-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-block"
                 >
-                  Request Sample Access
+                  {t('samples.requestSampleAccess')}
                 </Link>
               </div>
             </div>

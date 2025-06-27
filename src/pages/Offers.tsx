@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, FileCheck, BookOpen, Percent, DollarSign, RefreshCw, ArrowRight, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Offers: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const offers = [
     {
       icon: FileCheck,
@@ -97,23 +99,22 @@ const Offers: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-800 to-pink-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <Gift className="h-16 w-16 text-pink-300 mr-4" />
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+          <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            <Gift className="h-16 w-16 text-pink-300" />
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Exclusive Offers
+              {t('offers.title')}
             </h1>
           </div>
           <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
-            Take advantage of our special offers and save on premium academic services. 
-            Quality education support shouldn't break the bank!
+            {t('offers.subtitle')}
           </p>
           <Link
             to="/contact"
-            className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center"
+            className={`bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
           >
-            Claim Your Offers
-            <ArrowRight className="ml-2 h-5 w-5" />
+            {t('offers.claim')}
+            <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
           </Link>
         </div>
       </section>
@@ -121,12 +122,12 @@ const Offers: React.FC = () => {
       {/* Offers Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Amazing Deals & Benefits
+              {t('offers.amazing.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We believe in providing exceptional value to our clients through these exclusive offers
+              {t('offers.amazing.subtitle')}
             </p>
           </div>
 

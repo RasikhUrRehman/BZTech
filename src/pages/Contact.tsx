@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { useFormContext } from '../contexts/FormContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const { formData, updateFormData, clearFormData } = useFormContext();
   const [localFormData, setLocalFormData] = useState({
     name: formData.name || '',
@@ -116,12 +118,12 @@ const Contact: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-800 to-emerald-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Get Your Academic Help Today
+            {t('contact.title')}
           </h1>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Ready to excel in your studies? Contact us now for professional academic writing and research services
+            {t('contact.subtitle')}
           </p>
           {(formData.service || formData.pages || formData.academicLevel) && (
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
@@ -139,13 +141,13 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Get Your Quote</h2>
+              <div className={`bg-white rounded-xl shadow-lg p-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('common.getQuote')}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
+                        {t('contact.form.name')} *
                       </label>
                       <input
                         type="text"
@@ -155,12 +157,12 @@ const Contact: React.FC = () => {
                         value={localFormData.name}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Enter your full name"
+                        placeholder={t('contact.form.name')}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -170,14 +172,14 @@ const Contact: React.FC = () => {
                         value={localFormData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Enter your email"
+                        placeholder={t('contact.form.email')}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject/Topic *
+                      {t('contact.form.subject')} *
                     </label>
                     <input
                       type="text"
@@ -187,14 +189,14 @@ const Contact: React.FC = () => {
                       value={localFormData.subject}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter your assignment subject or topic"
+                      placeholder={t('contact.form.subject')}
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                        Service Type *
+                        {t('contact.form.service')} *
                       </label>
                       <select
                         id="service"
@@ -204,7 +206,7 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
-                        <option value="">Select Service</option>
+                        <option value="">{t('contact.form.service')}</option>
                         {services.map((service) => (
                           <option key={service} value={service}>
                             {service}
@@ -214,7 +216,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <label htmlFor="pages" className="block text-sm font-medium text-gray-700 mb-2">
-                        Number of Pages
+                        {t('contact.form.pages')}
                       </label>
                       <input
                         type="number"
@@ -224,12 +226,12 @@ const Contact: React.FC = () => {
                         value={localFormData.pages}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Pages"
+                        placeholder={t('contact.form.pages')}
                       />
                     </div>
                     <div>
                       <label htmlFor="deadline" className="block text-sm font-medium text-gray-700 mb-2">
-                        Deadline *
+                        {t('contact.form.deadline')} *
                       </label>
                       <input
                         type="date"
