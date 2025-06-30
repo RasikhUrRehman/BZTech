@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -12,10 +12,12 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className={`flex items-center mb-4 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-              <div className="p-2 bg-blue-600 text-white rounded-lg">
-                <GraduationCap className="h-6 w-6" />
-              </div>
-              <span className="text-xl font-bold">BZTechnologies</span>
+              <img 
+                src="/logo.jpeg" 
+                alt="Thesis and Assignment Logo" 
+                className="h-8 w-8 rounded-lg object-cover"
+              />
+              <span className="text-xl font-bold">Thesis and Assignment</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               {t('footer.description')}
@@ -23,7 +25,7 @@ const Footer: React.FC = () => {
             <div className={`flex ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
               <div className={`flex items-center text-gray-400 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                 <Mail className="h-4 w-4" />
-                <span>info@bztechnologies.com</span>
+                <span>thesisassignmentsuk@gmail.com</span>
               </div>
             </div>
           </div>

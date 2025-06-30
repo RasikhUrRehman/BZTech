@@ -31,21 +31,21 @@ const About: React.FC = () => {
   const team = [
     {
       name: 'Dr. Sarah Mitchell',
-      role: 'Academic Director',
-      expertise: 'Literature & Humanities',
-      experience: '12+ years'
+      role: t('team.academicDirector'),
+      expertise: t('team.literatureHumanities'),
+      experience: t('team.experience.sarah')
     },
     {
       name: 'Prof. James Chen',
-      role: 'Research Specialist',
-      expertise: 'Sciences & Technology',
-      experience: '15+ years'
+      role: t('team.researchSpecialist'),
+      expertise: t('team.sciencesTechnology'),
+      experience: t('team.experience.james')
     },
     {
       name: 'Dr. Maria Rodriguez',
-      role: 'Writing Coordinator',
-      expertise: 'Social Sciences',
-      experience: '10+ years'
+      role: t('team.writingCoordinator'),
+      expertise: t('subject.socialSciences'),
+      experience: t('team.experience.maria')
     }
   ];
 
@@ -131,7 +131,7 @@ const About: React.FC = () => {
             </div>
 
             <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8">
-              <div className={`text-center mb-8 ${isRTL ? 'text-right' : ''}`}>
+              <div className="text-center mb-8">
                 <GraduationCap className="h-16 w-16 text-blue-700 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.excellence.title')}</h3>
                 <p className="text-gray-600">
@@ -146,7 +146,7 @@ const About: React.FC = () => {
       {/* Values Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t('about.values.title')}
             </h2>
@@ -157,7 +157,7 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div key={index} className={`bg-white rounded-xl p-6 shadow-lg text-center group hover:shadow-xl transition-shadow ${isRTL ? 'text-right' : ''}`}>
+              <div key={index} className="bg-white rounded-xl p-6 shadow-lg text-center group hover:shadow-xl transition-shadow">
                 <div className={`flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6 mx-auto group-hover:bg-blue-700 group-hover:text-white transition-colors ${isRTL ? 'ml-auto' : 'mr-auto'}`}>
                   <value.icon className="h-8 w-8" />
                 </div>
@@ -172,7 +172,7 @@ const About: React.FC = () => {
       {/* Team Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t('about.team.title')}
             </h2>
@@ -183,7 +183,7 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, index) => (
-              <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 text-center ${isRTL ? 'text-right' : ''}`}>
+              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="h-12 w-12 text-blue-700" />
                 </div>
@@ -246,7 +246,7 @@ const About: React.FC = () => {
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-blue-700 to-emerald-700 text-white py-20">
-        <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-6">
             {t('about.cta.title')}
           </h2>

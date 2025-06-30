@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Minimize2 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Message {
   id: number;
@@ -20,6 +21,7 @@ interface ChatContext {
 }
 
 const Chatbot: React.FC = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -101,7 +103,7 @@ const Chatbot: React.FC = () => {
     if (lowerInput.includes('service') || lowerInput.includes('what do you offer') || lowerInput.includes('tell me about')) {
       updateContext({ conversationStage: 'details' });
       return {
-        text: "We offer comprehensive academic services:\n\n• Academic Assignments\n• Thesis Writing\n• Research Papers\n• Dissertation Help\n• Essay Writing\n• Research Publication\n• Online Teaching\n• Plagiarism & AI Removal\n\nWhich service interests you most?",
+        text: t('chatbot.services'),
         options: serviceOptions
       };
     }
@@ -109,21 +111,21 @@ const Chatbot: React.FC = () => {
     if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much') || lowerInput.includes('pricing')) {
       updateContext({ conversationStage: 'quote' });
       return {
-        text: "Our pricing varies based on:\n• Academic level (High School, College, Graduate)\n• Subject complexity\n• Deadline urgency\n• Number of pages\n\nWe also offer:\n• 30% off first orders\n• 30% off orders above $1000\n• Free plagiarism & AI reports\n\nWhat type of assignment do you need help with?",
+        text: t('chatbot.pricing'),
         options: serviceOptions
       };
     }
 
     if (lowerInput.includes('order') || lowerInput.includes('place') || lowerInput.includes('buy') || lowerInput.includes('how do i')) {
       return {
-        text: "To place an order:\n1. Tell me your requirements\n2. Get a personalized quote\n3. Confirm and make payment\n4. Receive your completed work\n\nWhat subject is your assignment in?",
+        text: t('chatbot.order'),
         options: ["Business", "Computer Science", "Literature", "Psychology", "Other"]
       };
     }
 
     if (lowerInput.includes('free') || lowerInput.includes('complimentary')) {
       return {
-        text: "Our FREE services include:\n• Plagiarism & AI detection reports\n• Assignment guidance consultation\n• Research proposal (up to 1 page)\n• Unlimited revisions on paid work\n\nThese are always included at no extra cost! Would you like to know more about any specific service?",
+        text: t('chatbot.free'),
         options: serviceOptions
       };
     }
@@ -158,14 +160,14 @@ const Chatbot: React.FC = () => {
     // Handle specific questions about academic levels, subjects, etc.
     if (lowerInput.includes('academic level') || lowerInput.includes('high school') || lowerInput.includes('college') || lowerInput.includes('graduate')) {
       return {
-        text: "We support all academic levels:\n• High School - PKR 300/page\n• Undergraduate - PKR 450/page\n• Graduate/Masters - PKR 625/page\n• PhD/Doctorate - PKR 875/page\n\nPrices may vary based on subject complexity and deadline. What level do you need help with?",
-        options: ["High School", "Undergraduate", "Graduate", "PhD"]
+        text: t('chatbot.levels'),
+        options: [t('pricing.calculator.level.highSchool'), t('pricing.calculator.level.undergraduate'), t('pricing.calculator.level.graduate'), t('pricing.calculator.level.phd')]
       };
     }
 
     if (lowerInput.includes('deadline') || lowerInput.includes('urgent') || lowerInput.includes('rush')) {
       return {
-        text: "We handle various deadlines:\n• 24 hours (+50% rush fee)\n• 48 hours (+30% rush fee)\n• 3-7 days (standard rates)\n• 1+ weeks (best rates)\n\nWhat's your deadline?",
+        text: t('chatbot.deadlines'),
         options: ["24 hours", "48 hours", "1 week", "2+ weeks"]
       };
     }
@@ -345,7 +347,7 @@ const Chatbot: React.FC = () => {
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Type your message..."
+                    placeholder={t('chatbot.placeholder')}
                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                   />
                   <button

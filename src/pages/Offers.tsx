@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Gift, FileCheck, BookOpen, Percent, DollarSign, RefreshCw, ArrowRight, CheckCircle } from 'lucide-react';
+import { FileCheck, BookOpen, Percent, DollarSign, RefreshCw, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Offers: React.FC = () => {
@@ -8,50 +8,50 @@ const Offers: React.FC = () => {
   const offers = [
     {
       icon: FileCheck,
-      title: 'Free Plagiarism & AI Reports',
-      description: 'Get comprehensive plagiarism and AI detection reports with every order at no extra cost.',
-      features: ['Detailed plagiarism report', 'AI content detection', 'Originality verification', 'Quality assurance'],
-      highlight: 'Always Free',
+      title: t('offers.freePlagiarism.title'),
+      description: t('offers.freePlagiarism.desc'),
+      features: [t('offers.freePlagiarism.feature1'), t('offers.freePlagiarism.feature2'), t('offers.freePlagiarism.feature3'), t('offers.freePlagiarism.feature4')],
+      highlight: t('offers.freePlagiarism.highlight'),
       color: 'emerald'
     },
     {
       icon: BookOpen,
-      title: 'Free Assignment Guidance',
-      description: 'Receive expert guidance and consultation for your assignments before placing an order.',
-      features: ['Topic consultation', 'Structure guidance', 'Resource recommendations', 'Approach suggestions'],
-      highlight: 'Complimentary',
+      title: t('offers.freeGuidance.title'),
+      description: t('offers.freeGuidance.desc'),
+      features: [t('offers.freeGuidance.feature1'), t('offers.freeGuidance.feature2'), t('offers.freeGuidance.feature3'), t('offers.freeGuidance.feature4')],
+      highlight: t('offers.freeGuidance.highlight'),
       color: 'blue'
     },
     {
       icon: FileCheck,
-      title: 'Free Research Proposal',
-      description: 'Get a complete research proposal up to 1 page absolutely free to kickstart your research.',
-      features: ['Problem statement', 'Research objectives', 'Methodology outline', 'Literature overview'],
-      highlight: 'Up to 1 Page Free',
+      title: t('offers.freeResearch.title'),
+      description: t('offers.freeResearch.desc'),
+      features: [t('offers.freeResearch.feature1'), t('offers.freeResearch.feature2'), t('offers.freeResearch.feature3'), t('offers.freeResearch.feature4')],
+      highlight: t('offers.freeResearch.highlight'),
       color: 'purple'
     },
     {
       icon: Percent,
-      title: '30% Off First Order',
-      description: 'New clients get an exclusive 30% discount on their first order with us.',
-      features: ['Valid for new customers', 'All services included', 'No minimum order', 'One-time offer'],
-      highlight: '30% Discount',
+      title: t('offers.firstOrder.title'),
+      description: t('offers.firstOrder.desc'),
+      features: [t('offers.firstOrder.feature1'), t('offers.firstOrder.feature2'), t('offers.firstOrder.feature3'), t('offers.firstOrder.feature4')],
+      highlight: t('offers.firstOrder.highlight'),
       color: 'orange'
     },
     {
       icon: DollarSign,
-      title: '30% Off Orders Above $1000',
-      description: 'Save big on large orders with our bulk discount for orders exceeding $1000.',
-      features: ['Automatic discount', 'All services eligible', 'Stackable with other offers', 'No expiry date'],
-      highlight: 'Bulk Savings',
+      title: t('offers.bulkOrder.title'),
+      description: t('offers.bulkOrder.desc'),
+      features: [t('offers.bulkOrder.feature1'), t('offers.bulkOrder.feature2'), t('offers.bulkOrder.feature3'), t('offers.bulkOrder.feature4')],
+      highlight: t('offers.bulkOrder.highlight'),
       color: 'green'
     },
     {
       icon: RefreshCw,
-      title: 'Unlimited Revisions',
-      description: 'Get unlimited free revisions on all paid tasks until you are completely satisfied.',
-      features: ['No revision limits', 'Free of charge', '30-day guarantee', 'Quality assurance'],
-      highlight: 'Always Included',
+      title: t('offers.revisions.title'),
+      description: t('offers.revisions.desc'),
+      features: [t('offers.revisions.feature1'), t('offers.revisions.feature2'), t('offers.revisions.feature3'), t('offers.revisions.feature4')],
+      highlight: t('offers.revisions.highlight'),
       color: 'indigo'
     }
   ];
@@ -99,13 +99,10 @@ const Offers: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-800 to-pink-700 text-white py-20">
-        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
-          <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-            <Gift className="h-16 w-16 text-pink-300" />
-            <h1 className="text-4xl lg:text-5xl font-bold">
-              {t('offers.title')}
-            </h1>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+            {t('offers.title')}
+          </h1>
           <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
             {t('offers.subtitle')}
           </p>
@@ -122,7 +119,7 @@ const Offers: React.FC = () => {
       {/* Offers Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t('offers.amazing.title')}
             </h2>
@@ -135,37 +132,48 @@ const Offers: React.FC = () => {
             {offers.map((offer, index) => {
               const colors = colorClasses[offer.color as keyof typeof colorClasses];
               return (
-                <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 ${colors.border} flex flex-col h-full`}>
-                  <div className="p-8 flex-grow">
-                    <div className="text-center mb-6">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} ${colors.text} rounded-lg mb-4`}>
-                        <offer.icon className="h-8 w-8" />
+                <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border flex flex-col h-full ${
+                  index < 3 ? 'border-emerald-300 ring-2 ring-emerald-100' : 'border-gray-100'
+                } ${isRTL ? 'text-right' : 'text-left'}`}>
+                  <div className="p-8 pb-4 flex-grow">
+                    {index < 3 && (
+                      <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
+                        {t('common.free')}
                       </div>
-                      <div className={`inline-block px-4 py-2 ${colors.bg} ${colors.text} rounded-full text-sm font-semibold mb-4`}>
-                        {offer.highlight}
-                      </div>
+                    )}
+                    
+                    <div className={`flex items-center justify-center w-16 h-16 ${colors.bg} ${colors.text} rounded-lg mb-6 ${isRTL ? 'ml-auto' : 'mr-auto'}`}>
+                      <offer.icon className="h-8 w-8" />
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">{offer.title}</h3>
-                    <p className="text-gray-600 mb-6 text-center">{offer.description}</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{offer.title}</h3>
+                    <p className="text-gray-600 mb-6">{offer.description}</p>
                     
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-2 mb-6">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center space-x-3">
-                          <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
+                        <li key={featureIndex} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                          <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                          <span className="text-sm text-gray-600">{feature}</span>
                         </li>
                       ))}
                     </ul>
+                    
+                    <div className="mb-4">
+                      <span className={`text-sm font-medium ${
+                        index < 3 ? 'text-emerald-700' : 'text-purple-700'
+                      }`}>{offer.highlight}</span>
+                    </div>
                   </div>
                   
                   <div className="p-8 pt-0 mt-auto">
                     <Link
                       to="/contact"
-                      className={`w-full ${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center`}
+                      className={`w-full ${
+                        index < 3 ? 'bg-emerald-600 hover:bg-emerald-700' : colors.button
+                      } text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                     >
-                      Claim Now
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      {t('offers.claimNow')}
+                      <ArrowRight className={`h-4 w-4 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
                     </Link>
                   </div>
                 </div>
@@ -180,67 +188,82 @@ const Offers: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Terms & Conditions
+              {t('offers.terms.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              Please read our offer terms carefully to understand how to claim these benefits
+              {t('offers.terms.subtitle')}
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">General Terms</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>All offers are subject to availability and may be modified or discontinued at any time</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Offers cannot be combined unless explicitly stated</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Free services are provided as-is and subject to our standard quality guidelines</span>
-                  </li>
-                </ul>
+          <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12 border border-gray-100">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              <div className="space-y-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center mr-3">
+                    <CheckCircle className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">{t('offers.termsGeneral')}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-blue-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsGeneral.term1')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-blue-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsGeneral.term2')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-blue-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsGeneral.term3')}</span>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Discount Terms</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-start space-x-2">
+              <div className="space-y-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center mr-3">
+                    <Percent className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">{t('offers.termsDiscount')}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-emerald-50 rounded-xl`}>
                     <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>First-time customer discount applies only to new clients who haven't used our services before</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsDiscount.term1')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-emerald-50 rounded-xl`}>
                     <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Bulk discount for orders above $1000 is automatically applied at checkout</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsDiscount.term2')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-emerald-50 rounded-xl`}>
                     <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Discounts are calculated before taxes and additional fees</span>
-                  </li>
-                </ul>
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsDiscount.term3')}</span>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Revision Policy</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Unlimited revisions are available for 30 days after delivery</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Revisions must be within the original scope of work</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Major changes to requirements may incur additional charges</span>
-                  </li>
-                </ul>
+              <div className="space-y-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-purple-100 text-purple-700 rounded-lg flex items-center justify-center mr-3">
+                    <RefreshCw className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">{t('offers.termsRevision')}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-purple-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsRevision.term1')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-purple-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsRevision.term2')}</span>
+                  </div>
+                  <div className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'} p-4 bg-purple-50 rounded-xl`}>
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed">{t('offers.termsRevision.term3')}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -248,27 +271,60 @@ const Offers: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-purple-700 to-pink-700 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Don't Miss Out on These Amazing Offers!
-          </h2>
-          <p className="text-xl mb-8 text-purple-100">
-            Contact us today to claim your benefits and get started with premium academic services
+      <section className="bg-gradient-to-r from-purple-700 via-purple-800 to-pink-700 text-white py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-pink-400/20 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-300/20 rounded-full"></div>
+        </div>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              {t('offers.ctaLimited')}
+            </div>
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
+              {t('offers.cta.title')}
+            </h2>
+          </div>
+          <p className="text-xl lg:text-2xl mb-12 text-purple-100 leading-relaxed max-w-3xl mx-auto">
+            {t('offers.cta.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col gap-6 justify-center ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
             <Link
               to="/contact"
-              className="bg-white text-purple-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              className="bg-white text-purple-700 hover:bg-pink-50 hover:scale-105 px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 shadow-2xl inline-flex items-center justify-center"
             >
-              Get Started Now
+              {t('offers.cta.getStarted')}
+              <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-3 rotate-180' : 'ml-3'}`} />
             </Link>
             <Link
               to="/services"
-              className="border-2 border-white text-white hover:bg-white hover:text-purple-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              className="border-2 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 inline-flex items-center justify-center"
             >
-              View Services
+              {t('offers.cta.viewServices')}
+              <BookOpen className={`h-5 w-5 ${isRTL ? 'mr-3' : 'ml-3'}`} />
             </Link>
+          </div>
+          
+          {/* Trust indicators */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+              <div className="text-2xl font-bold text-white mb-1">24/7</div>
+              <div className="text-purple-200 text-sm">{t('common.support')}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+              <div className="text-2xl font-bold text-white mb-1">100%</div>
+              <div className="text-purple-200 text-sm">{t('common.original')}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+              <div className="text-2xl font-bold text-white mb-1">98%</div>
+              <div className="text-purple-200 text-sm">{t('common.satisfaction')}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+              <div className="text-2xl font-bold text-white mb-1">5★</div>
+              <div className="text-purple-200 text-sm">{t('common.rating')}</div>
+            </div>
           </div>
         </div>
       </section>

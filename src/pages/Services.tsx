@@ -131,7 +131,7 @@ const Services: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-800 to-emerald-700 text-white py-20">
-        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
             {t('services.title')}
           </h1>
@@ -151,7 +151,7 @@ const Services: React.FC = () => {
       {/* Services Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t('services.ourServices')}
             </h2>
@@ -168,7 +168,7 @@ const Services: React.FC = () => {
                 <div className="p-8 pb-4 flex-grow">
                   {service.freeOffer && (
                     <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
-                      FREE SERVICE
+                      {t('service.freeService')}
                     </div>
                   )}
                   
@@ -216,7 +216,7 @@ const Services: React.FC = () => {
       {/* Process Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${isRTL ? 'text-right' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t('services.howItWorks')}
             </h2>
@@ -227,7 +227,7 @@ const Services: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((step, index) => (
-              <div key={index} className={`text-center ${isRTL ? 'text-right' : ''}`}>
+              <div key={index} className="text-center">
                 <div className="flex items-center justify-center w-16 h-16 bg-blue-700 text-white rounded-full text-2xl font-bold mb-6 mx-auto">
                   {step.step}
                 </div>
@@ -272,7 +272,7 @@ const Services: React.FC = () => {
             </div>
 
             <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8">
-              <div className={`text-center ${isRTL ? 'text-right' : ''}`}>
+              <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('services.readyToStart')}</h3>
                 <p className="text-gray-600 mb-6">
                   {t('services.readyToStart.subtitle')}

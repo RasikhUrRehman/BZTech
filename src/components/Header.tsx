@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -41,10 +41,12 @@ const Header: React.FC = () => {
         <div className={`flex justify-between items-center py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <Link to="/" className={`flex items-center group ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-            <div className="p-2 bg-blue-700 text-white rounded-lg group-hover:bg-blue-800 transition-colors">
-              <GraduationCap className="h-6 w-6" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">BZTechnologies</span>
+            <img 
+              src="/logo.jpeg" 
+              alt="Thesis and Assignment Logo" 
+              className="h-10 w-10 rounded-lg object-cover group-hover:scale-105 transition-transform"
+            />
+            <span className="text-xl font-bold text-gray-900">Thesis and Assignment</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -7,6 +7,7 @@ interface LanguageContextType {
   toggleLanguage: () => void;
   t: (key: string) => string;
   isRTL: boolean;
+  formatPrice: (price: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -14,6 +15,15 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 // Translation data
 const translations = {
   en: {
+    // Currency
+    'currency.pkr': 'PKR',
+    
+    // Units
+    'unit.page': 'page',
+    'unit.pages': 'pages',
+    'unit.per': 'per',
+    'unit.average': 'average',
+    
     // Header/Navigation
     'nav.home': 'Home',
     'nav.services': 'Services',
@@ -60,7 +70,7 @@ const translations = {
     'services.getQuote': 'Get Your Quote',
     
     // About
-    'about.title': 'About BZTechnologies',
+    'about.title': 'About Thesis and Assignment',
     'about.subtitle': 'We are a dedicated team of academic professionals committed to helping students achieve excellence in their educational journey through high-quality writing and research services.',
     'about.workWithUs': 'Work With Us',
     'about.ukWebsite': 'UK Website',
@@ -111,12 +121,44 @@ const translations = {
     'contact.form.submit': 'Send Message',
     'contact.info.title': 'Contact Information',
     'contact.info.subtitle': 'Get in touch with us through any of these channels',
+    'contact.form.additionalRequirements': 'Additional Requirements',
+    'contact.form.instructionsPlaceholder': 'Please provide detailed instructions, formatting requirements, sources needed, etc.',
+    'contact.form.getQuoteNow': 'Get Quote Now',
+    'contact.info.email.title': 'Email Us',
+    'contact.info.email.content': 'thesisassignmentsuk@gmail.com',
+    'contact.info.email.description': 'Send us your requirements anytime',
+    'contact.info.phone.title': 'Call Us',
+    'contact.info.phone.content': '+44 7482 576463',
+    'contact.info.phone.description': 'Speak with our academic consultants',
+    'contact.info.hours.title': 'Business Hours',
+    'contact.info.hours.content': '24/7 Available',
+    'contact.info.hours.description': 'Round-the-clock support for urgent needs',
+    'contact.info.location.title': 'Service Areas',
+    'contact.info.location.content': 'Worldwide',
+    'contact.info.location.description': 'Supporting students globally',
     'contact.guarantee.title': 'Quick Response Guarantee',
     'contact.guarantee.response': 'Response within 2 hours',
     'contact.guarantee.quote': 'Free quote and timeline',
+    'contact.guarantee.noObligation': 'No obligation to proceed',
+    'contact.guarantee.confidential': 'Confidential consultation',
     'contact.guarantee.support': '24/7 customer support',
+    'contact.emergency.title': 'Emergency Support',
+    'contact.emergency.description': 'Need urgent help with a last-minute assignment? We offer 24/7 emergency support for tight deadlines.',
+    'contact.emergency.phone': '+44 7482 576463',
+    'contact.emergency.label': 'Emergency Hotline',
+    'contact.success.title': 'Thank You!',
+    'contact.success.message': 'Your message has been received. We\'ll get back to you within 2 hours with a detailed quote and timeline.',
+    'contact.success.redirect': 'Redirecting back to form in a few seconds...',
     'contact.faq.title': 'Frequently Asked Questions',
-    'contact.faq.subtitle': 'Quick answers to common questions about our services',
+    'contact.faq.subtitle': 'Common questions about our services and process',
+    'contact.faq.q1': 'How quickly can you complete my assignment?',
+    'contact.faq.a1': 'We can work with deadlines as short as 3 hours for urgent assignments. Standard delivery times range from 24 hours to several weeks, depending on complexity and length.',
+    'contact.faq.q2': 'Is the work original and plagiarism-free?',
+    'contact.faq.a2': 'Absolutely. All our work is written from scratch by qualified experts. We use advanced plagiarism detection tools and provide a free plagiarism report with every order.',
+    'contact.faq.q3': 'What if I need revisions?',
+    'contact.faq.a3': 'We offer unlimited free revisions within 30 days of delivery. Our goal is to ensure you are completely satisfied with the final work.',
+    'contact.faq.q4': 'How do you ensure confidentiality?',
+    'contact.faq.a4': 'We maintain strict confidentiality protocols. Your personal information and assignment details are never shared with third parties, and all communication is secure.',
     
     // Pricing
     'pricing.title': 'Transparent Pricing',
@@ -134,10 +176,39 @@ const translations = {
     'pricing.calculator.selectLevel': 'Select Level',
     'pricing.calculator.selectDeadline': 'Select Deadline',
     'pricing.calculator.enterPages': 'Enter number of pages',
+    'pricing.calculator.level.highSchool': 'High School',
+    'pricing.calculator.level.undergraduate': 'Undergraduate',
+    'pricing.calculator.level.graduate': 'Graduate/Masters',
+    'pricing.calculator.level.phd': 'PhD/Doctorate',
     'pricing.calculator.estimatedPrice': 'Estimated Price',
     'pricing.calculator.disclaimer': 'This is an estimate. Final price may vary based on specific requirements.',
+    'pricing.calculator.fillRequired': 'Please fill in the required fields',
+    
+    // Deadline options
+    'pricing.calculator.deadline.24h': '24 Hours',
+    'pricing.calculator.deadline.48h': '48 Hours',
+    'pricing.calculator.deadline.3days': '3 Days',
+    'pricing.calculator.deadline.1week': '1 Week',
+    'pricing.calculator.deadline.2weeks': '2+ Weeks',
+    
     'pricing.additional.title': 'Additional Services',
     'pricing.additional.subtitle': 'Enhance your order with these premium add-on services',
+    'pricing.additional.rushDelivery24': 'Rush Delivery (24 hours)',
+    'pricing.additional.rushDelivery48': 'Rush Delivery (48 hours)',
+    'pricing.additional.rushDelivery72': 'Rush Delivery (72 hours)',
+    'pricing.additional.powerpoint': 'PowerPoint Presentation',
+    'pricing.additional.excel': 'Excel/Statistical Analysis',
+    'pricing.additional.proofreading': 'Proofreading & Editing',
+    'pricing.additional.plagiarism': 'Plagiarism Removal',
+    'pricing.additional.aiRemoval': 'AI Content Removal',
+    'pricing.additional.price.rush24': '+50% of base price',
+    'pricing.additional.price.rush48': '+30% of base price',
+    'pricing.additional.price.rush72': '+20% of base price',
+    'pricing.additional.price.powerpoint': '200 per slide',
+    'pricing.additional.price.excel': '375 per hour',
+    'pricing.additional.price.proofreading': '125 per page',
+    'pricing.additional.price.plagiarism': '200 per page',
+    'pricing.additional.price.aiRemoval': '200 per page',
     'pricing.payment.title': 'Payment Methods',
     'pricing.payment.subtitle': 'We accept multiple payment methods for your convenience',
     'pricing.payment.info': 'Available Payment Options',
@@ -153,14 +224,126 @@ const translations = {
     'offers.title': 'Exclusive Offers',
     'offers.subtitle': 'Take advantage of our special offers and save on premium academic services. Quality education support shouldn\'t break the bank!',
     'offers.claim': 'Claim Your Offers',
+    'offers.badge': 'Limited Time',
     'offers.amazing.title': 'Amazing Deals & Benefits',
     'offers.amazing.subtitle': 'We believe in providing exceptional value to our clients through these exclusive offers',
     'offers.terms.title': 'Terms & Conditions',
     'offers.terms.subtitle': 'Please read our offer terms carefully to understand how to claim these benefits',
+    'offers.termsImportant': 'Important',
     'offers.cta.title': 'Don\'t Miss Out on These Amazing Offers!',
     'offers.cta.subtitle': 'Contact us today to claim your benefits and get started with premium academic services',
     'offers.cta.getStarted': 'Get Started Now',
     'offers.cta.viewServices': 'View Services',
+    'offers.ctaLimited': 'Limited Time Offer',
+    
+    // Chatbot
+    'chatbot.placeholder': 'Type your message...',
+    'chatbot.greeting': 'Hello! What\'s your name so I can assist you better?',
+    'chatbot.welcomeWithName': 'Nice to meet you, {name}! How can I help you today?',
+    'chatbot.services': 'We offer comprehensive academic services:\n\n• Academic Assignments\n• Thesis Writing\n• Research Papers\n• Dissertation Help\n• Essay Writing\n• Research Publication\n• Online Teaching\n• Plagiarism & AI Removal\n\nWhich service interests you most?',
+    'chatbot.pricing': 'Our pricing varies based on:\n• Academic level (High School, College, Graduate)\n• Subject complexity\n• Deadline urgency\n• Number of pages\n\nWe also offer:\n• 30% off first orders\n• 30% off orders above $1000\n• Free plagiarism & AI reports\n\nWhat type of assignment do you need help with?',
+    'chatbot.order': 'To place an order:\n1. Tell me your requirements\n2. Get a personalized quote\n3. Confirm and make payment\n4. Receive your completed work\n\nWhat subject is your assignment in?',
+    'chatbot.free': 'Our FREE services include:\n• Plagiarism & AI detection reports\n• Assignment guidance consultation\n• Research proposal (up to 1 page)\n• Unlimited revisions on paid work\n\nThese are always included at no extra cost! Would you like to know more about any specific service?',
+    'chatbot.discounts': 'Current offers:\n• 30% OFF first order for new clients\n• 30% OFF orders above $1000\n• FREE plagiarism & AI reports\n• FREE research proposals\n• Unlimited FREE revisions\n\nReady to get started with your first order?',
+    'chatbot.serviceSelected': 'Great choice! {service} is one of our most popular services. To give you an accurate quote, I need a few details:\n\n• How many pages do you need?\n• What\'s your deadline?\n• What academic level?\n\nOr would you like me to connect you with our team for a detailed consultation?',
+    'chatbot.connect': 'Perfect! I\'ve notified our professional team about your inquiry{name}. They will contact you shortly with personalized assistance.\n\nFor faster service, please visit our contact page and provide your details. Is there anything else I can help you with?',
+    'chatbot.levels': 'We support all academic levels:\n• High School - 300/page\n• Undergraduate - 450/page\n• Graduate/Masters - 625/page\n• PhD/Doctorate - 875/page\n\nPrices may vary based on subject complexity and deadline. What level do you need help with?',
+    'chatbot.deadlines': 'We handle various deadlines:\n• 24 hours (+50% rush fee)\n• 48 hours (+30% rush fee)\n• 3-7 days (standard rates)\n• 1+ weeks (best rates)\n\nWhat\'s your deadline?',
+    'chatbot.default': 'I\'d be happy to help you{name}! I can provide information about our services, pricing, discounts, and help you place an order. What would you like to know more about?',
+    
+    // Offers Items
+    'offers.freePlagiarism.title': 'Free Plagiarism & AI Reports',
+    'offers.freePlagiarism.desc': 'Get comprehensive plagiarism and AI detection reports with every order at no extra cost.',
+    'offers.freePlagiarism.highlight': 'Always Free',
+    'offers.freePlagiarism.feature1': 'Detailed plagiarism report',
+    'offers.freePlagiarism.feature2': 'AI content detection',
+    'offers.freePlagiarism.feature3': 'Originality verification',
+    'offers.freePlagiarism.feature4': 'Quality assurance',
+    
+    'offers.freeGuidance.title': 'Free Assignment Guidance',
+    'offers.freeGuidance.desc': 'Receive expert guidance and consultation for your assignments before placing an order.',
+    'offers.freeGuidance.highlight': 'Complimentary',
+    'offers.freeGuidance.feature1': 'Topic consultation',
+    'offers.freeGuidance.feature2': 'Structure guidance',
+    'offers.freeGuidance.feature3': 'Resource recommendations',
+    'offers.freeGuidance.feature4': 'Approach suggestions',
+    
+    'offers.freeResearch.title': 'Free Research Proposal',
+    'offers.freeResearch.desc': 'Get a complete research proposal up to 1 page absolutely free to kickstart your research.',
+    'offers.freeResearch.highlight': 'Up to 1 Page Free',
+    'offers.freeResearch.feature1': 'Problem statement',
+    'offers.freeResearch.feature2': 'Research objectives',
+    'offers.freeResearch.feature3': 'Methodology outline',
+    'offers.freeResearch.feature4': 'Literature overview',
+    
+    'offers.firstOrder.title': '25% Off First Order',
+    'offers.firstOrder.desc': 'New clients get an exclusive 25% discount on their first order with us.',
+    'offers.firstOrder.highlight': '25% Discount',
+    'offers.firstOrder.feature1': 'Valid for new customers',
+    'offers.firstOrder.feature2': 'All services included',
+    'offers.firstOrder.feature3': 'No minimum order',
+    'offers.firstOrder.feature4': 'One-time offer',
+    
+    'offers.bulkOrder.title': '20% Off Orders Above $800',
+    'offers.bulkOrder.desc': 'Save big on large orders with our bulk discount for orders exceeding $800.',
+    'offers.bulkOrder.highlight': 'Bulk Savings',
+    'offers.bulkOrder.feature1': 'Automatic discount',
+    'offers.bulkOrder.feature2': 'All services eligible',
+    'offers.bulkOrder.feature3': 'Stackable with other offers',
+    'offers.bulkOrder.feature4': 'No expiry date',
+    
+    'offers.revisions.title': 'Unlimited Revisions',
+    'offers.revisions.desc': 'Get unlimited free revisions on all paid tasks until you are completely satisfied.',
+    'offers.revisions.highlight': 'Always Included',
+    'offers.revisions.feature1': 'No revision limits',
+    'offers.revisions.feature2': 'Free of charge',
+    'offers.revisions.feature3': '30-day guarantee',
+    'offers.revisions.feature4': 'Quality assurance',
+    
+    'offers.claimNow': 'Claim Now',
+    'offers.termsGeneral': 'General Terms',
+    'offers.termsGeneral.term1': 'All offers are subject to availability and may be modified or discontinued at any time',
+    'offers.termsGeneral.term2': 'Offers cannot be combined unless explicitly stated',
+    'offers.termsGeneral.term3': 'Free services are provided as-is and subject to our standard quality guidelines',
+    'offers.termsDiscount': 'Discount Terms',
+    'offers.termsDiscount.term1': 'First-time customer discount applies only to new clients who haven\'t used our services before',
+    'offers.termsDiscount.term2': 'Bulk discount for orders above $800 is automatically applied at checkout',
+    'offers.termsDiscount.term3': 'Discounts are calculated before taxes and additional fees',
+    'offers.termsRevision': 'Revision Policy',
+    'offers.termsRevision.term1': 'Unlimited revisions are available for 30 days after delivery',
+    'offers.termsRevision.term2': 'Revisions must be within the original scope of work',
+    'offers.termsRevision.term3': 'Major changes to requirements may incur additional charges',
+    
+    // Subject Names
+    'subject.business': 'Business & Management',
+    'subject.computerScience': 'Computer Science',
+    'subject.engineering': 'Engineering',
+    'subject.literature': 'Literature & English',
+    'subject.psychology': 'Psychology',
+    'subject.sociology': 'Sociology',
+    'subject.history': 'History',
+    'subject.mathematics': 'Mathematics',
+    'subject.science': 'Science',
+    'subject.law': 'Law',
+    'subject.medicine': 'Medicine',
+    'subject.technology': 'Technology',
+    'subject.finance': 'Finance',
+    'subject.education': 'Education',
+    'subject.healthcare': 'Healthcare',
+    'subject.management': 'Management',
+    'subject.socialSciences': 'Social Sciences',
+    'subject.philosophy': 'Philosophy',
+    'subject.other': 'Other',
+    
+    // Team Roles
+    'team.academicDirector': 'Academic Director',
+    'team.researchSpecialist': 'Research Specialist',
+    'team.writingCoordinator': 'Writing Coordinator',
+    'team.experience.sarah': '12+ years',
+    'team.experience.james': '15+ years',
+    'team.experience.maria': '10+ years',
+    'team.literatureHumanities': 'Literature & Humanities',
+    'team.sciencesTechnology': 'Sciences & Technology',
     
     // Samples
     'samples.title': 'Sample Works',
@@ -206,6 +389,8 @@ const translations = {
     'samples.level.graduate': 'Graduate',
     'samples.level.mba': 'MBA',
     'samples.level.masters': 'Masters',
+    'samples.level.phd': 'PhD',
+    'samples.level.undergraduate': 'Undergraduate',
     'samples.pages': 'pages',
     'samples.viewSample': 'View Sample',
     'samples.request': 'Request',
@@ -239,7 +424,7 @@ const translations = {
     'footer.description': 'Providing exceptional academic writing services to help students excel in their educational journey. Quality, reliability, and academic excellence are our top priorities.',
     'footer.quickLinks': 'Quick Links',
     'footer.services': 'Services',
-    'footer.copyright': '© 2024 BZTechnologies. All rights reserved.',
+    'footer.copyright': '© 2024 Thesis and Assignment. All rights reserved.',
     
     // Common
     'common.free': 'FREE',
@@ -253,6 +438,11 @@ const translations = {
     'common.cancel': 'Cancel',
     'common.yes': 'Yes',
     'common.no': 'No',
+    'common.viewPricing': 'View Pricing',
+    'common.support': 'Support',
+    'common.original': 'Original',
+    'common.satisfaction': 'Satisfaction',
+    'common.rating': 'Rating',
     
     // Service Features
     'feature.academicAssignments': 'Academic Assignments',
@@ -265,6 +455,7 @@ const translations = {
     'feature.plagiarismRemoval': 'Plagiarism & AI Removal',
     'feature.paperPreparation': 'Paper Preparation',
     'feature.researchProposal': 'Research Proposal',
+    'feature.other': 'Other',
     
     // Service Descriptions
     'service.academicAssignments.desc': 'Comprehensive help with essays, reports, case studies, and all types of academic assignments.',
@@ -385,7 +576,7 @@ const translations = {
     'pricing.faq.q2': 'Are there any hidden fees?',
     'pricing.faq.a2': 'No, we believe in transparent pricing. The quote you receive includes all costs except for optional add-on services that you specifically request.',
     'pricing.faq.q3': 'Do you offer discounts for bulk orders?',
-    'pricing.faq.a3': 'Yes! Orders above PKR 25,000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.',
+    'pricing.faq.a3': 'Yes! Orders above 25,000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.',
     'pricing.faq.q4': 'What payment methods do you accept?',
     'pricing.faq.a4': 'We accept various payment methods including major credit cards, digital wallets, and international transfer services. Contact us for specific payment details.',
     'pricing.faq.q5': 'Is there a refund policy?',
@@ -416,6 +607,15 @@ const translations = {
     'services.feature.expertWriters.desc': 'PhD qualified professionals',
   },
   ar: {
+    // Currency
+    'currency.pkr': 'ر.س',
+    
+    // Units
+    'unit.page': 'ورقة',
+    'unit.pages': 'أوراق',
+    'unit.per': 'لكل',
+    'unit.average': 'متوسط',
+    
     // Header/Navigation
     'nav.home': 'الرئيسية',
     'nav.services': 'الخدمات',
@@ -462,7 +662,7 @@ const translations = {
     'services.getQuote': 'احصل على عرض سعر',
     
     // About
-    'about.title': 'حول BZTechnologies',
+    'about.title': 'حول Thesis and Assignment',
     'about.subtitle': 'نحن فريق متخصص من المهنيين الأكاديميين ملتزمون بمساعدة الطلاب على تحقيق التميز في رحلتهم التعليمية من خلال خدمات الكتابة والبحث عالية الجودة.',
     'about.workWithUs': 'اعمل معنا',
     'about.ukWebsite': 'الموقع البريطاني',
@@ -513,12 +713,44 @@ const translations = {
     'contact.form.submit': 'إرسال الرسالة',
     'contact.info.title': 'معلومات الاتصال',
     'contact.info.subtitle': 'تواصل معنا من خلال أي من هذه القنوات',
+    'contact.form.additionalRequirements': 'متطلبات إضافية',
+    'contact.form.instructionsPlaceholder': 'يرجى تقديم تعليمات مفصلة، متطلبات التنسيق، المصادر المطلوبة، إلخ.',
+    'contact.form.getQuoteNow': 'احصل على عرض سعر الآن',
+    'contact.info.email.title': 'راسلنا',
+    'contact.info.email.content': 'thesisassignmentsuk@gmail.com',
+    'contact.info.email.description': 'أرسل لنا متطلباتك في أي وقت',
+    'contact.info.phone.title': 'اتصل بنا',
+    'contact.info.phone.content': '+44 7482 576463',
+    'contact.info.phone.description': 'تحدث مع مستشارينا الأكاديميين',
+    'contact.info.hours.title': 'ساعات العمل',
+    'contact.info.hours.content': 'متاح على مدار الساعة',
+    'contact.info.hours.description': 'دعم مستمر للاحتياجات العاجلة',
+    'contact.info.location.title': 'مناطق الخدمة',
+    'contact.info.location.content': 'عالميًا',
+    'contact.info.location.description': 'دعم الطلاب في جميع أنحاء العالم',
     'contact.guarantee.title': 'ضمان الاستجابة السريعة',
     'contact.guarantee.response': 'استجابة خلال ساعتين',
     'contact.guarantee.quote': 'عرض سعر مجاني وجدول زمني',
+    'contact.guarantee.noObligation': 'لا التزام بالمتابعة',
+    'contact.guarantee.confidential': 'استشارة سرية',
     'contact.guarantee.support': 'دعم العملاء على مدار الساعة',
+    'contact.emergency.title': 'الدعم الطارئ',
+    'contact.emergency.description': 'تحتاج مساعدة عاجلة في مهمة في اللحظة الأخيرة؟ نحن نقدم دعم طارئ على مدار الساعة للمواعيد النهائية الضيقة.',
+    'contact.emergency.phone': '+44 7482 576463',
+    'contact.emergency.label': 'الخط الساخن للطوارئ',
+    'contact.success.title': 'شكرًا لك!',
+    'contact.success.message': 'تم استلام رسالتك. سنعود إليك خلال ساعتين بعرض سعر مفصل وجدول زمني.',
+    'contact.success.redirect': 'إعادة التوجيه إلى النموذج خلال ثوانٍ قليلة...',
     'contact.faq.title': 'الأسئلة الشائعة',
-    'contact.faq.subtitle': 'إجابات سريعة للأسئلة الشائعة حول خدماتنا',
+    'contact.faq.subtitle': 'أسئلة شائعة حول خدماتنا وعمليتنا',
+    'contact.faq.q1': 'كم من الوقت يمكنكم إنجاز مهمتي؟',
+    'contact.faq.a1': 'يمكننا العمل مع مواعيد نهائية قصيرة تصل إلى 3 ساعات للمهام العاجلة. أوقات التسليم المعيارية تتراوح من 24 ساعة إلى عدة أسابيع، حسب التعقيد والطول.',
+    'contact.faq.q2': 'هل العمل أصلي وخالٍ من الانتحال؟',
+    'contact.faq.a2': 'بالطبع. جميع أعمالنا مكتوبة من الصفر بواسطة خبراء مؤهلين. نستخدم أدوات متقدمة لكشف الانتحال ونقدم تقرير انتحال مجاني مع كل طلب.',
+    'contact.faq.q3': 'ماذا لو احتجت إلى تعديلات؟',
+    'contact.faq.a3': 'نقدم تعديلات مجانية غير محدودة خلال 30 يومًا من التسليم. هدفنا هو ضمان رضاك التام عن العمل النهائي.',
+    'contact.faq.q4': 'كيف تضمنون السرية؟',
+    'contact.faq.a4': 'نحافظ على بروتوكولات سرية صارمة. معلوماتك الشخصية وتفاصيل المهمة لا يتم مشاركتها مع أطراف ثالثة، وجميع الاتصالات آمنة.',
     
     // Pricing
     'pricing.title': 'أسعار شفافة',
@@ -536,10 +768,39 @@ const translations = {
     'pricing.calculator.selectLevel': 'اختر المستوى',
     'pricing.calculator.selectDeadline': 'اختر الموعد النهائي',
     'pricing.calculator.enterPages': 'أدخل عدد الصفحات',
+    'pricing.calculator.level.highSchool': 'المدرسة الثانوية',
+    'pricing.calculator.level.undergraduate': 'البكالوريوس',
+    'pricing.calculator.level.graduate': 'الماجستير',
+    'pricing.calculator.level.phd': 'الدكتوراه',
     'pricing.calculator.estimatedPrice': 'السعر المقدر',
     'pricing.calculator.disclaimer': 'هذا تقدير. قد يختلف السعر النهائي بناءً على المتطلبات المحددة.',
+    'pricing.calculator.fillRequired': 'يرجى ملء الحقول المطلوبة',
+    
+    // Deadline options
+    'pricing.calculator.deadline.24h': '24 ساعة',
+    'pricing.calculator.deadline.48h': '48 ساعة',
+    'pricing.calculator.deadline.3days': '3 أيام',
+    'pricing.calculator.deadline.1week': 'أسبوع واحد',
+    'pricing.calculator.deadline.2weeks': 'أسبوعان أو أكثر',
+    
     'pricing.additional.title': 'خدمات إضافية',
     'pricing.additional.subtitle': 'عزز طلبك بهذه الخدمات الإضافية المتميزة',
+    'pricing.additional.rushDelivery24': 'التسليم السريع (24 ساعة)',
+    'pricing.additional.rushDelivery48': 'التسليم السريع (48 ساعة)',
+    'pricing.additional.rushDelivery72': 'التسليم السريع (72 ساعة)',
+    'pricing.additional.powerpoint': 'عرض تقديمي PowerPoint',
+    'pricing.additional.excel': 'تحليل Excel/إحصائي',
+    'pricing.additional.proofreading': 'المراجعة والتحرير',
+    'pricing.additional.plagiarism': 'إزالة الانتحال',
+    'pricing.additional.aiRemoval': 'إزالة المحتوى المُولد بالذكاء الاصطناعي',
+    'pricing.additional.price.rush24': '+50% من السعر الأساسي',
+    'pricing.additional.price.rush48': '+30% من السعر الأساسي',
+    'pricing.additional.price.rush72': '+20% من السعر الأساسي',
+    'pricing.additional.price.powerpoint': '200 لكل شريحة',
+    'pricing.additional.price.excel': '375 في الساعة',
+    'pricing.additional.price.proofreading': '125 لكل ورقة',
+    'pricing.additional.price.plagiarism': '200 لكل ورقة',
+    'pricing.additional.price.aiRemoval': '200 لكل ورقة',
     'pricing.payment.title': 'طرق الدفع',
     'pricing.payment.subtitle': 'نقبل طرق دفع متعددة لراحتك',
     'pricing.payment.info': 'خيارات الدفع المتاحة',
@@ -555,14 +816,126 @@ const translations = {
     'offers.title': 'عروض حصرية',
     'offers.subtitle': 'استفد من عروضنا الخاصة ووفر على خدمات أكاديمية متميزة. دعم التعليم الجيد لا يجب أن يكون مكلفاً!',
     'offers.claim': 'اطلب عروضك',
+    'offers.badge': 'وقت محدود',
     'offers.amazing.title': 'صفقات ومزايا مذهلة',
     'offers.amazing.subtitle': 'نحن نؤمن بتقديم قيمة استثنائية لعملائنا من خلال هذه العروض الحصرية',
     'offers.terms.title': 'الشروط والأحكام',
     'offers.terms.subtitle': 'يرجى قراءة شروط عروضنا بعناية لفهم كيفية المطالبة بهذه المزايا',
+    'offers.termsImportant': 'مهم',
     'offers.cta.title': 'لا تفوت هذه العروض المذهلة!',
     'offers.cta.subtitle': 'اتصل بنا اليوم للمطالبة بمزاياك والبدء بخدمات أكاديمية متميزة',
     'offers.cta.getStarted': 'ابدأ الآن',
     'offers.cta.viewServices': 'عرض الخدمات',
+    'offers.ctaLimited': 'عرض لوقت محدود',
+    
+    // Chatbot
+    'chatbot.placeholder': 'اكتب رسالتك...',
+    'chatbot.greeting': 'مرحبًا! ما اسمك حتى أتمكن من مساعدتك بشكل أفضل؟',
+    'chatbot.welcomeWithName': 'سعدت بلقائك، {name}! كيف يمكنني مساعدتك اليوم؟',
+    'chatbot.services': 'نحن نقدم خدمات أكاديمية شاملة:\n\n• المهام الأكاديمية\n• كتابة الرسائل\n• أوراق البحث\n• مساعدة الأطروحة\n• كتابة المقالات\n• نشر البحوث\n• التدريس الإلكتروني\n• إزالة السرقة الأدبية والذكاء الاصطناعي\n\nما الخدمة التي تهمك أكثر؟',
+    'chatbot.pricing': 'تختلف أسعارنا بناءً على:\n• المستوى الأكاديمي (المدرسة الثانوية، الكلية، الدراسات العليا)\n• تعقيد الموضوع\n• إلحاح الموعد النهائي\n• عدد الصفحات\n\nنحن نقدم أيضًا:\n• خصم 30% على الطلبات الأولى\n• خصم 30% على الطلبات التي تزيد عن 1000 دولار\n• تقارير مجانية للسرقة الأدبية والذكاء الاصطناعي\n\nما نوع المهمة التي تحتاج مساعدة فيها؟',
+    'chatbot.order': 'لإجراء طلب:\n1. أخبرني بمتطلباتك\n2. احصل على عرض سعر مخصص\n3. أكد وادفع\n4. استلم عملك المكتمل\n\nفي أي موضوع هو واجبك؟',
+    'chatbot.free': 'تشمل خدماتنا المجانية:\n• تقارير كشف السرقة الأدبية والذكاء الاصطناعي\n• استشارة إرشادية للواجبات\n• اقتراح بحث (حتى صفحة واحدة)\n• مراجعات غير محدودة على الأعمال المدفوعة\n\nهذه الخدمات مشمولة دائمًا دون أي تكلفة إضافية! هل ترغب في معرفة المزيد عن أي خدمة معينة؟',
+    'chatbot.discounts': 'العروض الحالية:\n• خصم 30% على الطلب الأول للعملاء الجدد\n• خصم 30% على الطلبات التي تزيد عن 1000 دولار\n• تقارير مجانية للسرقة الأدبية والذكاء الاصطناعي\n• اقتراحات بحث مجانية\n• مراجعات مجانية غير محدودة\n\nهل أنت مستعد للبدء في طلبك الأول؟',
+    'chatbot.serviceSelected': 'اختيار رائع! {service} هي واحدة من خدماتنا الأكثر شعبية. لإعطائك عرض سعر دقيق، أحتاج إلى بعض التفاصيل:\n\n• كم عدد الصفحات التي تحتاجها؟\n• ما هو موعد التسليم؟\n• ما هو المستوى الأكاديمي؟\n\nأم تود أن أوصلك بفريقنا لاستشارة مفصلة؟',
+    'chatbot.connect': 'رائع! لقد أخطرت فريقنا المحترف بشأن استفسارك{name}. سيتواصلون معك قريبًا لمساعدتك بشكل مخصص.\n\nلخدمة أسرع، يرجى زيارة صفحة الاتصال الخاصة بنا وتقديم تفاصيلك. هل هناك أي شيء آخر يمكنني مساعدتك به؟',
+    'chatbot.levels': 'نحن ندعم جميع المستويات الأكاديمية:\n\n• المدرسة الثانوية - 300 لكل ورقة\n• البكالوريوس - 450 لكل ورقة\n• الماجستير - 625 لكل ورقة\n• الدكتوراه - 875 لكل ورقة\n\nقد تختلف الأسعار بناءً على تعقيد الموضوع وموعد التسليم. ما المستوى الذي تحتاج مساعدة فيه؟',
+    'chatbot.deadlines': 'نحن نتعامل مع مواعيد نهائية متنوعة:\n\n• 24 ساعة (+50% رسوم عاجلة)\n• 48 ساعة (+30% رسوم عاجلة)\n• 3-7 أيام (أسعار معيارية)\n• 1+ أسابيع (أفضل الأسعار)\n\nما هو موعد التسليم الخاص بك؟',
+    'chatbot.default': 'سأكون سعيدًا بمساعدتك{name}! يمكنني تقديم معلومات حول خدماتنا، التسعير، الخصومات، ومساعدتك في تقديم طلب. ماذا تريد أن تعرف المزيد عنه؟',
+    
+    // Offers Items Arabic
+    'offers.freePlagiarism.title': 'تقارير مجانية للسرقة الأدبية والذكاء الاصطناعي',
+    'offers.freePlagiarism.desc': 'احصل على تقارير شاملة لكشف السرقة الأدبية والذكاء الاصطناعي مع كل طلب بدون تكلفة إضافية.',
+    'offers.freePlagiarism.highlight': 'مجاني دائماً',
+    'offers.freePlagiarism.feature1': 'تقرير مفصل للسرقة الأدبية',
+    'offers.freePlagiarism.feature2': 'كشف محتوى الذكاء الاصطناعي',
+    'offers.freePlagiarism.feature3': 'التحقق من الأصالة',
+    'offers.freePlagiarism.feature4': 'ضمان الجودة',
+    
+    'offers.freeGuidance.title': 'إرشاد مجاني للمهام',
+    'offers.freeGuidance.desc': 'احصل على إرشاد وخبرة من الخبراء لمهامك قبل تقديم الطلب.',
+    'offers.freeGuidance.highlight': 'مجاني',
+    'offers.freeGuidance.feature1': 'استشارة الموضوع',
+    'offers.freeGuidance.feature2': 'إرشاد الهيكل',
+    'offers.freeGuidance.feature3': 'توصيات المصادر',
+    'offers.freeGuidance.feature4': 'اقتراحات النهج',
+    
+    'offers.freeResearch.title': 'اقتراح بحث مجاني',
+    'offers.freeResearch.desc': 'احصل على اقتراح بحث كامل حتى صفحة واحدة مجاناً تماماً لبدء بحثك.',
+    'offers.freeResearch.highlight': 'حتى صفحة واحدة مجاناً',
+    'offers.freeResearch.feature1': 'بيان المشكلة',
+    'offers.freeResearch.feature2': 'أهداف البحث',
+    'offers.freeResearch.feature3': 'مخطط المنهجية',
+    'offers.freeResearch.feature4': 'نظرة عامة على الأدبيات',
+    
+    'offers.firstOrder.title': 'خصم 25% على الطلب الأول',
+    'offers.firstOrder.desc': 'العملاء الجدد يحصلون على خصم حصري 25% على طلبهم الأول معنا.',
+    'offers.firstOrder.highlight': 'خصم 25%',
+    'offers.firstOrder.feature1': 'صالح للعملاء الجدد',
+    'offers.firstOrder.feature2': 'جميع الخدمات مشمولة',
+    'offers.firstOrder.feature3': 'لا يوجد حد أدنى للطلب',
+    'offers.firstOrder.feature4': 'عرض لمرة واحدة',
+    
+    'offers.bulkOrder.title': 'خصم 20% على الطلبات فوق $800',
+    'offers.bulkOrder.desc': 'وفر بشكل كبير على الطلبات الكبيرة مع خصمنا للطلبات التي تتجاوز $800.',
+    'offers.bulkOrder.highlight': 'توفير بالجملة',
+    'offers.bulkOrder.feature1': 'خصم تلقائي',
+    'offers.bulkOrder.feature2': 'جميع الخدمات مؤهلة',
+    'offers.bulkOrder.feature3': 'قابل للدمج مع عروض أخرى',
+    'offers.bulkOrder.feature4': 'لا يوجد تاريخ انتهاء',
+    
+    'offers.revisions.title': 'مراجعات غير محدودة',
+    'offers.revisions.desc': 'احصل على مراجعات مجانية غير محدودة على جميع المهام المدفوعة حتى تكون راضياً تماماً.',
+    'offers.revisions.highlight': 'مضمن دائماً',
+    'offers.revisions.feature1': 'لا توجد حدود للمراجعات',
+    'offers.revisions.feature2': 'مجاني',
+    'offers.revisions.feature3': 'ضمان 30 يوماً',
+    'offers.revisions.feature4': 'ضمان الجودة',
+    
+    'offers.claimNow': 'اطلب الآن',
+    'offers.termsGeneral': 'شروط عامة',
+    'offers.termsGeneral.term1': 'جميع العروض تخضع للتوفر وقد يتم تعديلها أو إيقافها في أي وقت',
+    'offers.termsGeneral.term2': 'لا يمكن دمج العروض إلا إذا تم النص عليه صراحة',
+    'offers.termsGeneral.term3': 'الخدمات المجانية تُقدم كما هي وتخضع لإرشادات الجودة المعتادة لدينا',
+    'offers.termsDiscount': 'شروط الخصم',
+    'offers.termsDiscount.term1': 'خصم العميل لأول مرة ينطبق فقط على العملاء الجدد الذين لم يستخدموا خدماتنا من قبل',
+    'offers.termsDiscount.term2': 'خصم الجملة للطلبات فوق $800 يُطبق تلقائياً عند الدفع',
+    'offers.termsDiscount.term3': 'الخصومات تُحسب قبل الضرائب والرسوم الإضافية',
+    'offers.termsRevision': 'سياسة المراجعة',
+    'offers.termsRevision.term1': 'المراجعات غير المحدودة متاحة لمدة 30 يوماً بعد التسليم',
+    'offers.termsRevision.term2': 'المراجعات يجب أن تكون ضمن نطاق العمل الأصلي',
+    'offers.termsRevision.term3': 'التغييرات الكبيرة في المتطلبات قد تتطلب رسوماً إضافية',
+    
+    // Subject Names Arabic
+    'subject.business': 'الأعمال والإدارة',
+    'subject.computerScience': 'علوم الحاسوب',
+    'subject.engineering': 'الهندسة',
+    'subject.literature': 'الأدب واللغة الإنجليزية',
+    'subject.psychology': 'علم النفس',
+    'subject.sociology': 'علم الاجتماع',
+    'subject.history': 'التاريخ',
+    'subject.mathematics': 'الرياضيات',
+    'subject.science': 'العلوم',
+    'subject.law': 'القانون',
+    'subject.medicine': 'الطب',
+    'subject.technology': 'التكنولوجيا',
+    'subject.finance': 'المالية',
+    'subject.education': 'التعليم',
+    'subject.healthcare': 'الرعاية الصحية',
+    'subject.management': 'الإدارة',
+    'subject.socialSciences': 'العلوم الاجتماعية',
+    'subject.philosophy': 'الفلسفة',
+    'subject.other': 'أخرى',
+    
+    // Team Roles Arabic
+    'team.academicDirector': 'المدير الأكاديمي',
+    'team.researchSpecialist': 'أخصائي البحوث',
+    'team.writingCoordinator': 'منسق الكتابة',
+    'team.experience.sarah': '12+ سنة',
+    'team.experience.james': '15+ سنة',
+    'team.experience.maria': '10+ سنة',
+    'team.literatureHumanities': 'الأدب والعلوم الإنسانية',
+    'team.sciencesTechnology': 'العلوم والتكنولوجيا',
     
     // Samples
     'samples.title': 'أعمال نموذجية',
@@ -608,6 +981,8 @@ const translations = {
     'samples.level.graduate': 'خريج',
     'samples.level.mba': 'ماجستير إدارة أعمال',
     'samples.level.masters': 'ماجستير',
+    'samples.level.phd': 'دكتوراه',
+    'samples.level.undergraduate': 'بكالوريوس',
     'samples.pages': 'صفحات',
     'samples.viewSample': 'عرض النموذج',
     'samples.request': 'طلب',
@@ -641,7 +1016,7 @@ const translations = {
     'footer.description': 'تقديم خدمات كتابة أكاديمية استثنائية لمساعدة الطلاب على التفوق في رحلتهم التعليمية. الجودة والموثوقية والتميز الأكاديمي هي أولوياتنا الرئيسية.',
     'footer.quickLinks': 'روابط سريعة',
     'footer.services': 'الخدمات',
-    'footer.copyright': '© 2024 BZTechnologies. جميع الحقوق محفوظة.',
+    'footer.copyright': '© 2024 Thesis and Assignment. جميع الحقوق محفوظة.',
     
     // Common
     'common.free': 'مجاني',
@@ -655,6 +1030,11 @@ const translations = {
     'common.cancel': 'إلغاء',
     'common.yes': 'نعم',
     'common.no': 'لا',
+    'common.viewPricing': 'عرض الأسعار',
+    'common.support': 'الدعم',
+    'common.original': 'أصلي',
+    'common.satisfaction': 'الرضا',
+    'common.rating': 'التقييم',
     
     // Service Features
     'feature.academicAssignments': 'المهام الأكاديمية',
@@ -667,6 +1047,7 @@ const translations = {
     'feature.plagiarismRemoval': 'إزالة السرقة الأدبية والذكاء الاصطناعي',
     'feature.paperPreparation': 'إعداد الأوراق',
     'feature.researchProposal': 'اقتراح البحث',
+          'feature.other': 'أخرى',
     
     // Service Descriptions
     'service.academicAssignments.desc': 'مساعدة شاملة في المقالات والتقارير ودراسات الحالة وجميع أنواع المهام الأكاديمية.',
@@ -676,7 +1057,7 @@ const translations = {
     'service.essayWriting.desc': 'خدمات كتابة المقالات المهنية لجميع المستويات الأكاديمية والمواضيع.',
     'service.researchProposal.desc': 'اقتراحات بحثية منظمة تحصل على موافقة اللجان الأكاديمية.',
     'service.researchPublication.desc': 'دعم مهني لنشر بحثك في المجلات الأكاديمية المرموقة.',
-    'service.onlineTeaching.desc': 'جلسات تدريس وإرشاد أكاديمي شخصية عبر الإنترنت.',
+    'service.onlineTeaching.desc': 'جلسات تعليم إلكترونية شخصية وإرشاد للمهام.',
     'service.plagiarismRemoval.desc': 'خدمة مهنية لإزالة السرقة الأدبية والمحتوى المولد بالذكاء الاصطناعي من عملك.',
     'service.paperPreparation.desc': 'خدمة إعداد الأوراق الكاملة بما في ذلك التنسيق والمراجع والمراجعة النهائية.',
     'service.freePlagiarism.title': 'تقارير مجانية للسرقة الأدبية والذكاء الاصطناعي',
@@ -783,11 +1164,11 @@ const translations = {
     
     // Pricing FAQ
     'pricing.faq.q1': 'كيف يتم حساب السعر النهائي؟',
-    'pricing.faq.a1': 'يعتمد السعر النهائي على المستوى الأكاديمي وعدد الصفحات والموعد النهائي وأي خدمات إضافية. نقدم عرض سعر مفصل قبل تأكيد طلبك.',
+    'pricing.faq.a1': 'يعتمد السعر النهائي على المستوى الأكاديمي وعدد الصفحات والموعد النهائي وأي خدمات إضافية. نحن نقدم عرض سعر مفصل قبل تأكيد طلبك.',
     'pricing.faq.q2': 'هل توجد رسوم مخفية؟',
     'pricing.faq.a2': 'لا، نحن نؤمن بالتسعير الشفاف. عرض السعر الذي تتلقاه يشمل جميع التكاليف باستثناء الخدمات الإضافية الاختيارية التي تطلبها تحديداً.',
     'pricing.faq.q3': 'هل تقدمون خصومات للطلبات الكبيرة؟',
-    'pricing.faq.a3': 'نعم! الطلبات التي تزيد عن 25,000 روبية باكستانية تحصل تلقائياً على خصم 30%. نقدم أيضاً أسعار خاصة للعملاء طويلي المدى والعملاء المتكررين.',
+    'pricing.faq.a3': 'نعم! الطلبات التي تزيد عن 25,000 تحصل تلقائياً على خصم 30%. نقدم أيضاً أسعار خاصة للعملاء طويلي المدى والعملاء المتكررين.',
     'pricing.faq.q4': 'ما طرق الدفع التي تقبلونها؟',
     'pricing.faq.a4': 'نقبل طرق دفع متنوعة تشمل بطاقات الائتمان الرئيسية والمحافظ الرقمية وخدمات التحويل الدولي. اتصل بنا للحصول على تفاصيل الدفع المحددة.',
     'pricing.faq.q5': 'هل توجد سياسة استرداد؟',
@@ -837,13 +1218,35 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const isRTL = language === 'ar';
 
+  const formatPrice = (price: string): string => {
+    // Don't format percentage-based prices or prices that already contain currency symbols
+    if (price.includes('%') || price.includes('من السعر الأساسي') || price.includes('of base price')) {
+      return price;
+    }
+    
+    const currency = translations[language]['currency.pkr'];
+    
+    // If Arabic language, convert PKR to SAR using formula: price/75
+    if (language === 'ar') {
+      const numericPrice = parseFloat(price);
+      if (!isNaN(numericPrice)) {
+        const convertedPrice = Math.ceil(numericPrice / 75);
+        console.log('Original price:', numericPrice, 'Converted:', numericPrice / 75, 'Ceiling:', Math.ceil(numericPrice / 75));
+
+        return `${currency} ${convertedPrice}`;
+      }
+    }
+    
+    return `${currency} ${price}`;
+  };
+
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
   }, [language, isRTL]);
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t, isRTL }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, t, isRTL, formatPrice }}>
       {children}
     </LanguageContext.Provider>
   );

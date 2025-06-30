@@ -11,42 +11,42 @@ const Samples: React.FC = () => {
       titleKey: 'samples.category.essays',
       countKey: '25+',
       descKey: 'samples.category.essays.desc',
-      subjects: ['Literature', 'History', 'Philosophy', 'Sociology']
+      subjects: [t('subject.literature'), t('subject.history'), t('subject.philosophy'), t('subject.sociology')]
     },
     {
       icon: Search,
       titleKey: 'samples.category.researchPapers',
       countKey: '20+',
       descKey: 'samples.category.researchPapers.desc',
-      subjects: ['Psychology', 'Business', 'Science', 'Technology']
+      subjects: [t('subject.psychology'), t('subject.business'), t('subject.science'), t('subject.technology')]
     },
     {
       icon: GraduationCap,
       titleKey: 'samples.category.thesis',
       countKey: '15+',
       descKey: 'samples.category.thesis.desc',
-      subjects: ['MBA', 'Masters', 'PhD', 'Undergraduate']
+      subjects: [t('samples.level.mba'), t('samples.level.masters'), t('samples.level.phd'), t('samples.level.undergraduate')]
     },
     {
       icon: BookOpen,
       titleKey: 'samples.category.caseStudies',
       countKey: '18+',
       descKey: 'samples.category.caseStudies.desc',
-      subjects: ['Business', 'Medicine', 'Law', 'Engineering']
+      subjects: [t('subject.business'), t('subject.medicine'), t('subject.law'), t('subject.engineering')]
     },
     {
       icon: PenTool,
       titleKey: 'samples.category.dissertations',
       countKey: '12+',
       descKey: 'samples.category.dissertations.desc',
-      subjects: ['Education', 'Healthcare', 'Management', 'Social Sciences']
+      subjects: [t('subject.education'), t('subject.healthcare'), t('subject.management'), t('subject.socialSciences')]
     },
     {
       icon: FileText,
       titleKey: 'samples.category.reports',
       countKey: '22+',
       descKey: 'samples.category.reports.desc',
-      subjects: ['Science', 'Business', 'Engineering', 'Finance']
+      subjects: [t('subject.science'), t('subject.business'), t('subject.engineering'), t('subject.finance')]
     }
   ];
 
@@ -129,7 +129,7 @@ const Samples: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-800 to-purple-700 text-white py-20">
-        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
             <BookOpen className="h-16 w-16 text-purple-300" />
             <h1 className="text-4xl lg:text-5xl font-bold">
@@ -294,7 +294,7 @@ const Samples: React.FC = () => {
                 descKey: 'samples.step.receive.desc'
               }
             ].map((step, index) => (
-              <div key={index} className={`text-center ${isRTL ? 'text-right' : ''}`}>
+              <div key={index} className="text-center">
                 <div className="flex items-center justify-center w-16 h-16 bg-indigo-700 text-white rounded-full text-2xl font-bold mb-6 mx-auto">
                   {step.step}
                 </div>
@@ -340,7 +340,7 @@ const Samples: React.FC = () => {
             </div>
 
             <div className={`bg-white rounded-2xl p-8 shadow-lg ${isRTL ? 'order-1' : ''}`}>
-              <div className={`text-center ${isRTL ? 'text-right' : ''}`}>
+              <div className="text-center">
                 <BookOpen className="h-16 w-16 text-indigo-600 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('samples.explore.title')}</h3>
                 <p className="text-gray-600 mb-6">

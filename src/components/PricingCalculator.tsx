@@ -4,7 +4,7 @@ import { useFormContext } from '../contexts/FormContext';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const PricingCalculator: React.FC = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, formatPrice } = useLanguage();
   const { formData, updateFormData } = useFormContext();
   const [service, setService] = useState(formData.service || '');
   const [subject, setSubject] = useState('');
@@ -30,37 +30,37 @@ const PricingCalculator: React.FC = () => {
     t('feature.researchPublication'),
     t('feature.onlineTeaching'),
     t('feature.plagiarismRemoval'),
-    'Paper Preparation'
+    t('feature.paperPreparation')
   ];
 
   const subjects = [
-    'Business & Management',
-    'Computer Science',
-    'Engineering',
-    'Literature & English',
-    'Psychology',
-    'Sociology',
-    'History',
-    'Mathematics',
-    'Science',
-    'Law',
-    'Medicine',
-    'Other'
+    t('subject.business'),
+    t('subject.computerScience'),
+    t('subject.engineering'),
+    t('subject.literature'),
+    t('subject.psychology'),
+    t('subject.sociology'),
+    t('subject.history'),
+    t('subject.mathematics'),
+    t('subject.science'),
+    t('subject.law'),
+    t('subject.medicine'),
+    t('subject.other')
   ];
 
   const academicLevels = [
-    { value: 'high-school', label: 'High School', basePrice: 300 },
-    { value: 'undergraduate', label: 'Undergraduate', basePrice: 450 },
-    { value: 'graduate', label: 'Graduate/Masters', basePrice: 625 },
-    { value: 'phd', label: 'PhD/Doctorate', basePrice: 875 }
+    { value: 'high-school', label: t('pricing.calculator.level.highSchool'), basePrice: 300 },
+    { value: 'undergraduate', label: t('pricing.calculator.level.undergraduate'), basePrice: 450 },
+    { value: 'graduate', label: t('pricing.calculator.level.graduate'), basePrice: 625 },
+    { value: 'phd', label: t('pricing.calculator.level.phd'), basePrice: 875 }
   ];
 
   const deadlines = [
-    { value: '24h', label: '24 Hours', multiplier: 1.5 },
-    { value: '48h', label: '48 Hours', multiplier: 1.3 },
-    { value: '3days', label: '3 Days', multiplier: 1.2 },
-    { value: '1week', label: '1 Week', multiplier: 1.1 },
-    { value: '2weeks', label: '2+ Weeks', multiplier: 1.0 }
+    { value: '24h', label: t('pricing.calculator.deadline.24h'), multiplier: 1.5 },
+    { value: '48h', label: t('pricing.calculator.deadline.48h'), multiplier: 1.3 },
+    { value: '3days', label: t('pricing.calculator.deadline.3days'), multiplier: 1.2 },
+    { value: '1week', label: t('pricing.calculator.deadline.1week'), multiplier: 1.1 },
+    { value: '2weeks', label: t('pricing.calculator.deadline.2weeks'), multiplier: 1.0 }
   ];
 
   const calculatePrice = () => {
@@ -75,28 +75,31 @@ const PricingCalculator: React.FC = () => {
     
     // Service-specific adjustments
     const serviceMultipliers: { [key: string]: number } = {
-      'Thesis Writing': 1.5,
-      'Dissertation Help': 1.8,
-      'Research Publication': 2.0,
-      'Online Teaching': 1.3,
-      'Plagiarism & AI Removal': 0.7,
-      'Paper Preparation': 0.8
+      [t('feature.thesisWriting')]: 1.5,
+      [t('feature.dissertationHelp')]: 1.8,
+      [t('feature.researchPublication')]: 2.0,
+      [t('feature.onlineTeaching')]: 1.3,
+      [t('feature.plagiarismRemoval')]: 0.7,
+      [t('feature.paperPreparation')]: 0.8
     };
 
     const serviceMultiplier = serviceMultipliers[service] || 1;
     
     // Subject complexity adjustments
     const subjectMultipliers: { [key: string]: number } = {
-      'Medicine': 1.3,
-      'Law': 1.2,
-      'Engineering': 1.2,
-      'Computer Science': 1.1,
-      'Mathematics': 1.1
+      [t('subject.medicine')]: 1.3,
+      [t('subject.law')]: 1.2,
+      [t('subject.engineering')]: 1.2,
+      [t('subject.computerScience')]: 1.1,
+      [t('subject.mathematics')]: 1.1
     };
 
     const subjectMultiplier = subjectMultipliers[subject] || 1;
 
-    const totalPrice = basePrice * pages * serviceMultiplier * subjectMultiplier * deadlineMultiplier;
+    // Custom scaling: 1 page = base price, 10 pages = 5x base price
+    // Formula: basePrice * (1 + (pages - 1) * 4/9) to get exactly 5x at 10 pages
+    const pageMultiplier = 1 + ((pages - 1) * (4/9));
+    const totalPrice = basePrice * pageMultiplier * serviceMultiplier * subjectMultiplier * deadlineMultiplier;
     return Math.round(totalPrice);
   };
 
@@ -151,10 +154,10 @@ const PricingCalculator: React.FC = () => {
             onChange={(e) => setAcademicLevel(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Level</option>
+            <option value="">{t('pricing.calculator.selectLevel')}</option>
             {academicLevels.map((level) => (
               <option key={level.value} value={level.value}>
-                {level.label} (PKR {level.basePrice}/page)
+                {level.label} ({formatPrice(level.basePrice.toString())}/{t('unit.page')})
               </option>
             ))}
           </select>
@@ -162,14 +165,14 @@ const PricingCalculator: React.FC = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Deadline
+            {t('pricing.calculator.deadline')}
           </label>
           <select
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Deadline</option>
+            <option value="">{t('pricing.calculator.selectDeadline')}</option>
             {deadlines.map((d) => (
               <option key={d.value} value={d.value}>
                 {d.label} {d.multiplier > 1 && `(+${Math.round((d.multiplier - 1) * 100)}%)`}
@@ -180,7 +183,7 @@ const PricingCalculator: React.FC = () => {
 
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Number of Pages *
+            {t('pricing.calculator.pages')} *
           </label>
           <input
             type="number"
@@ -189,7 +192,7 @@ const PricingCalculator: React.FC = () => {
             value={pages}
             onChange={(e) => setPages(parseInt(e.target.value) || 1)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter number of pages"
+            placeholder={t('pricing.calculator.enterPages')}
           />
         </div>
       </div>
@@ -198,22 +201,21 @@ const PricingCalculator: React.FC = () => {
       <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg border border-blue-200">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Estimated Price</h4>
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('pricing.calculator.estimatedPrice')}</h4>
             <p className="text-sm text-gray-600">
               {service && academicLevel && pages ? 
-                `${service} • ${academicLevels.find(l => l.value === academicLevel)?.label} • ${pages} page${pages > 1 ? 's' : ''}` :
-                'Please fill in the required fields'
+                `${service} • ${academicLevels.find(l => l.value === academicLevel)?.label} • ${pages} ${pages > 1 ? t('unit.pages') : t('unit.page')}` :
+                t('pricing.calculator.fillRequired')
               }
             </p>
           </div>
           <div className="text-right">
             <div className="flex items-center text-3xl font-bold text-blue-700">
-              <span className="text-lg mr-1">PKR</span>
-              <span>{estimatedPrice || '0'}</span>
+              <span>{estimatedPrice > 0 ? formatPrice(estimatedPrice.toString()) : '0'}</span>
             </div>
             {estimatedPrice > 0 && (
               <p className="text-sm text-gray-500 mt-1">
-                PKR {(estimatedPrice / pages).toFixed(2)} per page
+                {formatPrice((estimatedPrice / pages).toFixed(2))} {t('unit.per')} {t('unit.page')} ({t('unit.average')})
               </p>
             )}
           </div>
@@ -240,13 +242,13 @@ const PricingCalculator: React.FC = () => {
 
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600 mb-4">
-          This is an estimated price. Final pricing may vary based on specific requirements.
+          {t('pricing.calculator.disclaimer')}
         </p>
         <button
           onClick={() => window.location.href = '/contact'}
           className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
         >
-          Get Exact Quote
+          {t('common.getQuote')}
         </button>
       </div>
     </div>
