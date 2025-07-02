@@ -204,7 +204,7 @@ You are "Thesis and Assignments," an AI chatbot specializing in academic writing
 ---
 ### **CURRENT OFFERS:**
 -   **30% OFF first order** for new clients
--   **30% OFF orders above $1000**
+-   **30% OFF orders above PKR 50000**
 -   **FREE plagiarism & AI reports** included
 -   **FREE research proposals**
 -   **Unlimited FREE revisions**

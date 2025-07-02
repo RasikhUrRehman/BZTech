@@ -9,42 +9,42 @@ const Samples: React.FC = () => {
     {
       icon: FileText,
       titleKey: 'samples.category.essays',
-      countKey: '25+',
+      countKey: '25',
       descKey: 'samples.category.essays.desc',
       subjects: [t('subject.literature'), t('subject.history'), t('subject.philosophy'), t('subject.sociology')]
     },
     {
       icon: Search,
       titleKey: 'samples.category.researchPapers',
-      countKey: '20+',
+      countKey: '20',
       descKey: 'samples.category.researchPapers.desc',
       subjects: [t('subject.psychology'), t('subject.business'), t('subject.science'), t('subject.technology')]
     },
     {
       icon: GraduationCap,
       titleKey: 'samples.category.thesis',
-      countKey: '15+',
+      countKey: '15',
       descKey: 'samples.category.thesis.desc',
       subjects: [t('samples.level.mba'), t('samples.level.masters'), t('samples.level.phd'), t('samples.level.undergraduate')]
     },
     {
       icon: BookOpen,
       titleKey: 'samples.category.caseStudies',
-      countKey: '18+',
+      countKey: '18',
       descKey: 'samples.category.caseStudies.desc',
       subjects: [t('subject.business'), t('subject.medicine'), t('subject.law'), t('subject.engineering')]
     },
     {
       icon: PenTool,
       titleKey: 'samples.category.dissertations',
-      countKey: '12+',
+      countKey: '12',
       descKey: 'samples.category.dissertations.desc',
       subjects: [t('subject.education'), t('subject.healthcare'), t('subject.management'), t('subject.socialSciences')]
     },
     {
       icon: FileText,
       titleKey: 'samples.category.reports',
-      countKey: '22+',
+      countKey: '22',
       descKey: 'samples.category.reports.desc',
       subjects: [t('subject.science'), t('subject.business'), t('subject.engineering'), t('subject.finance')]
     }
