@@ -6,7 +6,7 @@ const WhatsAppWidget: React.FC = () => {
   const { t, isRTL } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const whatsappNumber = '923241929739';
+  const whatsappNumber = '447482576463';
 
   const openModal = () => {
     setIsModalOpen(true);

@@ -366,7 +366,7 @@ ${languageInstruction}`;
   };
 
   const openWhatsApp = () => {
-    const whatsappNumber = '923241929739';
+    const whatsappNumber = '447482576463';
     const messageTemplate = userName 
       ? (t('chatbot.whatsappMessage.withName') || `Hi! I'm ${userName}. I was chatting with your AI assistant and would like to discuss my academic requirements.`)
       : (t('chatbot.whatsappMessage.default') || 'Hi! I was chatting with your AI assistant and would like to discuss my academic requirements.');

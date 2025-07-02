@@ -114,7 +114,7 @@ const WelcomePopup: React.FC = () => {
   };
 
   const openWhatsApp = () => {
-    const whatsappNumber = '923241929739';
+    const whatsappNumber = '447482576463';
     const message = language === 'ar'
       ? 'مرحباً! أريد الاستفادة من العرض الخاص وأحتاج مساعدة في متطلباتي الأكاديمية.'
       : 'Hi! I want to avail the special offer and need help with my academic requirements.';
