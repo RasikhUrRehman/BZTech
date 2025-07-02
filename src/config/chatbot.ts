@@ -9,7 +9,7 @@ export const GEMINI_CONFIG = {
 // Company Information for AI Context
 export const COMPANY_INFO = {
   name: 'BZTech Academic Services',
-  whatsapp: '+923241929739',
+  whatsapp: '+447482576463',
   website: window.location.origin,
   email: 'info@bztech.com', // Update with actual email
   description: 'Professional academic writing and research support services',
