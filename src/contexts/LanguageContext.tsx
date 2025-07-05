@@ -70,7 +70,7 @@ const translations = {
     'services.getQuote': 'Get Your Quote',
     
     // About
-    'about.title': 'About Thesis and Assignment',
+    'about.title': 'About Assignment Thesis Hub',
     'about.subtitle': 'We are a dedicated team of academic professionals committed to helping students achieve excellence in their educational journey through high-quality writing and research services.',
     'about.workWithUs': 'Work With Us',
     'about.ukWebsite': 'UK Website',
@@ -238,9 +238,9 @@ const translations = {
     
     // Chatbot
     'chatbot.title': 'AI Academic Assistant',
-    'chatbot.welcome': '👋 Hello! I\'m your AI academic assistant powered by Gemini. I can help you with information about our services, pricing, placing orders, and guide you through our academic support process. What\'s your name?',
+    'chatbot.welcome': '👋 Hello! I\'m your AI academic assistant. I can help you with information about our services, pricing, placing orders, and guide you through our academic support process. What\'s your name?',
     'chatbot.thinking': 'Thinking...',
-    'chatbot.poweredBy': 'Powered by Gemini',
+    'chatbot.poweredBy': 'AI Assistant',
     'chatbot.clearChat': 'Clear Chat',
     'chatbot.translating': 'Translating...',
     'chatbot.quickStart': 'Quick start:',
@@ -440,7 +440,7 @@ const translations = {
     'footer.description': 'Providing exceptional academic writing services to help students excel in their educational journey. Quality, reliability, and academic excellence are our top priorities.',
     'footer.quickLinks': 'Quick Links',
     'footer.services': 'Services',
-    'footer.copyright': '© 2024 Thesis and Assignment. All rights reserved.',
+    'footer.copyright': '© 2024 Assignment Thesis Hub. All rights reserved.',
     
     // Common
     'common.free': 'FREE',
@@ -691,7 +691,7 @@ const translations = {
     'services.getQuote': 'احصل على عرض سعر',
     
     // About
-    'about.title': 'حول Thesis and Assignment',
+    'about.title': 'حول Assignment Thesis Hub',
     'about.subtitle': 'نحن فريق متخصص من المهنيين الأكاديميين ملتزمون بمساعدة الطلاب على تحقيق التميز في رحلتهم التعليمية من خلال خدمات الكتابة والبحث عالية الجودة.',
     'about.workWithUs': 'اعمل معنا',
     'about.ukWebsite': 'الموقع البريطاني',
@@ -859,9 +859,9 @@ const translations = {
     
     // Chatbot
     'chatbot.title': 'مساعد أكاديمي ذكي',
-    'chatbot.welcome': '👋 مرحبًا! أنا مساعدك الأكاديمي الذكي المدعوم بـ Gemini. يمكنني مساعدتك في معلومات عن خدماتنا والأسعار وإجراء الطلبات وإرشادك خلال عملية الدعم الأكاديمي. ما اسمك؟',
+    'chatbot.welcome': '👋 مرحبًا! أنا مساعدك الأكاديمي الذكي. يمكنني مساعدتك في معلومات عن خدماتنا والأسعار وإجراء الطلبات وإرشادك خلال عملية الدعم الأكاديمي. ما اسمك؟',
     'chatbot.thinking': 'يفكر...',
-    'chatbot.poweredBy': 'مدعوم بـ Gemini',
+    'chatbot.poweredBy': 'مساعد ذكي',
     'chatbot.clearChat': 'مسح المحادثة',
     'chatbot.translating': 'جاري الترجمة...',
     'chatbot.quickStart': 'بداية سريعة:',
@@ -1061,7 +1061,7 @@ const translations = {
     'footer.description': 'تقديم خدمات كتابة أكاديمية استثنائية لمساعدة الطلاب على التفوق في رحلتهم التعليمية. الجودة والموثوقية والتميز الأكاديمي هي أولوياتنا الرئيسية.',
     'footer.quickLinks': 'روابط سريعة',
     'footer.services': 'الخدمات',
-    'footer.copyright': '© 2024 Thesis and Assignment. جميع الحقوق محفوظة.',
+    'footer.copyright': '© 2024 Assignment Thesis Hub. جميع الحقوق محفوظة.',
     
     // Common
     'common.free': 'مجاني',

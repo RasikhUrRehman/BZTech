@@ -14,10 +14,10 @@ const Footer: React.FC = () => {
             <div className={`flex items-center mb-4 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
               <img 
                 src="/logo.jpeg" 
-                alt="Thesis and Assignment Logo" 
+                alt="Assignment Thesis Hub Logo" 
                 className="h-8 w-8 rounded-lg object-cover"
               />
-              <span className="text-xl font-bold">Thesis and Assignment</span>
+              <span className="text-xl font-bold">Assignment Thesis Hub</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               {t('footer.description')}
