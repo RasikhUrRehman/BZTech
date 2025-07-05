@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t, isRTL } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,13 +20,13 @@ const Header: React.FC = () => {
   }, []);
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Offers', href: '/offers' },
-    { name: 'Samples', href: '/samples' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.services'), href: '/services' },
+    { name: t('nav.offers'), href: '/offers' },
+    { name: t('nav.samples'), href: '/samples' },
+    { name: t('nav.pricing'), href: '/pricing' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.contact'), href: '/contact' },
   ];
 
   const toggleMenu = () => {
@@ -35,17 +38,19 @@ const Header: React.FC = () => {
       isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className={`flex justify-between items-center py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-blue-700 text-white rounded-lg group-hover:bg-blue-800 transition-colors">
-              <GraduationCap className="h-6 w-6" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">BZTechnologies</span>
+          <Link to="/" className={`flex items-center group ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+            <img 
+              src="/logo.jpeg" 
+              alt="Assignment Thesis Hub Logo" 
+              className="h-10 w-10 rounded-lg object-cover group-hover:scale-105 transition-transform" 
+            />
+            <span className="text-xl font-bold text-gray-900">Assignment Thesis Hub</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-6">
+          <nav className={`hidden lg:flex ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -61,13 +66,14 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Language Switcher and CTA Button */}
+          <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+            <LanguageSwitcher />
             <Link
               to="/contact"
               className="bg-blue-700 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 transition-colors"
             >
-              Get Started
+              {t('nav.getStarted')}
             </Link>
           </div>
 
@@ -98,13 +104,16 @@ const Header: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-4 bg-blue-700 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 transition-colors text-center"
-              >
-                Get Started
-              </Link>
+              <div className={`flex items-center justify-between pt-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <LanguageSwitcher />
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="bg-blue-700 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 transition-colors"
+                >
+                  {t('nav.getStarted')}
+                </Link>
+              </div>
             </nav>
           </div>
         )}

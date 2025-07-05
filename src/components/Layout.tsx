@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-// import Chatbot from './Chatbot';
+import WhatsAppWidget from './WhatsAppWidget';
+import GeminiChatbot from './GeminiChatbot';
+import WelcomePopup from './WelcomePopup';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,7 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       <Footer />
-      {/* <Chatbot /> */}
+      <WhatsAppWidget />
+      <GeminiChatbot />
+      <WelcomePopup />
     </div>
   );
 };

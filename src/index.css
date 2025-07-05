@@ -1,3 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Arabic font support */
+.arabic {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL support for Arabic text */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .rtl-reverse {
+  direction: ltr;
+}
+
+/* Chatbot Arabic text support */
+.chatbot-arabic {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.chatbot-arabic .message-content {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Ensure proper spacing for Arabic text */
+.arabic-text {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0.01em;
+  word-spacing: 0.1em;
+}
+
+/* Fix input direction for RTL */
+input[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Button text alignment for RTL */
+[dir="rtl"] button {
+  text-align: center;
+}
+
+/* Message alignment adjustments */
+.message-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.message-ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL spacing fixes for chatbot */
+.chatbot-rtl .space-x-reverse > * + * {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+.chatbot-rtl .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* RTL header spacing */
+.chatbot-header-rtl {
+  flex-direction: row-reverse;
+}
+
+.chatbot-header-rtl .space-x-3 > * + * {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+.chatbot-header-rtl .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* RTL input area */
+.chatbot-input-rtl {
+  flex-direction: row-reverse;
+}
+
+.chatbot-input-rtl .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* RTL message bubbles */
+.message-bubble-rtl {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.message-bubble-ltr {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* Welcome Popup Animations */
+@keyframes slideInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite;
+}
+
+/* Popup backdrop blur effect */
+.popup-backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Offer card hover effects */
+.offer-card-hover {
+  transition: all 0.3s ease;
+}
+
+.offer-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}

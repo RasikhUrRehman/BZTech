@@ -1,31 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DollarSign, CheckCircle, CreditCard, ArrowRight } from 'lucide-react';
+import { DollarSign, CreditCard } from 'lucide-react';
 import PricingCalculator from '../components/PricingCalculator';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Pricing: React.FC = () => {
+  const { t, isRTL, formatPrice } = useLanguage();
   const additionalServices = [
-    { service: 'Rush Delivery (24 hours)', price: '+50% of base price' },
-    { service: 'Rush Delivery (48 hours)', price: '+30% of base price' },
-    { service: 'Rush Delivery (72 hours)', price: '+20% of base price' },
-    { service: 'PowerPoint Presentation', price: 'PKR 200 per slide' },
-    { service: 'Excel/Statistical Analysis', price: 'PKR 375 per hour' },
-    { service: 'Proofreading & Editing', price: 'PKR 125 per page' },
-    { service: 'Plagiarism Removal', price: 'PKR 200 per page' },
-    { service: 'AI Content Removal', price: 'PKR 200 per page' }
+    { service: t('pricing.additional.rushDelivery24'), price: t('pricing.additional.price.rush24') },
+    { service: t('pricing.additional.rushDelivery48'), price: t('pricing.additional.price.rush48') },
+    { service: t('pricing.additional.rushDelivery72'), price: t('pricing.additional.price.rush72') },
+    { service: t('pricing.additional.powerpoint'), price: t('pricing.additional.price.powerpoint') },
+    { service: t('pricing.additional.excel'), price: t('pricing.additional.price.excel') },
+    { service: t('pricing.additional.proofreading'), price: t('pricing.additional.price.proofreading') },
+    { service: t('pricing.additional.plagiarism'), price: t('pricing.additional.price.plagiarism') },
+    { service: t('pricing.additional.aiRemoval'), price: t('pricing.additional.price.aiRemoval') }
   ];
 
   const paymentMethods = [
-    { name: 'MasterCard', icon: '💳' },
-    { name: 'Visa Card', icon: '💳' },
-    { name: 'UnionPay', icon: '💳' },
-    { name: 'iFast', icon: '🏦' },
-    { name: 'GlobalBank', icon: '🏦' },
-    { name: 'Remitly', icon: '💸' },
-    { name: 'Western Union', icon: '💸' },
-    { name: 'TapTap', icon: '📱' },
-    { name: 'MoneyExchange', icon: '💱' },
-    { name: 'Cash Pickup', icon: '💰' }
+    { name: 'MasterCard', icon: '/mastercard_logo.png' },
+    { name: 'Visa Card', icon: '/visacard_logo.png' },
+    { name: 'UnionPay', icon: '/unionpay_logo.png' },
+    { name: 'iFast GlobalBank', icon: '/ifast_logo.png' },
+    { name: 'Remitly', icon: '/remitly_icon.png' },
+    { name: 'Western Union', icon: '/westernunioin_logo.png' },
+    { name: 'Cash Pickup', icon: '/cashpickup_icon.png' }
   ];
 
   return (
@@ -33,19 +32,18 @@ const Pricing: React.FC = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-800 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <DollarSign className="h-16 w-16 text-green-300 mr-4" />
+          <div className={`flex items-center justify-center mb-6 ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            <DollarSign className="h-16 w-16 text-green-300" />
             <h1 className="text-4xl lg:text-5xl font-bold">
-              Transparent Pricing
+              {t('pricing.title')}
             </h1>
           </div>
           <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-            Quality academic services at competitive prices. No hidden fees, no surprises - 
-            just honest pricing for exceptional work.
+            {t('pricing.subtitle')}
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
             <p className="text-lg font-semibold text-green-100">
-              🎉 New customers get 30% off their first order!
+              {t('pricing.discount')}
             </p>
           </div>
         </div>
@@ -56,10 +54,10 @@ const Pricing: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Calculate Your Price
+              {t('pricing.calculator.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get an instant estimate based on your specific requirements
+              {t('pricing.calculator.subtitle')}
             </p>
           </div>
           <PricingCalculator />
@@ -71,10 +69,10 @@ const Pricing: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Additional Services
+              {t('pricing.additional.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Enhance your order with these premium add-on services
+              {t('pricing.additional.subtitle')}
             </p>
           </div>
 
@@ -82,7 +80,9 @@ const Pricing: React.FC = () => {
             {additionalServices.map((service, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md p-6 flex justify-between items-center">
                 <span className="font-medium text-gray-900">{service.service}</span>
-                <span className="font-semibold text-blue-700">{service.price}</span>
+                <span className="font-semibold text-blue-700">
+                  {formatPrice(service.price)}
+                </span>
               </div>
             ))}
           </div>
@@ -94,28 +94,29 @@ const Pricing: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Payment Methods
+              {t('pricing.payment.title')}
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              We accept multiple payment methods for your convenience
+              {t('pricing.payment.subtitle')}
             </p>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 max-w-3xl mx-auto">
               <div className="flex items-center justify-center mb-4">
                 <CreditCard className="h-8 w-8 text-blue-700 mr-3" />
-                <h3 className="text-lg font-semibold text-blue-900">Available Payment Options</h3>
+                <h3 className="text-lg font-semibold text-blue-900">{t('pricing.payment.info')}</h3>
               </div>
               <p className="text-blue-800 mb-4">
-                Contact us to get specific payment details for your preferred method. 
-                We'll provide you with secure payment instructions once you're ready to proceed.
+                {t('pricing.payment.description')}
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {paymentMethods.map((method, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200 hover:border-blue-300 transition-colors">
-                <div className="text-3xl mb-2">{method.icon}</div>
-                <span className="text-sm font-medium text-gray-900">{method.name}</span>
+              <div key={index} className="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200 hover:border-blue-300 transition-colors w-32 h-28">
+                <div className="flex justify-center items-center mb-2 h-12">
+                  <img src={method.icon} alt={method.name} className="max-h-8 max-w-20 w-auto h-auto object-contain" />
+                </div>
+                <span className="text-xs font-medium text-gray-900 leading-tight">{method.name}</span>
               </div>
             ))}
           </div>
@@ -127,39 +128,39 @@ const Pricing: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Pricing FAQ
+              {t('pricing.faq.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Common questions about our pricing structure
+              {t('pricing.faq.subtitle')}
             </p>
           </div>
 
           <div className="space-y-8">
             {[
               {
-                question: 'How is the final price calculated?',
-                answer: 'The final price is based on academic level, number of pages, deadline, and any additional services. We provide a detailed quote before you confirm your order.'
+                question: t('pricing.faq.q1'),
+                answer: t('pricing.faq.a1')
               },
               {
-                question: 'Are there any hidden fees?',
-                answer: 'No, we believe in transparent pricing. The quote you receive includes all costs except for optional add-on services that you specifically request.'
+                question: t('pricing.faq.q2'),
+                answer: t('pricing.faq.a2')
               },
               {
-                question: 'Do you offer discounts for bulk orders?',
-                answer: 'Yes! Orders above PKR 25,000 automatically receive a 30% discount. We also offer special rates for long-term clients and repeat customers.'
+                question: t('pricing.faq.q3'),
+                answer: t('pricing.faq.a3')
               },
               {
-                question: 'What payment methods do you accept?',
-                answer: 'We accept various payment methods including major credit cards, digital wallets, and international transfer services. Contact us for specific payment details.'
+                question: t('pricing.faq.q4'),
+                answer: t('pricing.faq.a4')
               },
               {
-                question: 'Is there a refund policy?',
-                answer: 'Yes, we offer a comprehensive refund policy. If you\'re not satisfied with the work, we provide unlimited free revisions or a full refund in qualifying cases.'
+                question: t('pricing.faq.q5'),
+                answer: t('pricing.faq.a5')
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
+                <h3 className={`text-lg font-semibold text-gray-900 mb-4 ${isRTL ? 'text-right' : ''}`}>{faq.question}</h3>
+                <p className={`text-gray-600 ${isRTL ? 'text-right' : ''}`}>{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -168,25 +169,25 @@ const Pricing: React.FC = () => {
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-green-700 to-blue-700 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Ready to Get Started?
+        <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${isRTL ? 'text-right' : 'text-left'}`}>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-center">
+            {t('pricing.cta.title')}
           </h2>
-          <p className="text-xl mb-8 text-green-100">
-            Contact us today for a personalized quote based on your specific requirements
+          <p className="text-xl mb-8 text-green-100 text-center">
+            {t('pricing.cta.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
             <Link
               to="/contact"
               className="bg-white text-green-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
-              Get Your Quote
+              {t('pricing.cta.getQuote')}
             </Link>
             <Link
               to="/services"
               className="border-2 border-white text-white hover:bg-white hover:text-green-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
-              View Services
+              {t('pricing.cta.viewServices')}
             </Link>
           </div>
         </div>

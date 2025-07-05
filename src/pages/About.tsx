@@ -1,57 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GraduationCap, Users, Award, BookOpen, Target, Heart, CheckCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const About: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const values = [
     {
       icon: Target,
-      title: 'Excellence',
-      description: 'We strive for the highest quality in every piece of academic work we deliver.'
+      title: t('about.values.excellence.title'),
+      description: t('about.values.excellence.description')
     },
     {
       icon: Heart,
-      title: 'Integrity',
-      description: 'Honest, ethical practices and complete confidentiality in all our services.'
+      title: t('about.values.integrity.title'),
+      description: t('about.values.integrity.description')
     },
     {
       icon: Users,
-      title: 'Collaboration',
-      description: 'Working closely with students to understand and meet their unique needs.'
+      title: t('about.values.collaboration.title'),
+      description: t('about.values.collaboration.description')
     },
     {
       icon: BookOpen,
-      title: 'Learning',
-      description: 'Supporting educational growth and academic development at every level.'
+      title: t('about.values.learning.title'),
+      description: t('about.values.learning.description')
     }
   ];
 
   const team = [
     {
       name: 'Dr. Sarah Mitchell',
-      role: 'Academic Director',
-      expertise: 'Literature & Humanities',
-      experience: '12+ years'
+      role: t('team.academicDirector'),
+      expertise: t('team.literatureHumanities'),
+      experience: t('team.experience.sarah')
     },
     {
       name: 'Prof. James Chen',
-      role: 'Research Specialist',
-      expertise: 'Sciences & Technology',
-      experience: '15+ years'
+      role: t('team.researchSpecialist'),
+      expertise: t('team.sciencesTechnology'),
+      experience: t('team.experience.james')
     },
     {
       name: 'Dr. Maria Rodriguez',
-      role: 'Writing Coordinator',
-      expertise: 'Social Sciences',
-      experience: '10+ years'
+      role: t('team.writingCoordinator'),
+      expertise: t('subject.socialSciences'),
+      experience: t('team.experience.maria')
     }
   ];
 
   const achievements = [
-    { number: '500+', label: 'Projects Completed' },
-    { number: '98%', label: 'Client Satisfaction' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '50+', label: 'Expert Writers' }
+    { number: '500+', label: t('stats.projectsCompleted') },
+    { number: '98%', label: t('stats.clientSatisfaction') },
+    { number: '5+', label: t('stats.yearsExperience') },
+    { number: '50+', label: t('stats.expertWriters') }
   ];
 
   return (
@@ -59,31 +61,30 @@ const About: React.FC = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-800 to-emerald-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+            <div className={isRTL ? 'text-right' : 'text-left'}>
               <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                About BZTechnologies
+                {t('about.title')}
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                We are a dedicated team of academic professionals committed to helping students achieve 
-                excellence in their educational journey through high-quality writing and research services.
+                {t('about.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className={`flex flex-col sm:flex-row gap-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                 <Link
                   to="/contact"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center"
+                  className={`bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  Work With Us
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('about.workWithUs')}
+                  <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Link>
                 <a
                   href="https://www.example-uk-website.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center"
+                  className={`border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  UK Website
-                  <ExternalLink className="ml-2 h-5 w-5" />
+                  {t('about.ukWebsite')}
+                  <ExternalLink className={`h-5 w-5 ${isRTL ? 'mr-2' : 'ml-2'}`} />
                 </a>
               </div>
             </div>
@@ -102,29 +103,26 @@ const About: React.FC = () => {
       {/* Mission Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+            <div className={isRTL ? 'text-right' : 'text-left'}>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Our Mission
+                {t('about.mission.title')}
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                To empower students worldwide by providing exceptional academic writing and research services 
-                that not only meet their immediate needs but also contribute to their long-term educational success.
+                {t('about.mission.text1')}
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                We believe that every student deserves access to high-quality academic support, regardless of 
-                their background or circumstances. Our goal is to bridge the gap between academic challenges 
-                and student success.
+                {t('about.mission.text2')}
               </p>
               
               <div className="space-y-4">
                 {[
-                  'Deliver original, high-quality academic work',
-                  'Support students at all educational levels',
-                  'Maintain the highest ethical standards',
-                  'Foster academic growth and learning'
+                  t('about.mission.point1'),
+                  t('about.mission.point2'),
+                  t('about.mission.point3'),
+                  t('about.mission.point4')
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+                  <div key={index} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                     <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </div>
@@ -135,9 +133,9 @@ const About: React.FC = () => {
             <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8">
               <div className="text-center mb-8">
                 <GraduationCap className="h-16 w-16 text-blue-700 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.excellence.title')}</h3>
                 <p className="text-gray-600">
-                  Committed to maintaining the highest standards of academic integrity and quality in every project we undertake.
+                  {t('about.quality.text')}
                 </p>
               </div>
             </div>
@@ -150,17 +148,17 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
+              {t('about.values.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide everything we do and ensure exceptional service delivery
+              {t('about.values.subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg text-center group hover:shadow-xl transition-shadow">
-                <div className="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6 mx-auto group-hover:bg-blue-700 group-hover:text-white transition-colors">
+                <div className={`flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6 mx-auto group-hover:bg-blue-700 group-hover:text-white transition-colors ${isRTL ? 'ml-auto' : 'mr-auto'}`}>
                   <value.icon className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
@@ -176,10 +174,10 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Leadership Team
+              {t('about.team.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experienced academics and professionals dedicated to your success
+              {t('about.team.subtitle')}
             </p>
           </div>
 
@@ -202,22 +200,21 @@ const About: React.FC = () => {
       {/* Quality Assurance */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <Award className="h-16 w-16 text-emerald-600 mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality Assurance</h3>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+            <div className={`bg-white rounded-2xl p-8 shadow-lg ${isRTL ? 'text-right' : 'text-left'}`}>
+              <Award className={`h-16 w-16 text-emerald-600 mb-6 ${isRTL ? 'ml-auto' : ''}`} />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.quality.title')}</h3>
               <p className="text-gray-600 mb-6">
-                Every project goes through our rigorous quality assurance process to ensure 
-                it meets the highest academic standards.
+                {t('about.quality.text')}
               </p>
               <ul className="space-y-3">
                 {[
-                  'Multi-level review process',
-                  'Plagiarism detection and prevention',
-                  'Grammar and style checking',
-                  'Academic formatting verification'
+                  t('about.quality.point1'),
+                  t('about.quality.point2'),
+                  t('about.quality.point3'),
+                  t('about.quality.point4')
                 ].map((item, index) => (
-                  <li key={index} className="flex items-center space-x-3">
+                  <li key={index} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                     <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </li>
@@ -225,24 +222,22 @@ const About: React.FC = () => {
               </ul>
             </div>
 
-            <div>
+            <div className={isRTL ? 'text-right' : 'text-left'}>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Commitment to Excellence
+                {t('about.excellence.title')}
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Our commitment to excellence extends beyond just delivering assignments. We're dedicated 
-                to helping you understand the subject matter and improve your academic skills.
+                {t('about.excellence.text1')}
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                With a team of PhD-qualified writers and researchers from diverse academic backgrounds, 
-                we ensure that every project is handled by experts in the relevant field.
+                {t('about.excellence.text2')}
               </p>
               <Link
                 to="/services"
-                className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center"
+                className={`bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
               >
-                View Our Services
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {t('about.excellence.viewServices')}
+                <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
               </Link>
             </div>
           </div>
@@ -253,16 +248,16 @@ const About: React.FC = () => {
       <section className="bg-gradient-to-r from-blue-700 to-emerald-700 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Ready to Experience Excellence?
+            {t('about.cta.title')}
           </h2>
           <p className="text-xl mb-8 text-blue-100">
-            Join hundreds of students who have achieved academic success with our professional support
+            {t('about.cta.subtitle')}
           </p>
           <Link
             to="/contact"
             className="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
           >
-            Get Started Today
+            {t('about.cta.getStarted')}
           </Link>
         </div>
       </section>

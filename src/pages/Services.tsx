@@ -1,80 +1,82 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight, FileCheck, Users, Shield, Gift } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Services: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const services = [
     {
       icon: FileText,
-      title: 'Academic Assignments',
-      description: 'Comprehensive help with essays, reports, case studies, and all types of academic assignments.',
-      features: ['All academic levels', 'Various subjects', 'Original content', 'Proper formatting'],
-      price: 'Custom pricing based on requirements'
+      title: t('feature.academicAssignments'),
+      description: t('service.academicAssignments.desc'),
+      features: [t('service.feature.allLevels'), t('service.feature.variousSubjects'), t('service.feature.originalContent'), t('service.feature.properFormatting')],
+      price: t('service.pricing.custom')
     },
     {
       icon: GraduationCap,
-      title: 'Thesis Writing',
-      description: 'Expert assistance with thesis writing from proposal development to final submission.',
-      features: ['Research proposal', 'Literature review', 'Methodology design', 'Data analysis'],
-      price: 'Tailored pricing for comprehensive thesis support'
+      title: t('feature.thesisWriting'),
+      description: t('service.thesisWriting.desc'),
+      features: [t('service.feature.researchProposal'), t('service.feature.literatureReview'), t('service.feature.methodologyDesign'), t('service.feature.dataAnalysis')],
+      price: t('service.pricing.tailored')
     },
     {
       icon: Search,
-      title: 'Research Papers',
-      description: 'In-depth research papers with comprehensive analysis and academic rigor.',
-      features: ['Original research', 'Peer review ready', 'Citation included', 'Quality sources'],
-      price: 'Competitive rates based on complexity and length'
+      title: t('feature.researchPapers'),
+      description: t('service.researchPapers.desc'),
+      features: [t('service.feature.originalResearch'), t('service.feature.peerReviewReady'), t('service.feature.citationIncluded'), t('service.feature.qualitySources')],
+      price: t('service.pricing.competitive')
     },
     {
       icon: BookOpen,
-      title: 'Dissertation Help',
-      description: 'Complete dissertation support from topic selection to final defense preparation.',
-      features: ['Topic selection', 'Chapter-wise writing', 'Defense preparation', 'Revision support'],
-      price: 'Comprehensive packages available'
+      title: t('feature.dissertationHelp'),
+      description: t('service.dissertationHelp.desc'),
+      features: [t('service.feature.topicSelection'), t('service.feature.chapterWiseWriting'), t('service.feature.defensePreparation'), t('service.feature.revisionSupport')],
+      price: t('service.pricing.comprehensive')
     },
     {
       icon: PenTool,
-      title: 'Essay Writing',
-      description: 'Professional essay writing services for all academic levels and subjects.',
-      features: ['Argumentative essays', 'Narrative essays', 'Descriptive essays', 'Compare & contrast'],
-      price: 'Affordable rates starting from basic level'
+      title: t('feature.essayWriting'),
+      description: t('service.essayWriting.desc'),
+      features: [t('service.feature.argumentativeEssays'), t('service.feature.narrativeEssays'), t('service.feature.descriptiveEssays'), t('service.feature.compareContrast')],
+      price: t('service.pricing.affordable')
     },
     {
       icon: Lightbulb,
-      title: 'Research Proposal',
-      description: 'Well-structured research proposals that get approved by academic committees.',
-      features: ['Problem statement', 'Literature gap', 'Methodology', 'Timeline'],
-      price: 'FREE',
+      title: t('feature.researchProposal'),
+      description: t('service.researchProposal.desc'),
+      features: [t('service.feature.problemStatement'), t('service.feature.literatureGap'), t('service.feature.methodology'), t('service.feature.timeline')],
+      price: t('common.free'),
       highlight: true,
       freeOffer: true
     },
     {
       icon: FileCheck,
-      title: 'Research Publication',
-      description: 'Professional support for publishing your research in reputable academic journals.',
-      features: ['Journal selection', 'Manuscript preparation', 'Peer review support', 'Publication guidance'],
-      price: 'Premium service with publication guarantee'
+      title: t('feature.researchPublication'),
+      description: t('service.researchPublication.desc'),
+      features: [t('service.feature.journalSelection'), t('service.feature.manuscriptPreparation'), t('service.feature.peerReviewSupport'), t('service.feature.publicationGuidance')],
+      price: t('service.pricing.premium')
     },
     {
       icon: Users,
-      title: 'Online Teaching for Assignments',
-      description: 'Personalized online tutoring and assignment guidance sessions.',
-      features: ['One-on-one sessions', 'Assignment walkthrough', 'Concept clarification', 'Study guidance'],
-      price: 'Hourly rates with flexible scheduling'
+      title: t('feature.onlineTeaching'),
+      description: t('service.onlineTeaching.desc'),
+      features: [t('service.feature.oneOnOneSessions'), t('service.feature.assignmentWalkthrough'), t('service.feature.conceptClarification'), t('service.feature.studyGuidance')],
+      price: t('service.pricing.hourly')
     },
     {
       icon: Shield,
-      title: 'Plagiarism & AI Removal',
-      description: 'Professional service to remove plagiarism and AI-generated content from your work.',
-      features: ['Content rewriting', 'Originality enhancement', 'Quality improvement', 'Report included'],
-      price: 'Competitive per-page pricing'
+      title: t('feature.plagiarismRemoval'),
+      description: t('service.plagiarismRemoval.desc'),
+      features: [t('service.feature.contentRewriting'), t('service.feature.originalityEnhancement'), t('service.feature.qualityImprovement'), t('service.feature.reportIncluded')],
+      price: t('service.pricing.perPage')
     },
     {
       icon: FileText,
-      title: 'Paper Preparation',
-      description: 'Complete paper preparation service including formatting, citations, and final review.',
-      features: ['Academic formatting', 'Citation styles', 'Proofreading', 'Final review'],
-      price: 'Affordable formatting and preparation rates'
+      title: t('feature.paperPreparation'),
+      description: t('service.paperPreparation.desc'),
+      features: [t('service.feature.academicFormatting'), t('service.feature.citationStyles'), t('service.feature.proofreading'), t('service.feature.finalReview')],
+      price: t('service.pricing.formatting')
     }
   ];
 
@@ -82,19 +84,19 @@ const Services: React.FC = () => {
   const freeServices = [
     {
       icon: Gift,
-      title: 'Free Plagiarism & AI Reports',
-      description: 'Get comprehensive plagiarism and AI detection reports with every order at no extra cost.',
-      features: ['Detailed plagiarism report', 'AI content detection', 'Originality verification', 'Quality assurance'],
-      price: 'FREE',
+      title: t('service.freePlagiarism.title'),
+      description: t('service.freePlagiarism.desc'),
+      features: [t('service.feature.detailedReport'), t('service.feature.aiDetection'), t('service.feature.originalityVerification'), t('service.feature.qualityAssurance')],
+      price: t('common.free'),
       highlight: true,
       freeOffer: true
     },
     {
       icon: BookOpen,
-      title: 'Free Assignment Guidance',
-      description: 'Receive expert guidance and consultation for your assignments before placing an order.',
-      features: ['Topic consultation', 'Structure guidance', 'Resource recommendations', 'Approach suggestions'],
-      price: 'FREE',
+      title: t('service.freeGuidance.title'),
+      description: t('service.freeGuidance.desc'),
+      features: [t('service.feature.topicConsultation'), t('service.feature.structureGuidance'), t('service.feature.resourceRecommendations'), t('service.feature.approachSuggestions')],
+      price: t('common.free'),
       highlight: true,
       freeOffer: true
     }
@@ -105,23 +107,23 @@ const Services: React.FC = () => {
   const process = [
     {
       step: 1,
-      title: 'Submit Requirements',
-      description: 'Share your assignment details, guidelines, and deadline with us.'
+      title: t('services.process.step1.title'),
+      description: t('services.process.step1.desc')
     },
     {
       step: 2,
-      title: 'Get Quote',
-      description: 'Receive a competitive quote based on your specific requirements.'
+      title: t('services.process.step2.title'),
+      description: t('services.process.step2.desc')
     },
     {
       step: 3,
-      title: 'Expert Assignment',
-      description: 'Your work is assigned to a qualified expert in your subject area.'
+      title: t('services.process.step3.title'),
+      description: t('services.process.step3.desc')
     },
     {
       step: 4,
-      title: 'Quality Delivery',
-      description: 'Receive your completed work on time with unlimited revisions.'
+      title: t('services.process.step4.title'),
+      description: t('services.process.step4.desc')
     }
   ];
 
@@ -131,17 +133,17 @@ const Services: React.FC = () => {
       <section className="bg-gradient-to-br from-blue-800 to-emerald-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Professional Academic Services
+            {t('services.title')}
           </h1>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Comprehensive academic writing and research services designed to help you achieve excellence in your studies
+            {t('services.subtitle')}
           </p>
           <Link
             to="/contact"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center"
+            className={`bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
           >
-            Get Started Today
-            <ArrowRight className="ml-2 h-5 w-5" />
+            {t('services.getStarted')}
+            <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
           </Link>
         </div>
       </section>
@@ -151,10 +153,10 @@ const Services: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Our Academic Services
+              {t('services.ourServices')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our comprehensive range of academic writing and research services
+              {t('services.chooseServices')}
             </p>
           </div>
 
@@ -162,15 +164,15 @@ const Services: React.FC = () => {
             {allServices.map((service, index) => (
               <div key={index} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border flex flex-col h-full ${
                 service.highlight ? 'border-emerald-300 ring-2 ring-emerald-100' : 'border-gray-100'
-              }`}>
+              } ${isRTL ? 'text-right' : 'text-left'}`}>
                 <div className="p-8 pb-4 flex-grow">
                   {service.freeOffer && (
                     <div className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">
-                      FREE SERVICE
+                      {t('service.freeService')}
                     </div>
                   )}
                   
-                  <div className="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6">
+                  <div className={`flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-lg mb-6 ${isRTL ? 'ml-auto' : 'mr-auto'}`}>
                     <service.icon className="h-8 w-8" />
                   </div>
                   
@@ -179,7 +181,7 @@ const Services: React.FC = () => {
                   
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2">
+                      <li key={featureIndex} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                         <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
                         <span className="text-sm text-gray-600">{feature}</span>
                       </li>
@@ -202,7 +204,7 @@ const Services: React.FC = () => {
                         : 'bg-blue-700 hover:bg-blue-800 text-white'
                     }`}
                   >
-                    {service.freeOffer ? 'Get Free Service' : 'Get Quote'}
+                    {service.freeOffer ? t('common.learnMore') : t('common.getQuote')}
                   </Link>
                 </div>
               </div>
@@ -216,10 +218,10 @@ const Services: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              How It Works
+              {t('services.howItWorks')}
             </h2>
             <p className="text-xl text-gray-600">
-              Simple, transparent process to get your academic work completed
+              {t('services.process.subtitle')}
             </p>
           </div>
 
@@ -240,29 +242,29 @@ const Services: React.FC = () => {
       {/* Features Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+            <div className={isRTL ? 'text-right' : 'text-left'}>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Why Our Services Stand Out
+                {t('services.whyStandOut')}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                We deliver exceptional academic work that meets the highest standards of quality and originality.
+                {t('services.standOut.subtitle')}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: Clock, title: 'On-Time Delivery', description: 'Never miss a deadline' },
-                  { icon: CheckCircle, title: 'Quality Guaranteed', description: 'High academic standards' },
-                  { icon: PenTool, title: 'Original Work', description: 'Plagiarism-free content' },
-                  { icon: Lightbulb, title: 'Expert Writers', description: 'PhD qualified professionals' }
+                  { icon: Clock, titleKey: 'services.feature.onTimeDelivery.title', descKey: 'services.feature.onTimeDelivery.desc' },
+                  { icon: CheckCircle, titleKey: 'services.feature.qualityGuaranteed.title', descKey: 'services.feature.qualityGuaranteed.desc' },
+                  { icon: PenTool, titleKey: 'services.feature.originalWork.title', descKey: 'services.feature.originalWork.desc' },
+                  { icon: Lightbulb, titleKey: 'services.feature.expertWriters.title', descKey: 'services.feature.expertWriters.desc' }
                 ].map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
+                  <div key={index} className={`flex items-start ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                     <div className="flex items-center justify-center w-10 h-10 bg-emerald-100 text-emerald-700 rounded-lg flex-shrink-0">
                       <feature.icon className="h-5 w-5" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
-                      <p className="text-sm text-gray-600">{feature.description}</p>
+                    <div className={isRTL ? 'text-right' : ''}>
+                      <h4 className="font-semibold text-gray-900 mb-1">{t(feature.titleKey)}</h4>
+                      <p className="text-sm text-gray-600">{t(feature.descKey)}</p>
                     </div>
                   </div>
                 ))}
@@ -271,15 +273,15 @@ const Services: React.FC = () => {
 
             <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('services.readyToStart')}</h3>
                 <p className="text-gray-600 mb-6">
-                  Contact us today to discuss your academic needs and get a personalized quote.
+                  {t('services.readyToStart.subtitle')}
                 </p>
                 <Link
                   to="/contact"
                   className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-block"
                 >
-                  Get Your Quote
+                  {t('services.getQuote')}
                 </Link>
               </div>
             </div>
