@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppWidget from './WhatsAppWidget';
-import GeminiChatbot from './GeminiChatbot';
+// import GeminiChatbot from './GeminiChatbot';
 import WelcomePopup from './WelcomePopup';
 
 interface LayoutProps {
@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
       <Footer />
       <WhatsAppWidget />
-      <GeminiChatbot />
+      {/* <GeminiChatbot /> */}
       <WelcomePopup />
     </div>
   );

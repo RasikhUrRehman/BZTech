@@ -77,6 +77,33 @@ const Samples: React.FC = () => {
       levelKey: 'samples.level.masters',
       descKey: 'samples.featured.climate.desc',
       pdfPath: '/samples/sample-thesis.pdf'
+    },
+    {
+      titleKey: 'samples.featured.aiHealthcare.title',
+      typeKey: 'samples.featured.aiHealthcare.type',
+      subjectKey: 'samples.featured.aiHealthcare.subject',
+      pages: 5,
+      levelKey: 'samples.level.masters',
+      descKey: 'samples.featured.aiHealthcare.desc',
+      pdfPath: '/samples/AI in Healthcare Predictive Analytics for Heart Diseases-proposal.pdf'
+    },
+    {
+      titleKey: 'samples.featured.aiWeather.title',
+      typeKey: 'samples.featured.aiWeather.type',
+      subjectKey: 'samples.featured.aiWeather.subject',
+      pages: 30,
+      levelKey: 'samples.level.masters',
+      descKey: 'samples.featured.aiWeather.desc',
+      pdfPath: '/samples/AI in Weather Prediction Using Satellite Images-research.pdf'
+    },
+    {
+      titleKey: 'samples.featured.pythonProblem.title',
+      typeKey: 'samples.featured.pythonProblem.type',
+      subjectKey: 'samples.featured.pythonProblem.subject',
+      pages: 10,
+      levelKey: 'samples.level.undergraduate',
+      descKey: 'samples.featured.pythonProblem.desc',
+      pdfPath: '/samples/Python for Real-World Problem Solving-assignment.pdf'
     }
   ];
 

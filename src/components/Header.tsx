@@ -43,10 +43,10 @@ const Header: React.FC = () => {
           <Link to="/" className={`flex items-center group ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
             <img 
               src="/logo.jpeg" 
-              alt="Assignment Thesis Hub Logo" 
+              alt="Thesis Assignment Hub Logo" 
               className="h-10 w-10 rounded-lg object-cover group-hover:scale-105 transition-transform" 
             />
-            <span className="text-xl font-bold text-gray-900">Assignment Thesis Hub</span>
+            <span className="text-xl font-bold text-gray-900">Thesis Assignment Hub</span>
           </Link>
 
           {/* Desktop Navigation */}

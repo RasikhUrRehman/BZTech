@@ -8,16 +8,16 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className={`grid grid-cols-1 md:grid-cols-4 gap-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 ${isRTL ? 'text-right' : 'text-left'}`}>
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className={`flex items-center mb-4 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
               <img 
                 src="/logo.jpeg" 
-                alt="Assignment Thesis Hub Logo" 
+                alt="Thesis Assignment Hub Logo" 
                 className="h-8 w-8 rounded-lg object-cover"
               />
-              <span className="text-xl font-bold">Assignment Thesis Hub</span>
+              <span className="text-xl font-bold">Thesis Assignment Hub</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               {t('footer.description')}
@@ -69,20 +69,6 @@ const Footer: React.FC = () => {
                   {t('nav.contact')}
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.services')}</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>{t('feature.academicAssignments')}</li>
-              <li>{t('feature.thesisWriting')}</li>
-              <li>{t('feature.researchPapers')}</li>
-              <li>{t('feature.essayWriting')}</li>
-              <li>{t('feature.dissertationHelp')}</li>
-              <li>{t('feature.researchPublication')}</li>
-              <li>{t('feature.onlineTeaching')}</li>
             </ul>
           </div>
         </div>
