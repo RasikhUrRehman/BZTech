@@ -256,13 +256,13 @@ const SampleCategory: React.FC = () => {
                           <Eye className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                           View Sample
                         </button>
-                        <Link
-                          to="/contact"
+                        <a
+                          href="/contact"
                           className={`flex-1 border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                         >
                           <Download className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                           Request Full
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
