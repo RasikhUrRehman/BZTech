@@ -219,13 +219,18 @@ const FileViewer: React.FC<FileViewerProps> = ({ fileName, filePath, fileType, o
               <Monitor className="h-4 w-4 mr-2" />
               {isPresentation ? 'View Presentation' : 'View Document'}
             </button>
-            <a
-              href="/contact"
+            <button
+              onClick={() => {
+                // Navigate to contact page without refresh
+                window.history.pushState({}, '', '/contact');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                onClose(); // Close the modal
+              }}
               className="flex-1 border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-lg font-medium transition-colors text-center flex items-center justify-center"
             >
               <Download className="h-4 w-4 mr-2" />
               Request Full
-            </a>
+            </button>
           </div>
         </div>
       </div>

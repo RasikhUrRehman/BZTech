@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, Download, FileText, Monitor, File } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import FileViewer from '../components/FileViewer';
@@ -18,6 +18,7 @@ interface SampleItem {
 const SampleCategory: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const { isRTL } = useLanguage();
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState<{ fileName: string; filePath: string; fileType: 'PDF' | 'PowerPoint' | 'Document' } | null>(null);
 
   // Sample data organized by categories based on actual folder structure
@@ -206,12 +207,12 @@ const SampleCategory: React.FC = () => {
               <p className="text-gray-600 mb-6">
                 We're currently preparing samples for this category. Please check back soon or contact us for specific requirements.
               </p>
-              <Link
-                to="/contact"
+              <button
+                onClick={() => navigate('/contact')}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Contact Us for Samples
-              </Link>
+              </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -257,13 +258,13 @@ const SampleCategory: React.FC = () => {
                           <Eye className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                           View Sample
                         </button>
-                        <a
-                          href="/contact"
+                        <button
+                          onClick={() => navigate('/contact')}
                           className={`flex-1 border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                         >
                           <Download className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                           Request Full
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -293,12 +294,12 @@ const SampleCategory: React.FC = () => {
           <p className="text-lg text-gray-600 mb-8">
             Contact us to access our complete library of academic samples across all subjects and levels.
           </p>
-          <Link
-            to="/contact"
+          <button
+            onClick={() => navigate('/contact')}
             className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-block"
           >
             Request Sample Access
-          </Link>
+          </button>
         </div>
       </section>
     </div>
