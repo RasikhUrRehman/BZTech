@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Offers from './pages/Offers';
 import Samples from './pages/Samples';
+import SampleCategory from './pages/SampleCategory';
 import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/samples" element={<Samples />} />
+        <Route path="/samples/:category" element={<SampleCategory />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

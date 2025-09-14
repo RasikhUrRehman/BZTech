@@ -1,109 +1,91 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, Download, Eye, BookOpen, GraduationCap, Search, PenTool, ArrowRight } from 'lucide-react';
+import { Download, Eye, BookOpen, Search, PenTool } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Samples: React.FC = () => {
   const { t, isRTL } = useLanguage();
   const sampleCategories = [
     {
-      icon: FileText,
-      titleKey: 'samples.category.essays',
-      countKey: '25',
-      descKey: 'samples.category.essays.desc',
-      subjects: [t('subject.literature'), t('subject.history'), t('subject.philosophy'), t('subject.sociology')]
-    },
-    {
       icon: Search,
-      titleKey: 'samples.category.researchPapers',
-      countKey: '20',
-      descKey: 'samples.category.researchPapers.desc',
-      subjects: [t('subject.psychology'), t('subject.business'), t('subject.science'), t('subject.technology')]
-    },
-    {
-      icon: GraduationCap,
-      titleKey: 'samples.category.thesis',
-      countKey: '15',
-      descKey: 'samples.category.thesis.desc',
-      subjects: [t('samples.level.mba'), t('samples.level.masters'), t('samples.level.phd'), t('samples.level.undergraduate')]
+      titleKey: 'AI & Machine Learning',
+      countKey: '5',
+      descKey: 'Comprehensive collection of AI and ML projects, research papers, and presentations including healthcare analytics, weather prediction, and cybersecurity applications',
+      subjects: ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Healthcare AI'],
+      route: '/samples/ai-machine-learning'
     },
     {
       icon: BookOpen,
-      titleKey: 'samples.category.caseStudies',
-      countKey: '18',
-      descKey: 'samples.category.caseStudies.desc',
-      subjects: [t('subject.business'), t('subject.medicine'), t('subject.law'), t('subject.engineering')]
+      titleKey: 'Case Studies',
+      countKey: '5',
+      descKey: 'Real-world case studies covering business analytics, social media analysis, web accessibility audits, and industry-specific solutions',
+      subjects: ['Business Analytics', 'Social Media Analytics', 'Web Accessibility', 'Market Research', 'Data Analysis'],
+      route: '/samples/case-studies'
     },
     {
       icon: PenTool,
-      titleKey: 'samples.category.dissertations',
-      countKey: '12',
-      descKey: 'samples.category.dissertations.desc',
-      subjects: [t('subject.education'), t('subject.healthcare'), t('subject.management'), t('subject.socialSciences')]
-    },
-    {
-      icon: FileText,
-      titleKey: 'samples.category.reports',
-      countKey: '22',
-      descKey: 'samples.category.reports.desc',
-      subjects: [t('subject.science'), t('subject.business'), t('subject.engineering'), t('subject.finance')]
+      titleKey: 'Programming',
+      countKey: '1',
+      descKey: 'Programming assignments and projects demonstrating practical problem-solving with modern technologies',
+      subjects: ['Python', 'Software Development', 'Problem Solving', 'Programming Fundamentals'],
+      route: '/samples/programming'
     }
   ];
 
   const featuredSamples = [
     {
-      titleKey: 'samples.featured.socialMedia.title',
-      typeKey: 'samples.featured.socialMedia.type',
-      subjectKey: 'samples.featured.socialMedia.subject',
-      pages: 15,
-      levelKey: 'samples.level.graduate',
-      descKey: 'samples.featured.socialMedia.desc',
-      pdfPath: '/samples/sample-research-paper.pdf'
-    },
-    {
-      titleKey: 'samples.featured.business.title',
-      typeKey: 'samples.featured.business.type',
-      subjectKey: 'samples.featured.business.subject',
-      pages: 12,
-      levelKey: 'samples.level.mba',
-      descKey: 'samples.featured.business.desc',
-      pdfPath: '/samples/sample-essay.pdf'
-    },
-    {
-      titleKey: 'samples.featured.climate.title',
-      typeKey: 'samples.featured.climate.type',
-      subjectKey: 'samples.featured.climate.subject',
-      pages: 45,
-      levelKey: 'samples.level.masters',
-      descKey: 'samples.featured.climate.desc',
-      pdfPath: '/samples/sample-thesis.pdf'
-    },
-    {
-      titleKey: 'samples.featured.aiHealthcare.title',
-      typeKey: 'samples.featured.aiHealthcare.type',
-      subjectKey: 'samples.featured.aiHealthcare.subject',
+      titleKey: 'AI in Healthcare: Predictive Analytics for Heart Diseases',
+      typeKey: 'Research Proposal',
+      subjectKey: 'Artificial Intelligence & Healthcare',
       pages: 5,
-      levelKey: 'samples.level.masters',
-      descKey: 'samples.featured.aiHealthcare.desc',
-      pdfPath: '/samples/AI in Healthcare Predictive Analytics for Heart Diseases-proposal.pdf'
+      levelKey: 'Masters Level',
+      descKey: 'Comprehensive proposal exploring the application of AI in healthcare for predictive analytics, specifically focusing on heart disease prediction using machine learning algorithms.',
+      pdfPath: '/samples/AI and Machine Learning/AI in Healthcare Predictive Analytics for Heart Diseases-proposal.pdf'
     },
     {
-      titleKey: 'samples.featured.aiWeather.title',
-      typeKey: 'samples.featured.aiWeather.type',
-      subjectKey: 'samples.featured.aiWeather.subject',
+      titleKey: 'Social Media Analytics: Netflix Brand Promotion Case Study',
+      typeKey: 'Case Study',
+      subjectKey: 'Digital Marketing & Analytics',
+      pages: 20,
+      levelKey: 'MBA Level',
+      descKey: 'In-depth analysis of how Netflix leverages social media analytics for brand promotion in India entertainment industry, showcasing data-driven marketing strategies.',
+      pdfPath: '/samples/Case Studies/Leveraging Social Media Analytics for Brand Promotion A Case Study of Netflix in India Entertainment Industry.pdf'
+    },
+    {
+      titleKey: 'Sentiment Analysis: KFC vs McDonald\'s Customer Reviews',
+      typeKey: 'Research Paper',
+      subjectKey: 'Data Analytics & Business Intelligence',
+      pages: 18,
+      levelKey: 'Graduate Level',
+      descKey: 'Comparative sentiment analysis study examining customer reviews for KFC and McDonald\'s using Trustpilot data and advanced analytics techniques.',
+      pdfPath: '/samples/Case Studies/Sentiment Analysis of Customer Reviews A Comparative Study of KFC and McDonald Using Trustpilot Data.pdf'
+    },
+    {
+      titleKey: 'Web Accessibility Audit: Tesco Website WCAG Compliance',
+      typeKey: 'Audit Report',
+      subjectKey: 'Web Development & Accessibility',
+      pages: 15,
+      levelKey: 'Professional Level',
+      descKey: 'Comprehensive web accessibility audit evaluating Tesco website\'s compliance with WCAG standards, including recommendations for improvement.',
+      pdfPath: '/samples/Case Studies/Web Accessibility Audit Report Tesco Website Compliance with WCAG Standards.pdf'
+    },
+    {
+      titleKey: 'AI in Weather Prediction Using Satellite Images',
+      typeKey: 'Research Paper',
+      subjectKey: 'AI & Meteorology',
       pages: 30,
-      levelKey: 'samples.level.masters',
-      descKey: 'samples.featured.aiWeather.desc',
-      pdfPath: '/samples/AI in Weather Prediction Using Satellite Images-research.pdf'
+      levelKey: 'Masters Level',
+      descKey: 'Advanced research paper exploring the application of artificial intelligence and satellite imagery for accurate weather prediction systems.',
+      pdfPath: '/samples/AI and Machine Learning/AI in Weather Prediction Using Satellite Images-research.pdf'
     },
     {
-      titleKey: 'samples.featured.pythonProblem.title',
-      typeKey: 'samples.featured.pythonProblem.type',
-      subjectKey: 'samples.featured.pythonProblem.subject',
+      titleKey: 'Python for Real-World Problem Solving',
+      typeKey: 'Programming Assignment',
+      subjectKey: 'Computer Science & Programming',
       pages: 10,
-      levelKey: 'samples.level.undergraduate',
-      descKey: 'samples.featured.pythonProblem.desc',
-      pdfPath: '/samples/Python for Real-World Problem Solving-assignment.pdf'
+      levelKey: 'Undergraduate Level',
+      descKey: 'Practical programming assignment demonstrating Python solutions for real-world problems and computational challenges.',
+      pdfPath: '/samples/Programming/Python for Real-World Problem Solving-assignment.pdf'
     }
   ];
 
@@ -111,44 +93,100 @@ const Samples: React.FC = () => {
     // Open PDF in a new window with read-only restrictions
     const newWindow = window.open('', '_blank');
     if (newWindow) {
-      newWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>${t('samples.readOnly')}</title>
-          <style>
-            body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-            .header { background: #1e40af; color: white; padding: 10px; text-align: center; }
-            .content { height: calc(100vh - 60px); }
-            embed { width: 100%; height: 100%; }
-            .no-select { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-          </style>
-        </head>
-        <body class="no-select">
-          <div class="header">
-            <strong>${t('samples.readOnly')}</strong> | 
-            ${t('samples.demo')}
-          </div>
-          <div class="content">
-            <embed src="${pdfPath}" type="application/pdf" />
-          </div>
-          <script>
-            // Disable right-click context menu
-            document.addEventListener('contextmenu', function(e) {
-              e.preventDefault();
-            });
-            // Disable text selection
-            document.addEventListener('selectstart', function(e) {
-              e.preventDefault();
-            });
-            // Disable drag
-            document.addEventListener('dragstart', function(e) {
-              e.preventDefault();
-            });
-          </script>
-        </body>
-        </html>
-      `);
+      const isPresentation = pdfPath.toLowerCase().includes('.pptx');
+      
+      if (isPresentation) {
+        // Handle PowerPoint files
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>PowerPoint Preview - ${t('samples.readOnly')}</title>
+            <style>
+              body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+              .header { background: #1e40af; color: white; padding: 10px; text-align: center; }
+              .content { height: calc(100vh - 60px); padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+              .no-select { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+              .download-btn { 
+                background: #1e40af; 
+                color: white; 
+                padding: 12px 24px; 
+                border: none; 
+                border-radius: 8px; 
+                cursor: pointer; 
+                text-decoration: none; 
+                display: inline-block;
+                margin: 10px;
+                font-weight: 500;
+              }
+              .download-btn:hover { background: #1d4ed8; }
+              .icon { width: 64px; height: 64px; margin-bottom: 20px; }
+            </style>
+          </head>
+          <body class="no-select">
+            <div class="header">
+              <strong>${t('samples.readOnly')}</strong> | 
+              ${t('samples.demo')}
+            </div>
+            <div class="content">
+              <svg class="icon" fill="#6366f1" viewBox="0 0 24 24">
+                <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+              </svg>
+              <h3 style="color: #374151; margin-bottom: 16px;">PowerPoint Presentation</h3>
+              <p style="color: #6b7280; margin-bottom: 24px; text-align: center;">
+                This is a PowerPoint presentation file. Click the button below to open it in your default application.
+              </p>
+              <a href="${pdfPath}" class="download-btn" onclick="window.close()">
+                Open Presentation
+              </a>
+              <p style="color: #9ca3af; font-size: 14px; margin-top: 16px;">
+                <em>The file will open in PowerPoint or your browser's viewer.</em>
+              </p>
+            </div>
+            <script>
+              document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+              document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+              document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+            </script>
+          </body>
+          </html>
+        `);
+      } else {
+        // Handle PDF files
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>${t('samples.readOnly')}</title>
+            <style>
+              body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+              .header { background: #1e40af; color: white; padding: 10px; text-align: center; }
+              .content { height: calc(100vh - 60px); }
+              embed { width: 100%; height: 100%; }
+              .no-select { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+              .error { padding: 20px; text-align: center; color: #666; }
+            </style>
+          </head>
+          <body class="no-select">
+            <div class="header">
+              <strong>${t('samples.readOnly')}</strong> | 
+              ${t('samples.demo')}
+            </div>
+            <div class="content">
+              <embed src="${pdfPath}" type="application/pdf" />
+              <div class="error" style="display: none;" id="error-msg">
+                <p>Unable to display PDF. <a href="${pdfPath}" download>Download instead</a></p>
+              </div>
+            </div>
+            <script>
+              document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+              document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+              document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+            </script>
+          </body>
+          </html>
+        `);
+      }
     }
   };
 
@@ -166,18 +204,6 @@ const Samples: React.FC = () => {
           <p className="text-xl text-indigo-100 mb-8 max-w-3xl mx-auto">
             {t('samples.subtitle')}
           </p>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
-            <p className={`text-lg text-indigo-100 mb-4 ${isRTL ? 'text-right' : ''}`}>
-              <strong>{isRTL ? 'ملاحظة:' : 'Note:'}</strong> {t('samples.note')}
-            </p>
-            <Link
-              to="/contact"
-              className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
-            >
-              {t('samples.viewSamples')}
-              <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -202,9 +228,13 @@ const Samples: React.FC = () => {
                   </div>
                   
                   <div className="mb-4">
-                    <h3 className={`text-xl font-semibold text-gray-900 mb-2 ${isRTL ? 'text-right' : ''}`}>{t(category.titleKey)}</h3>
+                    <h3 className={`text-xl font-semibold text-gray-900 mb-2 ${isRTL ? 'text-right' : ''}`}>
+                      {category.titleKey}
+                    </h3>
                     <div className={`text-sm font-medium text-indigo-600 mb-3 ${isRTL ? 'text-right' : ''}`}>{category.countKey}+ {t('samples.category.count')}</div>
-                    <p className={`text-gray-600 mb-4 ${isRTL ? 'text-right' : ''}`}>{t(category.descKey)}</p>
+                    <p className={`text-gray-600 mb-4 ${isRTL ? 'text-right' : ''}`}>
+                      {category.descKey}
+                    </p>
                   </div>
                   
                   <div className="mb-6">
@@ -221,10 +251,10 @@ const Samples: React.FC = () => {
                 
                 <div className="p-8 pt-0 mt-auto">
                   <Link
-                    to="/contact"
+                    to={category.route}
                     className={`w-full bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center inline-block ${isRTL ? 'text-right' : ''}`}
                   >
-                    {t('samples.requestSamples')}
+                    {t('samples.viewSamples')}
                   </Link>
                 </div>
               </div>
@@ -250,20 +280,20 @@ const Samples: React.FC = () => {
               <div key={index} className="bg-white rounded-xl shadow-lg flex flex-col h-full">
                 <div className="p-8 flex-grow">
                   <div className="mb-6">
-                    <h3 className={`text-lg font-semibold text-gray-900 mb-3 ${isRTL ? 'text-right' : ''}`}>{t(sample.titleKey)}</h3>
+                    <h3 className={`text-lg font-semibold text-gray-900 mb-3 ${isRTL ? 'text-right' : ''}`}>{sample.titleKey}</h3>
                     <div className={`flex flex-wrap gap-2 mb-4 ${isRTL ? 'justify-end' : ''}`}>
                       <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
-                        {t(sample.typeKey)}
+                        {sample.typeKey}
                       </span>
                       <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
-                        {t(sample.levelKey)}
+                        {sample.levelKey}
                       </span>
                     </div>
                     <div className={`text-sm text-gray-600 mb-4 ${isRTL ? 'text-right' : ''}`}>
-                      <div><strong>{t('samples.subject')}:</strong> {t(sample.subjectKey)}</div>
+                      <div><strong>{t('samples.subject')}:</strong> {sample.subjectKey}</div>
                       <div><strong>{t('samples.pages')}:</strong> {sample.pages}</div>
                     </div>
-                    <p className={`text-gray-600 text-sm leading-relaxed ${isRTL ? 'text-right' : ''}`}>{t(sample.descKey)}</p>
+                    <p className={`text-gray-600 text-sm leading-relaxed ${isRTL ? 'text-right' : ''}`}>{sample.descKey}</p>
                   </div>
                 </div>
                 
