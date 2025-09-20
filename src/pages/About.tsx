@@ -76,7 +76,7 @@ const About: React.FC = () => {
   const achievements = [
     { number: '500+', label: t('stats.projectsCompleted') },
     { number: '98%', label: t('stats.clientSatisfaction') },
-    { number: '5+', label: t('stats.yearsExperience') },
+    { number: '8+', label: t('stats.yearsExperience') },
     { number: '50+', label: t('stats.expertWriters') }
   ];
 

@@ -49,7 +49,7 @@ const Home: React.FC = () => {
     { number: '500+', label: t('stats.projectsCompleted') },
     { number: '98%', label: t('stats.clientSatisfaction') },
     { number: '24/7', label: t('stats.supportAvailable') },
-    { number: '5+', label: t('stats.yearsExperience') }
+    { number: '8+', label: t('stats.yearsExperience') }
   ];
 
   return (
