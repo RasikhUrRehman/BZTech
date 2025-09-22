@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star, Users, BookOpen, PenTool, ArrowRight, Search } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Home: React.FC = () => {
   const { t, isRTL } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const features = [
     {
@@ -73,12 +75,12 @@ const Home: React.FC = () => {
                   {t('home.hero.viewServices')}
                   <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Link>
-                <Link
-                  to="/contact"
+                <button
+                  onClick={() => setIsModalOpen(true)}
                   className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center"
                 >
                   {t('home.hero.getQuote')}
-                </Link>
+                </button>
               </div>
             </div>
             <div className="hidden lg:block">
@@ -229,12 +231,12 @@ const Home: React.FC = () => {
             {t('home.cta.subtitle')}
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-            <Link
-              to="/contact"
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
               {t('home.cta.getQuote')}
-            </Link>
+            </button>
             <Link
               to="/services"
               className="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
@@ -244,6 +246,12 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Home Page"
+      />
     </div>
   );
 };

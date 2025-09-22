@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight, FileCheck, Users, Shield, Gift } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Services: React.FC = () => {
   const { t, isRTL } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const services = [
     {
       icon: FileText,
@@ -196,16 +198,29 @@ const Services: React.FC = () => {
                 </div>
                 
                 <div className="p-8 pt-0 mt-auto">
-                  <Link
-                    to="/contact"
-                    className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
-                      service.highlight 
-                        ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
-                        : 'bg-blue-700 hover:bg-blue-800 text-white'
-                    }`}
-                  >
-                    {service.freeOffer ? t('common.learnMore') : t('common.getQuote')}
-                  </Link>
+                  {service.freeOffer ? (
+                    <Link
+                      to="/contact"
+                      className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
+                        service.highlight 
+                          ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                          : 'bg-blue-700 hover:bg-blue-800 text-white'
+                      }`}
+                    >
+                      {t('common.learnMore')}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center ${
+                        service.highlight 
+                          ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                          : 'bg-blue-700 hover:bg-blue-800 text-white'
+                      }`}
+                    >
+                      {t('common.getQuote')}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -277,17 +292,23 @@ const Services: React.FC = () => {
                 <p className="text-gray-600 mb-6">
                   {t('services.readyToStart.subtitle')}
                 </p>
-                <Link
-                  to="/contact"
-                  className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-block"
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
                 >
                   {t('services.getQuote')}
-                </Link>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Services Page"
+      />
     </div>
   );
 };
