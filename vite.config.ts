@@ -10,7 +10,7 @@ export default defineConfig({
     cors: true,
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    // exclude: ['lucide-react'],
   },
   build: {
     outDir: 'build',
