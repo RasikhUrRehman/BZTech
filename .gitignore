@@ -23,3 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Data Files
+*.csv
+*.pptx
+*.pdf
+*.xlsx
+*.xls
+*.docx
+*.doc

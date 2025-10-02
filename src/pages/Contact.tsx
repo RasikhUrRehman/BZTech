@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { useFormContext } from '../contexts/FormContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { initializeEmailJS, sendEmail, EmailData } from '../utils/emailService';
 
 const Contact: React.FC = () => {
   const { t, isRTL } = useLanguage();
@@ -17,6 +18,12 @@ const Contact: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initializeEmailJS();
+  }, []);
 
   // Update local form data when context changes
   useEffect(() => {
@@ -32,32 +39,70 @@ const Contact: React.FC = () => {
   }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    let value = e.target.value;
+    
+    // Validate deadline to prevent past dates
+    if (e.target.name === 'deadline' && value) {
+      const selectedDate = new Date(value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+      
+      if (selectedDate < today) {
+        // Don't update if the selected date is in the past
+        return;
+      }
+    }
+    
     const updatedData = {
       ...localFormData,
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     };
     setLocalFormData(updatedData);
     updateFormData(updatedData);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', localFormData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      clearFormData();
-      setLocalFormData({
-        name: '',
-        email: '',
-        subject: '',
-        service: '',
-        deadline: '',
-        message: '',
-        pages: ''
-      });
-    }, 3000);
+    setIsSubmitting(true);
+
+    try {
+      // Prepare email data
+      const emailData: EmailData = {
+        name: localFormData.name,
+        email: localFormData.email,
+        subject: localFormData.subject,
+        service: localFormData.service,
+        deadline: localFormData.deadline,
+        pages: localFormData.pages,
+        message: localFormData.message,
+        source: 'Contact Form'
+      };
+
+      // Send email using the service
+      await sendEmail(emailData);
+
+      console.log('Email sent successfully');
+      setIsSubmitted(true);
+      
+      setTimeout(() => {
+        setIsSubmitted(false);
+        clearFormData();
+        setLocalFormData({
+          name: '',
+          email: '',
+          subject: '',
+          service: '',
+          deadline: '',
+          message: '',
+          pages: ''
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Failed to send email. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -233,6 +278,7 @@ const Contact: React.FC = () => {
                         required
                         value={localFormData.deadline}
                         onChange={handleChange}
+                        min={new Date().toISOString().split('T')[0]}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       />
                     </div>
@@ -255,10 +301,11 @@ const Contact: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center"
                   >
-                    {t('contact.form.getQuoteNow')}
-                    <Send className={`${isRTL ? 'mr-2' : 'ml-2'} h-5 w-5`} />
+                    {isSubmitting ? t('contact.form.sending') || 'Sending...' : t('contact.form.getQuoteNow')}
+                    <Send className={`${isRTL ? 'mr-2' : 'ml-2'} h-5 w-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
                   </button>
                 </form>
               </div>

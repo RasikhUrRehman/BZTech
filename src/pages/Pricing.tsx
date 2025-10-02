@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DollarSign, CreditCard } from 'lucide-react';
 import PricingCalculator from '../components/PricingCalculator';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Pricing: React.FC = () => {
   const { t, isRTL, formatPrice } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const additionalServices = [
     { service: t('pricing.additional.rushDelivery24'), price: t('pricing.additional.price.rush24') },
     { service: t('pricing.additional.rushDelivery48'), price: t('pricing.additional.price.rush48') },
@@ -177,12 +179,12 @@ const Pricing: React.FC = () => {
             {t('pricing.cta.subtitle')}
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-            <Link
-              to="/contact"
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="bg-white text-green-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
               {t('pricing.cta.getQuote')}
-            </Link>
+            </button>
             <Link
               to="/services"
               className="border-2 border-white text-white hover:bg-white hover:text-green-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
@@ -192,6 +194,12 @@ const Pricing: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Pricing Page"
+      />
     </div>
   );
 };

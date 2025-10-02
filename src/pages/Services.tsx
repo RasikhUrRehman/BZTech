@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight, FileCheck, Users, Shield, Gift, Sparkles, Award, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Services: React.FC = () => {
   const { t, isRTL } = useLanguage();
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const services = [
     {
       icon: FileText,
@@ -291,18 +292,30 @@ const Services: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="relative p-8 pt-0">
-                  <Link
-                    to="/contact"
-                    className={`group w-full px-6 py-4 rounded-xl font-semibold transition-all duration-300 text-center inline-flex items-center justify-center transform hover:scale-105 ${
-                      service.highlight 
-                        ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl'
-                        : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg hover:shadow-xl'
-                    }`}
-                  >
-                    {service.freeOffer ? t('common.learnMore') : t('common.getQuote')}
-                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                <div className="p-8 pt-0 mt-auto">
+                  {service.freeOffer ? (
+                    <Link
+                      to="/contact"
+                      className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center inline-block ${
+                        service.highlight 
+                          ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                          : 'bg-blue-700 hover:bg-blue-800 text-white'
+                      }`}
+                    >
+                      {t('common.learnMore')}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-center ${
+                        service.highlight 
+                          ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                          : 'bg-blue-700 hover:bg-blue-800 text-white'
+                      }`}
+                    >
+                      {t('common.getQuote')}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -386,38 +399,29 @@ const Services: React.FC = () => {
               </div>
             </div>
 
-            <div className={`${isRTL ? 'order-1' : ''}`}>
-              <div className="relative">
-                {/* Main Card */}
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-10 shadow-2xl border border-blue-100">
-                  <div className="text-center">
-                    <div className="text-6xl mb-6">🎓</div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-6">{t('services.readyToStart')}</h3>
-                    <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                      {t('services.readyToStart.subtitle')}
-                    </p>
-                    <Link
-                      to="/contact"
-                      className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center"
-                    >
-                      {t('services.getQuote')}
-                      <ArrowRight className="h-5 w-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-                
-                {/* Floating Elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-xl animate-bounce-gentle">
-                  ⭐
-                </div>
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white text-2xl shadow-xl animate-pulse">
-                  🏆
-                </div>
+            <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl p-8">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('services.readyToStart')}</h3>
+                <p className="text-gray-600 mb-6">
+                  {t('services.readyToStart.subtitle')}
+                </p>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+                >
+                  {t('services.getQuote')}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Services Page"
+      />
     </div>
   );
 };

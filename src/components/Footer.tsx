@@ -7,38 +7,18 @@ const Footer: React.FC = () => {
   const { t, isRTL } = useLanguage();
   
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-400 to-purple-600"></div>
-      </div>
-      
-      {/* Floating Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-white/5 rounded-full animate-pulse"></div>
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: '4s' }}></div>
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className={`grid grid-cols-1 md:grid-cols-4 gap-12 ${isRTL ? 'text-right' : 'text-left'}`}>
-          {/* Enhanced Brand Section */}
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+          {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className={`flex items-center mb-6 ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
-              <div className="relative">
-                <img 
-                  src="/logo.jpeg" 
-                  alt="Assignment Thesis Hub Logo" 
-                  className="h-12 w-12 rounded-xl object-cover shadow-lg"
-                />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full flex items-center justify-center">
-                  <Sparkles className="h-2 w-2 text-white" />
-                </div>
-              </div>
-              <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Assignment Thesis Hub
-                </span>
-                <div className="text-sm text-blue-200 font-medium">Academic Excellence Since 2019</div>
-              </div>
+            <div className={`flex items-center mb-4 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+              <img 
+                src="/logo.jpeg" 
+                alt="Thesis Assignment Hub Logo" 
+                className="h-8 w-8 rounded-lg object-cover"
+              />
+              <span className="text-xl font-bold">Thesis Assignment Hub</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
               {t('footer.description')}
@@ -91,29 +71,6 @@ const Footer: React.FC = () => {
                       {link.name}
                     </span>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Enhanced Services */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              {t('footer.services')}
-            </h3>
-            <ul className="space-y-3 text-gray-300">
-              {[
-                { name: t('feature.academicAssignments'), icon: '📚' },
-                { name: t('feature.thesisWriting'), icon: '🎓' },
-                { name: t('feature.researchPapers'), icon: '🔬' },
-                { name: t('feature.essayWriting'), icon: '✍️' },
-                { name: t('feature.dissertationHelp'), icon: '📖' },
-                { name: t('feature.researchPublication'), icon: '📄' },
-                { name: t('feature.onlineTeaching'), icon: '💻' }
-              ].map((service) => (
-                <li key={service.name} className="flex items-center space-x-2 hover:text-white transition-colors">
-                  <span className="text-lg">{service.icon}</span>
-                  <span className="text-sm">{service.name}</span>
                 </li>
               ))}
             </ul>

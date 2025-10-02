@@ -25,6 +25,7 @@ const Header: React.FC = () => {
     { name: t('nav.offers'), href: '/offers' },
     { name: t('nav.samples'), href: '/samples' },
     { name: t('nav.pricing'), href: '/pricing' },
+    { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.contact'), href: '/contact' },
   ];
@@ -41,24 +42,14 @@ const Header: React.FC = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-          {/* Enhanced Logo */}
-          <Link to="/" className={`flex items-center group ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
-            <div className="relative">
-              <img 
-                src="/logo.jpeg" 
-                alt="Assignment Thesis Hub Logo" 
-                className="h-12 w-12 rounded-xl object-cover group-hover:scale-110 transition-transform duration-300 shadow-lg" 
-              />
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Sparkles className="h-2 w-2 text-white" />
-              </div>
-            </div>
-            <div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent">
-                Assignment Thesis Hub
-              </span>
-              <div className="text-xs text-gray-500 font-medium">Academic Excellence</div>
-            </div>
+          {/* Logo */}
+          <Link to="/" className={`flex items-center group ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+            <img 
+              src="/logo.jpeg" 
+              alt="Thesis Assignment Hub Logo" 
+              className="h-10 w-10 rounded-lg object-cover group-hover:scale-105 transition-transform" 
+            />
+            <span className="text-xl font-bold text-gray-900">Thesis Assignment Hub</span>
           </Link>
 
           {/* Enhanced Desktop Navigation */}

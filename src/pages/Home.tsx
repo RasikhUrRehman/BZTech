@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star, Users, BookOpen, PenTool, ArrowRight, Search, Sparkles, Award, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Home: React.FC = () => {
   const { t, isRTL } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const features = [
     {
@@ -58,10 +60,10 @@ const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '500+', label: t('stats.projectsCompleted'), icon: '📚' },
-    { number: '98%', label: t('stats.clientSatisfaction'), icon: '⭐' },
-    { number: '24/7', label: t('stats.supportAvailable'), icon: '🕒' },
-    { number: '5+', label: t('stats.yearsExperience'), icon: '🏆' }
+    { number: '500+', label: t('stats.projectsCompleted') },
+    { number: '98%', label: t('stats.clientSatisfaction') },
+    { number: '24/7', label: t('stats.supportAvailable') },
+    { number: '8+', label: t('stats.yearsExperience') }
   ];
 
   return (
@@ -106,12 +108,12 @@ const Home: React.FC = () => {
                   {t('home.hero.viewServices')}
                   <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'} group-hover:translate-x-1 transition-transform`} />
                 </Link>
-                <Link
-                  to="/contact"
-                  className="group border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 backdrop-blur-sm hover:shadow-2xl inline-flex items-center justify-center"
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center"
                 >
                   {t('home.hero.getQuote')}
-                </Link>
+                </button>
               </div>
               
               {/* Trust Indicators */}
@@ -359,14 +361,13 @@ const Home: React.FC = () => {
           <p className="text-2xl mb-12 text-blue-100 leading-relaxed max-w-4xl mx-auto">
             {t('home.cta.subtitle')}
           </p>
-          <div className={`flex flex-col sm:flex-row gap-6 justify-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-            <Link
-              to="/contact"
-              className="group bg-white text-blue-700 hover:bg-gray-100 px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center"
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
               {t('home.cta.getQuote')}
-              <ArrowRight className="h-6 w-6 ml-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <Link
               to="/services"
               className="group border-2 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 hover:shadow-2xl inline-flex items-center justify-center"
@@ -392,6 +393,12 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Home Page"
+      />
     </div>
   );
 };
