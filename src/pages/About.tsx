@@ -30,29 +30,53 @@ const About: React.FC = () => {
 
   const team = [
     {
-      name: 'Dr. Sarah Mitchell',
+      name: 'Zain Asghar',
+      role: t('team.director'),
+      expertise: t('team.businessStrategy'),
+      experience: t('team.experience.director'),
+      image: '/Director.jpg'
+    },
+    {
+      name: 'Khair Ul Burria',
+      role: t('team.itManager'),
+      expertise: t('team.technologyManagement'),
+      experience: t('team.experience.itManager'),
+      image: '/IT Manager.webp'
+    },
+    {
+      name: 'Raja Shahzaib',
+      role: t('team.marketingSalesManager'),
+      expertise: t('team.marketingAndSales'),
+      experience: t('team.experience.raja'),
+      image: '/Marketing and Sales Manager.jpg'
+    },
+    {
+      name: 'Dr. Sarah Khan',
       role: t('team.academicDirector'),
       expertise: t('team.literatureHumanities'),
-      experience: t('team.experience.sarah')
+      experience: t('team.experience.sarah'),
+      image: null
     },
     {
-      name: 'Prof. James Chen',
+      name: 'Prof. Usman Ali',
       role: t('team.researchSpecialist'),
       expertise: t('team.sciencesTechnology'),
-      experience: t('team.experience.james')
+      experience: t('team.experience.james'),
+      image: null
     },
     {
-      name: 'Dr. Maria Rodriguez',
+      name: 'Dr. Maria Imran',
       role: t('team.writingCoordinator'),
       expertise: t('subject.socialSciences'),
-      experience: t('team.experience.maria')
+      experience: t('team.experience.maria'),
+      image: null
     }
   ];
 
   const achievements = [
     { number: '500+', label: t('stats.projectsCompleted') },
     { number: '98%', label: t('stats.clientSatisfaction') },
-    { number: '5+', label: t('stats.yearsExperience') },
+    { number: '8+', label: t('stats.yearsExperience') },
     { number: '50+', label: t('stats.expertWriters') }
   ];
 
@@ -181,12 +205,22 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-12 w-12 text-blue-700" />
-                </div>
+                {member.image ? (
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Users className="h-12 w-12 text-blue-700" />
+                  </div>
+                )}
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
                 <p className="text-blue-700 font-medium mb-2">{member.role}</p>
                 <p className="text-gray-600 mb-2">{member.expertise}</p>

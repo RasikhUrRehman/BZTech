@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star, Users, BookOpen, PenTool, ArrowRight, Search, Sparkles, Award, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from '../components/QuoteModal';
 
 const Home: React.FC = () => {
   const { t, isRTL } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const features = [
     {
@@ -58,10 +60,10 @@ const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '500+', label: t('stats.projectsCompleted'), icon: '📚' },
-    { number: '98%', label: t('stats.clientSatisfaction'), icon: '⭐' },
-    { number: '24/7', label: t('stats.supportAvailable'), icon: '🕒' },
-    { number: '5+', label: t('stats.yearsExperience'), icon: '🏆' }
+    { number: '500+', label: t('stats.projectsCompleted') },
+    { number: '98%', label: t('stats.clientSatisfaction') },
+    { number: '24/7', label: t('stats.supportAvailable') },
+    { number: '8+', label: t('stats.yearsExperience') }
   ];
 
   return (
@@ -111,7 +113,7 @@ const Home: React.FC = () => {
                   className="group border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 backdrop-blur-sm hover:shadow-2xl inline-flex items-center justify-center"
                 >
                   {t('home.hero.getQuote')}
-                </Link>
+                </button>
               </div>
               
               {/* Trust Indicators */}
@@ -392,6 +394,12 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Home Page"
+      />
     </div>
   );
 };

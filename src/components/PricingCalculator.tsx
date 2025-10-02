@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { useFormContext } from '../contexts/FormContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import QuoteModal from './QuoteModal';
 
 const PricingCalculator: React.FC = () => {
   const { t, isRTL, formatPrice } = useLanguage();
   const { formData, updateFormData } = useFormContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [service, setService] = useState(formData.service || '');
   const [subject, setSubject] = useState('');
   const [pages, setPages] = useState(formData.pages ? parseInt(formData.pages) : 1);
@@ -245,12 +247,18 @@ const PricingCalculator: React.FC = () => {
           {t('pricing.calculator.disclaimer')}
         </p>
         <button
-          onClick={() => window.location.href = '/contact'}
+          onClick={() => setIsModalOpen(true)}
           className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           {t('common.getQuote')}
         </button>
       </div>
+
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        source="Pricing Calculator"
+      />
     </div>
   );
 };

@@ -95,29 +95,6 @@ const Footer: React.FC = () => {
               ))}
             </ul>
           </div>
-
-          {/* Enhanced Services */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              {t('footer.services')}
-            </h3>
-            <ul className="space-y-3 text-gray-300">
-              {[
-                { name: t('feature.academicAssignments'), icon: '📚' },
-                { name: t('feature.thesisWriting'), icon: '🎓' },
-                { name: t('feature.researchPapers'), icon: '🔬' },
-                { name: t('feature.essayWriting'), icon: '✍️' },
-                { name: t('feature.dissertationHelp'), icon: '📖' },
-                { name: t('feature.researchPublication'), icon: '📄' },
-                { name: t('feature.onlineTeaching'), icon: '💻' }
-              ].map((service) => (
-                <li key={service.name} className="flex items-center space-x-2 hover:text-white transition-colors">
-                  <span className="text-lg">{service.icon}</span>
-                  <span className="text-sm">{service.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Enhanced Bottom Section */}
