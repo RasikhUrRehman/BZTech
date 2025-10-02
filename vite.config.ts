@@ -5,12 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 5173,
-    cors: true,
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    // Removed exclusion of lucide-react to prevent individual icon requests
   },
   build: {
     outDir: 'build',

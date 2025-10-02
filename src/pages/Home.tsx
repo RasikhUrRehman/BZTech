@@ -134,7 +134,6 @@ const Home: React.FC = () => {
               {stats.map((stat, index) => (
                 <div key={index} className="group bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
                   <div className="text-center">
-                    <div className="text-4xl mb-2">{stat.icon}</div>
                     <div className="text-3xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">{stat.number}</div>
                     <div className="text-blue-100 text-sm">{stat.label}</div>
                   </div>

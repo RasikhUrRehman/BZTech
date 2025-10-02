@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, CheckCircle, ArrowRight, FileCheck, Users, Shield, Gift, Sparkles, Award, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import QuoteModal from '../components/QuoteModal';
 
+import React, { useState, useEffect } from 'react';
 const Services: React.FC = () => {
   const { t, isRTL } = useLanguage();
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('Services component mounted, icons loaded');
+  }, []);
+
   const services = [
     {
       icon: FileText,
