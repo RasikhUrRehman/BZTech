@@ -1,84 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-  date: string;
-  readTime: string;
-  author: string;
-  category: string;
-}
+import { fetchBlogs, BlogPost } from '../utils/strapiApi';
 
 const Blog: React.FC = () => {
-  const { t, isRTL } = useLanguage();
+  const { isRTL } = useLanguage();
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "Mastering Academic Writing: Essential Tips for Success",
-      description: "Discover proven strategies to enhance your academic writing skills. Learn about structure, research methods, and citation techniques that will elevate your assignments and research papers.",
-      thumbnail: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-15",
-      readTime: "5 min read",
-      author: "BZTech Team",
-      category: "Academic Writing"
-    },
-    {
-      id: 2,
-      title: "The Complete Guide to Thesis Writing and Research",
-      description: "Navigate the complex world of thesis writing with our comprehensive guide. From topic selection to defense preparation, we cover everything you need to know for academic success.",
-      thumbnail: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-10",
-      readTime: "8 min read",
-      author: "Dr. Sarah Johnson",
-      category: "Research"
-    },
-    {
-      id: 3,
-      title: "Customer Success Story: From Struggling Student to Academic Excellence",
-      description: "Read how Maria transformed her academic journey with our personalized writing assistance. Learn about the challenges she faced and how our expert guidance helped her achieve her goals.",
-      thumbnail: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-08",
-      readTime: "6 min read",
-      author: "BZTech Team",
-      category: "Success Stories"
-    },
-    {
-      id: 4,
-      title: "Latest Updates: New Services and Enhanced Features",
-      description: "Explore our latest service offerings including AI-powered research assistance and enhanced plagiarism detection. Stay updated with the newest features designed to support your academic journey.",
-      thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-05",
-      readTime: "4 min read",
-      author: "Product Team",
-      category: "Product Updates"
-    },
-    {
-      id: 5,
-      title: "Industry Insights: The Future of Academic Publishing",
-      description: "Discover emerging trends in academic publishing and research dissemination. Learn how digital transformation is reshaping scholarly communication and what it means for researchers.",
-      thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-03",
-      readTime: "7 min read",
-      author: "Research Team",
-      category: "Industry Insights"
-    },
-    {
-      id: 6,
-      title: "Maximizing the Benefits of Professional Writing Services",
-      description: "Learn how to get the most value from professional academic writing services. Understand the collaboration process, communication best practices, and how to leverage expert assistance effectively.",
-      thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-01",
-      readTime: "5 min read",
-      author: "BZTech Team",
-      category: "Service Benefits"
-    }
-  ];
+  useEffect(() => {
+    const loadBlogs = async () => {
+      const blogs = await fetchBlogs();
+      setBlogPosts(blogs);
+      setLoading(false);
+    };
+    loadBlogs();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={`min-h-screen bg-gray-50 pt-20 flex items-center justify-center ${isRTL ? 'rtl' : 'ltr'}`}>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+          <p className="mt-4 text-gray-600">Loading blogs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Blog posts are now fetched from Strapi
 
   const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
@@ -125,8 +76,8 @@ const Blog: React.FC = () => {
             <span>{post.author}</span>
           </div>
           
-          <Link 
-            to={`/blog/${post.id}`}
+          <Link
+            to={`/blog/${post.slug}`}
             className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300 group-hover:translate-x-1"
           >
             <span>Read More</span>
