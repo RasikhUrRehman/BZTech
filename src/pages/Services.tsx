@@ -6,7 +6,7 @@ import QuoteModal from '../components/QuoteModal';
 
 const Services: React.FC = () => {
   const { t, isRTL } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const services = [
     {
       icon: FileText,
