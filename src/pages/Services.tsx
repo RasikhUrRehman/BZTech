@@ -3,14 +3,10 @@ import { BookOpen, PenTool, Search, FileText, GraduationCap, Lightbulb, Clock, C
 import { useLanguage } from '../contexts/LanguageContext';
 import QuoteModal from '../components/QuoteModal';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 const Services: React.FC = () => {
   const { t, isRTL } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    console.log('Services component mounted, icons loaded');
-  }, []);
 
   const services = [
     {

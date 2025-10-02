@@ -5,8 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 5173,
+    cors: true,
   },
   optimizeDeps: {
     // Removed exclusion of lucide-react to prevent individual icon requests
