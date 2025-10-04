@@ -35,6 +35,10 @@ const translations = {
     'nav.contact': 'Contact',
     'nav.getStarted': 'Get Started',
     
+    // Blog Page
+    'blog.title': 'Our Blog',
+    'blog.subtitle': 'Stay updated with the latest insights, tips, and success stories from the world of academic writing and research',
+    
     // Home Page
     'home.hero.title': 'Excel in Your Academic Journey',
     'home.hero.subtitle': 'Empowering Research, Delivering Success',
@@ -677,6 +681,10 @@ const translations = {
     'nav.about': 'حولنا',
     'nav.contact': 'اتصل بنا',
     'nav.getStarted': 'ابدأ الآن',
+    
+    // Blog Page
+    'blog.title': 'مدونتنا',
+    'blog.subtitle': 'ابق على اطلاع بأحدث الرؤى والنصائح وقصص النجاح من عالم الكتابة الأكاديمية والبحث العلمي',
     
     // Home Page
     'home.hero.title': 'تفوق في رحلتك الأكاديمية',

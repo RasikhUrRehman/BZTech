@@ -86,10 +86,10 @@ const Blog: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Our Blog
+              {t('blog.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Stay updated with the latest insights, tips, and success stories from the world of academic writing and research
+              {t('blog.subtitle')}
             </p>
           </div>
         </div>
@@ -128,27 +128,7 @@ const Blog: React.FC = () => {
         </div>
       </section>
 
-      {/* Newsletter Subscription */}
-      <section className="bg-blue-600 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Stay Updated with Our Latest Posts
-          </h2>
-          <p className="text-blue-100 mb-8 text-lg">
-            Subscribe to our newsletter and never miss an update on academic writing tips, industry insights, and success stories.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-300 focus:outline-none"
-            />
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 };

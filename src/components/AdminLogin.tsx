@@ -127,14 +127,9 @@ const AdminLogin: React.FC = () => {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Demo Credentials</span>
-              </div>
+              
             </div>
-            <div className="mt-3 text-center text-sm text-gray-600">
-              <p>Username: <span className="font-mono bg-gray-100 px-2 py-1 rounded">admin</span></p>
-              <p className="mt-1">Password: <span className="font-mono bg-gray-100 px-2 py-1 rounded">admin123</span></p>
-            </div>
+            
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/samples" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/sample" className="text-gray-400 hover:text-white transition-colors">
                   {t('nav.samples')}
                 </Link>
               </li>

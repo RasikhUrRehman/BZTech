@@ -12,7 +12,7 @@ const Samples: React.FC = () => {
       countKey: '5',
       descKey: 'Comprehensive collection of AI and ML projects, research papers, and presentations including healthcare analytics, weather prediction, and cybersecurity applications',
       subjects: ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Healthcare AI'],
-      route: '/samples/ai-machine-learning'
+      route: '/sample/ai-machine-learning'
     },
     {
       icon: BookOpen,
@@ -20,7 +20,7 @@ const Samples: React.FC = () => {
       countKey: '5',
       descKey: 'Real-world case studies covering business analytics, social media analysis, web accessibility audits, and industry-specific solutions',
       subjects: ['Business Analytics', 'Social Media Analytics', 'Web Accessibility', 'Market Research', 'Data Analysis'],
-      route: '/samples/case-studies'
+      route: '/sample/case-studies'
     },
     {
       icon: PenTool,
@@ -28,7 +28,7 @@ const Samples: React.FC = () => {
       countKey: '1',
       descKey: 'Programming assignments and projects demonstrating practical problem-solving with modern technologies',
       subjects: ['Python', 'Software Development', 'Problem Solving', 'Programming Fundamentals'],
-      route: '/samples/programming'
+      route: '/sample/programming'
     }
   ];
 

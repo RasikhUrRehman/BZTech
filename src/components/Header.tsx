@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.services'), href: '/services' },
     { name: t('nav.offers'), href: '/offers' },
-    { name: t('nav.samples'), href: '/samples' },
+    { name: t('nav.samples'), href: '/sample' },
     { name: t('nav.pricing'), href: '/pricing' },
     { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.about'), href: '/about' },
