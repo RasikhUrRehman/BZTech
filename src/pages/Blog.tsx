@@ -1,96 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, User, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-  date: string;
-  readTime: string;
-  author: string;
-  category: string;
-}
+import { getAllBlogs, BlogPost } from '../utils/blogService';
 
 const Blog: React.FC = () => {
   const { t, isRTL } = useLanguage();
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "Mastering Academic Writing: Essential Tips for Success",
-      description: "Discover proven strategies to enhance your academic writing skills. Learn about structure, research methods, and citation techniques that will elevate your assignments and research papers.",
-      thumbnail: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-15",
-      readTime: "5 min read",
-      author: "BZTech Team",
-      category: "Academic Writing"
-    },
-    {
-      id: 2,
-      title: "The Complete Guide to Thesis Writing and Research",
-      description: "Navigate the complex world of thesis writing with our comprehensive guide. From topic selection to defense preparation, we cover everything you need to know for academic success.",
-      thumbnail: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-10",
-      readTime: "8 min read",
-      author: "Dr. Sarah Johnson",
-      category: "Research"
-    },
-    {
-      id: 3,
-      title: "Customer Success Story: From Struggling Student to Academic Excellence",
-      description: "Read how Maria transformed her academic journey with our personalized writing assistance. Learn about the challenges she faced and how our expert guidance helped her achieve her goals.",
-      thumbnail: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-08",
-      readTime: "6 min read",
-      author: "BZTech Team",
-      category: "Success Stories"
-    },
-    {
-      id: 4,
-      title: "Latest Updates: New Services and Enhanced Features",
-      description: "Explore our latest service offerings including AI-powered research assistance and enhanced plagiarism detection. Stay updated with the newest features designed to support your academic journey.",
-      thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-05",
-      readTime: "4 min read",
-      author: "Product Team",
-      category: "Product Updates"
-    },
-    {
-      id: 5,
-      title: "Industry Insights: The Future of Academic Publishing",
-      description: "Discover emerging trends in academic publishing and research dissemination. Learn how digital transformation is reshaping scholarly communication and what it means for researchers.",
-      thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-03",
-      readTime: "7 min read",
-      author: "Research Team",
-      category: "Industry Insights"
-    },
-    {
-      id: 6,
-      title: "Maximizing the Benefits of Professional Writing Services",
-      description: "Learn how to get the most value from professional academic writing services. Understand the collaboration process, communication best practices, and how to leverage expert assistance effectively.",
-      thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      date: "2024-01-01",
-      readTime: "5 min read",
-      author: "BZTech Team",
-      category: "Service Benefits"
-    }
-  ];
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        const blogs = await getAllBlogs();
+        setBlogPosts(blogs);
+      } catch (err) {
+        setError('Failed to fetch blog posts. Please try again later.');
+        console.error('Error fetching blogs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Use only Firebase data - no fallback
+  const displayPosts = blogPosts;
 
   const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
       <div className="relative overflow-hidden">
         <img 
-          src={post.thumbnail} 
+          src={post.images && post.images.length > 0 ? post.images[0] : "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"} 
           alt={post.title}
           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute top-4 left-4">
           <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-            {post.category}
+            {post.categories && post.categories.length > 0 ? post.categories[0] : 'Blog'}
           </span>
         </div>
       </div>
@@ -98,16 +48,8 @@ const Blog: React.FC = () => {
       <div className="p-6">
         <div className="flex items-center text-gray-500 text-sm mb-3 space-x-4">
           <div className="flex items-center space-x-1">
-            <Calendar className="w-4 h-4" />
-            <span>{new Date(post.date).toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}</span>
-          </div>
-          <div className="flex items-center space-x-1">
             <Clock className="w-4 h-4" />
-            <span>{post.readTime}</span>
+            <span>{post.read_time || '5 min read'}</span>
           </div>
         </div>
         
@@ -122,7 +64,7 @@ const Blog: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 text-sm text-gray-500">
             <User className="w-4 h-4" />
-            <span>{post.author}</span>
+            <span>{post.author?.name || 'Anonymous'}</span>
           </div>
           
           <Link 
@@ -156,11 +98,33 @@ const Blog: React.FC = () => {
       {/* Blog Posts Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+              <span className="ml-2 text-gray-600">Loading blog posts...</span>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <p className="text-red-600 mb-4">{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Retry
+              </button>
+            </div>
+          ) : displayPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-gray-600 mb-4">No blog posts found in Firebase.</p>
+              <p className="text-gray-500">Please add some blog posts to your Firebase Firestore database.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayPosts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
