@@ -12,7 +12,7 @@ const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefin
 // Simple hardcoded credentials - in production, use proper authentication
 const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'admin123'
+  password: 'zain@1234'
 };
 
 interface AdminAuthProviderProps {

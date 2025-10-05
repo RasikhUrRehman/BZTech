@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, getDoc, query, orderBy, limit, where, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, query, orderBy, limit, where, addDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 export interface BlogPost {
@@ -84,6 +84,50 @@ export const getBlogById = async (id: string): Promise<BlogPost | null> => {
   } catch (error) {
     console.error('Error fetching blog by ID:', error);
     return null;
+  }
+};
+
+// Update an existing blog post
+export const updateBlog = async (id: string, blogData: Partial<Omit<BlogPost, 'id' | 'publishedAt'>>): Promise<boolean> => {
+  try {
+    const blogDoc = doc(db, 'blogs', id);
+    await updateDoc(blogDoc, {
+      ...blogData,
+      updatedAt: serverTimestamp()
+    });
+    return true;
+  } catch (error) {
+    console.error('Error updating blog:', error);
+    return false;
+  }
+};
+
+// Delete a blog post
+export const deleteBlog = async (id: string): Promise<boolean> => {
+  try {
+    const blogDoc = doc(db, 'blogs', id);
+    await deleteDoc(blogDoc);
+    return true;
+  } catch (error) {
+    console.error('Error deleting blog:', error);
+    return false;
+  }
+};
+
+// Get all blogs with admin features (includes unpublished, etc.)
+export const getAllBlogsForAdmin = async (): Promise<BlogPost[]> => {
+  try {
+    const blogsCollection = collection(db, 'blogs');
+    const blogsQuery = query(blogsCollection, orderBy('publishedAt', 'desc'));
+    const querySnapshot = await getDocs(blogsQuery);
+    
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as BlogPost[];
+  } catch (error) {
+    console.error('Error fetching blogs for admin:', error);
+    return [];
   }
 };
 

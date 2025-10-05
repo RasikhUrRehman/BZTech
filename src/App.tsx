@@ -12,7 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
-import AddBlog from './pages/AddBlog';
+import BlogManagement from './components/BlogManagement';
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -32,9 +32,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path="/add-blog" element={
+          <Route path="/blog-management" element={
             <ProtectedRoute>
-              <AddBlog />
+              <BlogManagement />
             </ProtectedRoute>
           } />
         </Routes>
