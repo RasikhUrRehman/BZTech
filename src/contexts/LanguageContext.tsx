@@ -647,7 +647,7 @@ const translations = {
     
     // Home Page Rating Section
     'home.rating.title': '4.9/5 Rating',
-    'home.rating.subtitle': 'From 500+ satisfied clients',
+    'home.rating.subtitle': 'From 5000+ satisfied clients',
     'home.rating.expertTeam': 'Expert Team',
     'home.rating.qualityAssured': 'Quality Assured',
     
@@ -1294,7 +1294,7 @@ const translations = {
     
     // Home Page Rating Section
     'home.rating.title': 'تقييم 4.9/5',
-    'home.rating.subtitle': 'من أكثر من 500 عميل راضٍ',
+    'home.rating.subtitle': 'من أكثر من 5000 عميل راضٍ',
     'home.rating.expertTeam': 'فريق خبراء',
     'home.rating.qualityAssured': 'جودة مضمونة',
     
