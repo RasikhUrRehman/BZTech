@@ -89,12 +89,12 @@ const Pricing: React.FC = () => {
           <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
             {t('pricing.subtitle')}
           </p>
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-md mx-auto shadow-2xl">
+          {/* <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-md mx-auto shadow-2xl">
             <Sparkles className="h-8 w-8 text-[#f5a63a] mx-auto mb-3 animate-pulse" />
             <p className="text-lg font-bold text-white">
               {t('pricing.discount')}
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Wave separator */}

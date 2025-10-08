@@ -280,7 +280,7 @@ const Samples: React.FC = () => {
                     <h4 className={`text-sm font-bold text-gray-900 mb-3 ${isRTL ? 'text-right' : ''}`}>{t('samples.availableSubjects')}:</h4>
                     <div className={`flex flex-wrap gap-2 ${isRTL ? 'justify-end' : ''}`}>
                       {category.subjects.map((subject, subjectIndex) => (
-                        <span key={subjectIndex} className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-xs font-medium border border-purple-200">
+                        <span key={subjectIndex} className={`px-3 py-1.5 bg-gradient-to-r ${category.color} bg-opacity-20 text-white rounded-full text-xs font-medium border border-white border-opacity-30 shadow-sm`}>
                           {subject}
                         </span>
                       ))}
@@ -329,10 +329,10 @@ const Samples: React.FC = () => {
                   <div className="mb-6">
                     <h3 className={`text-lg font-bold text-gray-900 mb-4 ${isRTL ? 'text-right' : ''}`}>{sample.titleKey}</h3>
                     <div className={`flex flex-wrap gap-2 mb-4 ${isRTL ? 'justify-end' : ''}`}>
-                      <span className={`px-3 py-1.5 bg-gradient-to-r ${sample.color} text-white rounded-full text-sm font-semibold shadow-sm`}>
+                      <span className={`px-3 py-1.5 bg-opacity-30 bg-gradient-to-r ${sample.color} text-white rounded-full text-sm font-semibold shadow-sm`}>
                         {sample.typeKey}
                       </span>
-                      <span className="px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full text-sm font-semibold shadow-sm">
+                      <span className="px-3 py-1.5 bg-opacity-30 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full text-sm font-semibold shadow-sm">
                         {sample.levelKey}
                       </span>
                     </div>

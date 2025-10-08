@@ -200,7 +200,7 @@ const PricingCalculator: React.FC = () => {
       </div>
 
       {/* Price Display */}
-      <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg border border-blue-200">
+      <div className="mt-8 p-6 bg-gradient-to-r from-orange-50 to-emerald-50 rounded-lg border border-blue-200">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('pricing.calculator.estimatedPrice')}</h4>
@@ -248,7 +248,7 @@ const PricingCalculator: React.FC = () => {
         </p>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+          className="bg-gradient-to-br from-red-500 to-orange-500 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           {t('common.getQuote')}
         </button>
